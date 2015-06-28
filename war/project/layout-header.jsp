@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>${param.title}</title>
-<link rel="stylesheet" type="text/css" href="calowrie/main.css" />
-<c:import url="${param.styles}"/>
+<title></title>
+<style>
+
+</style>
 </head>
 <body>
 	<div class="main-content">
