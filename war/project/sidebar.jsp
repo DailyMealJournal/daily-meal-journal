@@ -20,6 +20,3 @@
   </div>
 </div>
 
-<div class="ui icon secondary thin toggle button">
-  <i class="align justify icon"></i>
-</div>

@@ -6,13 +6,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
 <sheetsstyler>
- <link rel="stylesheet" type="text/css" href="../css/lib/semantic.min.css" />
- <link rel="stylesheet" type="text/css" href="../css/components/sidebar.min.css" />
  <link rel="stylesheet" type="text/css" href="../css/lib/global.css" />
+ <link rel="stylesheet" type="text/css" href="../css/lib/semantic.min.css" />
 </sheetsstyler>
 </head>
 <body>
-	<div class="sidebar-container">
-		<jsp:include page="sidebar.jsp" />
-	</div>
-	<div class="main-content">
+	<jsp:include page="sidebar.jsp" />
+	<div class="pusher">
+		<div class="main-content full height">
+			<div class="sidebar-container">
+				<div class="following bar">
+				  <div class="ui two column vertically padded grid centered">
+				    <div class="column column-wide">
+				    </div>
+				    <div class="column">
+				      <div class="ui icon primary transparent thin toggle button">
+				        <i class="align justify icon"></i>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			</div>
