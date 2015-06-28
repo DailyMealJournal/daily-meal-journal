@@ -1,45 +1,26 @@
 @CHARSET "utf-8";
-
-body { background-color: #EEEEEE; }
-
-h1 { 
-	height: 33px;
-	font-size: x-large;
-	font-family: "Times New Roman", Times, serif;
+@font-face {
+    font-family: Bakersfield;
+    src: url('/assets/fonts/Bakersfield-Light.ttf');
 }
 
-ul li { list-style: square; }
-a:hover { background-color: white; }
-
-input.err { background-color: orange; }
-
-#header{
- width:760px;
- background-color: orange;
+body, h1, h2, h3, h4, h5, h6 {
+	font-family: Bakersfield !important;
+}
+.sidebar-container, .sidebar-container >.ui, .toggle.button{
+	background: transparent !important;
+	position: fixed;
 }
 
-#menu{
- width:160px;
- height:400px;
- text-align:left;
- vertical-align: top;
- float:left;
- background-color: aqua;
+.column-wide {
+	width: 1000px;
 }
 
-#body{
- width:600px;
- height:400px;
- float:left;
- background-color: white;
+.ui.titles {
+	text-transform: uppercase;
+	text-align: center;
 }
 
-#footer{
- width:760px;
- text-align:left;
- background-color: black;
- color: white;
- clear: left;
+.hidden {
+	visibility: hidden;
 }
-
-

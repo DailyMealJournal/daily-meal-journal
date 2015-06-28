@@ -1,0 +1,103 @@
+
+.main-fold {
+ position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 0em;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0px;
+  border-bottom: none;
+  background-color: #009189;
+  background-position: 50% 100%;
+  background-size: cover;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -ms-transition: background-color 1s ease-in-out 0.5s;
+  -moz-transition: background-color 1s ease-in-out 0.5s;
+  -webkit-transition: background-color 1s ease-in-out 0.5s;
+  transition: background-color 1s ease-in-out 0.5s;
+  z-index: -1;
+
+}
+
+
+.sub-fold {
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	padding: 0em;
+	margin: 20px 0 0 0;
+	color: rgba(0, 0, 0, 0.9);
+	z-index: -1;
+
+}
+.height-top {
+	height: 200px;
+}
+
+.height-bottom {
+	height: 300px;
+}
+
+.phone-app {
+	visibility: visible;
+    -webkit-animation: floatBubble 2s   normal ease-out;
+    animation: floatBubble 2s   normal ease-out;
+}
+
+.phone {
+	max-height: 500px;
+	top: 20px;
+	position: relative;
+}
+
+@-webkit-keyframes floatBubble {
+    0% {
+        top:500px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+@keyframes floatBubble {
+    0% {
+        top:500px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+
+
+
+.meal-title {
+    position: relative;
+    -webkit-animation: floatUnderline 2s normal ease-out;
+    animation: floatUnderline 2s normal ease-out;
+}
+
+@-webkit-keyframes floatUnderline {
+    0% {
+		text-decoration: none;
+		-webkit-transform: scaleX(0);
+		transform: scale(0);
+    }
+    100% {
+    	text-decoration: underline;
+		-webkit-transform: scaleX(1);
+		transform: scaleX(1);
+    }
+}
+@keyframes floatUnderline {
+    0% {
+		text-decoration: none;
+		-webkit-transform: scaleX(0);
+		transform: scale(0);
+    }
+    100% {
+    	text-decoration: underline;
+		-webkit-transform: scaleX(1);
+		transform: scaleX(1);
+    }
+}
