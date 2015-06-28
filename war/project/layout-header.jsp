@@ -5,9 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
-<style>
-
-</style>
+<sheetsstyler>
+ <link rel="stylesheet" type="text/css" href="../css/lib/semantic.min.css" />
+ <link rel="stylesheet" type="text/css" href="../css/components/sidebar.min.css" />
+ <link rel="stylesheet" type="text/css" href="../css/lib/global.css" />
+</sheetsstyler>
 </head>
 <body>
+	<div class="sidebar-container">
+		<jsp:include page="sidebar.jsp" />
+	</div>
 	<div class="main-content">

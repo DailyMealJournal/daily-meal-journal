@@ -1,12 +1,13 @@
-<%--  Page Title --%>
-<page-title name="Home"></page-title>
 
 <jsp:include page="layout-header.jsp" />
+
+<%--  Page Title --%>
+<page-title name="Home"></page-title>
 
 <%--  CUSTOM URL --%>
 <style-url url="calowrie/main.css"></style-url>
 
-PUT MAIN CONTENT HERE!
+
 
 
 <%--  Put JS Scripts below --%>
