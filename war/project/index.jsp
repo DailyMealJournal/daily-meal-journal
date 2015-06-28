@@ -1,4 +1,3 @@
-
 <jsp:include page="layout-header.jsp" />
 
 <%--  Page Title --%>
@@ -23,4 +22,3 @@
 <js-script src="calowrie/home/index.js"></js-script>
 
 <jsp:include page="layout-footer.jsp" />
-
