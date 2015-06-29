@@ -1,5 +1,5 @@
 <div class="ui left demo vertical thin inverted labeled icon sidebar menu visible">
-  <a class="item">
+  <a class="item" href="/">
     <i class="home icon"></i>
     Home
   </a>
@@ -20,6 +20,3 @@
   </div>
 </div>
 
-<div class="ui icon secondary thin toggle button">
-  <i class="align justify icon"></i>
-</div>
