@@ -10,10 +10,9 @@
  <link rel="stylesheet" type="text/css" href="../css/lib/semantic.min.css" />
 </sheetsstyler>
 </head>
-<body>
+<body class="pushable">
 	<jsp:include page="sidebar.jsp" />
-	<div class="pusher">
-		<div class="main-content full height">
+	<div class=" main-content pusher">
 			<div class="sidebar-container">
 				<div class="following bar">
 				  <div class="ui two column vertically padded grid centered">
