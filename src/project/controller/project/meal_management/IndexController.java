@@ -3,7 +3,7 @@
  * Proprietary and confidential
  * Copyright (C) Rococo Global Technologies, Inc - All Rights Reserved 2015
  * --------------------------------------------------------------------------- */
-package project.controller;
+package project.controller.project.meal_management;
 
 
 
@@ -16,14 +16,11 @@ import org.slim3.controller.Navigation;
  * @author <name here>
  *
  */
-public class IndexController extends APIController{
+public class IndexController extends APIController {
 
     @Override
     protected Navigation run() throws Exception {
-        
 
-        requestScope("base_url", getBaseUrl());
-        
-        return forward("project/index.jsp");
+        return forward("index.jsp");
     }
 }
