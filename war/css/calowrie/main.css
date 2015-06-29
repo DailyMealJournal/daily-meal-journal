@@ -59,17 +59,17 @@
 }
 
 .signup {
-  max-width: 60%;
+  max-width: 30%;
   text-align: center;
   position: relative;
+  left: calc(20px + 6em);
   -webkit-animation: floatRotate 2s normal ease-out;
   animation: floatRotate 2s normal ease-out;
 }
 
 
 .signup > form  {
-  max-width: 100px;
-  z-index: 99999;
+  max-width: 75px;
 }
 
 #signup-btn {
