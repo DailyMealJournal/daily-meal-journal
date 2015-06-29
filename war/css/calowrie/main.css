@@ -6,21 +6,35 @@
  position: relative;
   text-align: center;
   padding: 0em;
+<<<<<<< HEAD
+=======
+  overflow: hidden;
+>>>>>>> origin/master
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0px;
   border-bottom: none;
   background-color: #009189 !important;
+<<<<<<< HEAD
   background-position: 50% 100%;
   background-size: cover  !important;
   height: 100%;
   max-height: 100%;
+=======
+  background-position: relative;
+  background-size: cover  !important;
+ 
+>>>>>>> origin/master
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -ms-transition: background-color 1s ease-in-out 0.5s  !important;
   -moz-transition: background-color 1s ease-in-out 0.5s  !important;
   -webkit-transition: background-color 1s ease-in-out 0.5s  !important;
   transition: background-color 1s ease-in-out 0.5s  !important;
+<<<<<<< HEAD
   z-index: -1;
+=======
+  z-index: -3;
+>>>>>>> origin/master
 
 }
 
