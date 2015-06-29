@@ -10,12 +10,12 @@ public class APIController extends Controller{
         
         return null;
     }
-    
-  public String getBaseUrl() 
-  {
+
+    public String getBaseUrl() 
+    {
       String url = request.getRequestURL().toString();
       String base_url = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
       
       return base_url;
-  }
+    }
 }

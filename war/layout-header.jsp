@@ -6,23 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
 <sheetsstyler>
- <link rel="stylesheet" type="text/css" href="${base_url}/css/lib/global.css" />
  <link rel="stylesheet" type="text/css" href="${base_url}/css/lib/semantic.min.css" />
+ <link rel="stylesheet" type="text/css" href="${base_url}/css/lib/global.css" />
 </sheetsstyler>
 </head>
-<body class="pushable hide">
+<body class="pushable item hide">
 	<jsp:include page="sidebar.jsp" />
+    <div class="ui inverted green basic big launch right attached fixed toggle button">
+	    <i class="content icon"></i>
+	    <span class="text">Dashboard</span>
+  	</div>
 	<div class=" main-content pusher">
-			<div class="sidebar-container">
-				<div class="following bar">
-				  <div class="ui two column vertically padded grid centered">
-				    <div class="column column-wide">
-				    </div>
-				    <div class="column">
-				      <div class="ui icon primary transparent thin toggle button">
-				        <i class="align justify icon"></i>
-				      </div>
-				    </div>
-				  </div>
-				</div>
-			</div>
