@@ -1,6 +1,6 @@
 package project.controller.admin;
 
-import org.slim3.controller.Controller;
+import api.controller.*;
 import org.slim3.controller.Navigation;
 
 /**
@@ -8,7 +8,7 @@ import org.slim3.controller.Navigation;
  * @author <name here>
  *
  */
-public class DeleteController extends Controller {
+public class DeleteController extends APIController {
 
     @Override
     protected Navigation run() throws Exception {

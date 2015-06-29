@@ -5,12 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
+<c:set var="base_url" value="prerna" />
 <sheetsstyler>
- <link rel="stylesheet" type="text/css" href="../css/lib/global.css" />
- <link rel="stylesheet" type="text/css" href="../css/lib/semantic.min.css" />
+ <link rel="stylesheet" type="text/css" href="/css/lib/global.css" />
+ <link rel="stylesheet" type="text/css" href="/css/lib/semantic.min.css" />
 </sheetsstyler>
 </head>
-<body class="pushable">
+<body class="pushable hide">
 	<jsp:include page="sidebar.jsp" />
 	<div class=" main-content pusher">
 			<div class="sidebar-container">

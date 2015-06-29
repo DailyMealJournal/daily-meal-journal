@@ -1,4 +1,4 @@
-<jsp:include page="../layout-header.jsp" />
+<jsp:include page="/layout-header.jsp" />
 
 <%--  Page Title --%>
 <pagetitle name="Home"></pagetitle>
@@ -15,7 +15,7 @@
 			<div class="column">
 				<div class="introduction">
 					<h1 class="ui inverted header meal-title"> 
-						<img src="../assets/img/ico.png"/>
+						<img src="/assets/img/ico.png"/>
 						Calowrie
 					</h1>
 					<h2 class="sub-title">
@@ -58,7 +58,7 @@
 		<div class="column">
 		</div>
 		<div class="column">
-				<img src="../assets/img/others/prototype_app.png" class="phone phone-app hidden"/>
+				<img src="/assets/img/others/prototype_app.png" class="phone phone-app hidden"/>
 		</div>
 	</div>
 </div>
@@ -67,4 +67,4 @@
 <%--  Put JS Scripts ../js is not required --%>
 <jsscript src="calowrie/home/index.js"></jsscript>
 
-<jsp:include page="../layout-footer.jsp" />
+<jsp:include page="/layout-footer.jsp" />
