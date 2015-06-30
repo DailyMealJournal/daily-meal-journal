@@ -67,4 +67,5 @@
 <%--  Put JS Scripts ../js is not required --%>
 <jsscript src="calowrie/home/index.js"></jsscript>
 
-<jsp:include page="../layout-footer.jsp" />
+
+<jsp:include page="/layout-footer.jsp" />
