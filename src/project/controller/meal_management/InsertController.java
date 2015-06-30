@@ -1,4 +1,4 @@
-package project.controller.project.meal_management;
+package project.controller.meal_management;
 
 import api.controller.*;
 import org.slim3.controller.Navigation;

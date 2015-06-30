@@ -47,6 +47,7 @@
 
 .phone-app {
 	visibility: visible;
+  display: inline;
   -webkit-animation: floatBubble 2s   normal ease-in;
   animation: floatBubble 2s   normal ease-in;
 }
