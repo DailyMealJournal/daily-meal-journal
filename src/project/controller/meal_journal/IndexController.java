@@ -3,9 +3,7 @@
  * Proprietary and confidential
  * Copyright (C) Rococo Global Technologies, Inc - All Rights Reserved 2015
  * --------------------------------------------------------------------------- */
-package project.controller.meal_management;
-
-
+package project.controller.meal_journal;
 
 import api.controller.*;
 import org.slim3.controller.Navigation;
