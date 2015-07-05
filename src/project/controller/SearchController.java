@@ -5,7 +5,7 @@
  * --------------------------------------------------------------------------- */
 package project.controller;
 
-import org.slim3.controller.Controller;
+import api.controller.*;
 import org.slim3.controller.Navigation;
 
 /**
@@ -13,7 +13,7 @@ import org.slim3.controller.Navigation;
  * @author <name here>
  *
  */
-public class SearchController extends Controller {
+public class SearchController extends APIController {
 
     @Override
     protected Navigation run() throws Exception {
