@@ -5,8 +5,6 @@
  * --------------------------------------------------------------------------- */
 package project.controller.meal_journal;
 
-
-
 import api.controller.*;
 import org.slim3.controller.Navigation;
 
