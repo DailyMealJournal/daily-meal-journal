@@ -18,20 +18,39 @@ $('jsscript').each(function(){
     $('scripts').append(js_element);
     $(this).remove();
 });
-
+ var app = angular.module('Calowrie', ['sidebar', 'myMeals']);
 
  $(document).ready(function() {
-    if(page_title != 'Home') {
+    if(page_title == 'Home') {
 	//sidebar
-	$('.sidebar.menu')
-        .addClass('visible')
-        .sidebar('setting', { dimPage:  false, 
-                              closable: false
-                            })
-	 ;
+        $('.side-nav').addClass('hide');
     }
 	//end of sidebar
 
-    $('.pushable').removeClass('hide');
 
+    $('.pushable').removeClass('hide');
 });
+
+ var sidebar = angular.module("sidebar", []);
+
+sidebar.controller('SidebarController', ['$scope', function($scope) {
+        $scope.sidebarProfile = {
+                                    image: base_url + 'assets/img/team-1.jpg',
+                                    firstName: 'John',
+                                    lastName: 'Doe'
+                                }
+
+}]);
+
+/**
+app.directive('backImg', function(){
+    return function(scope, element, attrs){
+        attrs.$observe('backImg', function(value) {
+            element.css({
+                'background-image': 'url(' + value +')',
+                'background-size' : 'cover'
+            });
+        });
+    };
+});
+**/

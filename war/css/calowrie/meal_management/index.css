@@ -1,59 +1,14 @@
-.main-content {
-	background: rgba(36, 7, 7, 0.56);
+.description {
+	height: 70%;
 }
 
-.ui.cards > .card > .content > .header, .ui.cards > .card > .content > .description, .ui.cards > .card > .content > .meta > p, .ui.cards > .card > .content > .description {
-	color: rgba(255,255,255, 0.85) !important;
+.meal-management {
+	margin-right: 0;
 }
 
-.ui.cards > .card > .content {
-	background: rgba(145, 52, 52, 0.72);
+.card .card-reveal {
+	overflow: hidden;
 }
-
-.ui.cards > .card {
-	-webkit-transition: all .2s ease-in-out;
-	transition: all .2s ease-in-out;
-}
-
-.ui.cards > .card:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.narrow > img{
-	height: 100px !important;
-	-webkit-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	-moz-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-}
-.ui.segment, .ui.segment > a{
-	color: rgba(255,255,255, 0.85) !important;
-	background: rgba(36, 7, 7, 0.11);
-}
-
-
-a {
-	color: rgba(255,255,255, 0.85) !important;
-}
-
-.ui.segment > .title {
-	text-align: center;
-}
-
-.item > .ui > .overlap {
-	text-align: center;
-	height: 100px !important;
-	-webkit-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	-moz-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-}
-
-.item {
-  margin: 0 !important;
-  padding: 0;
-
-}
-
 .category {
 	padding: 0px !important;
 }

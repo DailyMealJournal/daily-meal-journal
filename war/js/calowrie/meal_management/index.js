@@ -1,6 +1,6 @@
-var app = angular.module("myMeals", []);
+var meal_management = angular.module("myMeals", []);
 
-app.controller('MealsController', ['$scope', function($scope) {
+meal_management.controller('MealsController', ['$scope', function($scope) {
 	$scope.meals = [
 					{
 						image: base_url + 'assets/img/food/k8.jpg',
@@ -38,7 +38,7 @@ app.controller('MealsController', ['$scope', function($scope) {
 				  ];
 }]);
 
-app.controller('MealCategoryController', ['$scope', function($scope) {
+meal_management.controller('MealCategoryController', ['$scope', function($scope) {
 	$scope.categories = [
 							{
 								image: base_url + 'assets/img/food/category/all_vegtables.png',
@@ -54,7 +54,7 @@ app.controller('MealCategoryController', ['$scope', function($scope) {
 						];
 }]);
 
-app.directive('backImg', function(){
+meal_management.directive('backImg', function(){
     return function(scope, element, attrs){
         attrs.$observe('backImg', function(value) {
             element.css({
