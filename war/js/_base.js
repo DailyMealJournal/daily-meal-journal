@@ -21,12 +21,15 @@ $('jsscript').each(function(){
 
 
  $(document).ready(function() {
+    if(page_title != 'Home') {
 	//sidebar
-	$('.sidebar.menu').first()
-	.sidebar('toggle')
-  	.sidebar('attach events', '.toggle.button')
+	$('.sidebar.menu')
+        .addClass('visible')
+        .sidebar('setting', { dimPage:  false, 
+                              closable: false
+                            })
 	 ;
-
+    }
 	//end of sidebar
 
     $('.pushable').removeClass('hide');

@@ -1,10 +1,10 @@
-<jsp:include page="layout-header.jsp" />
+<jsp:include page="/layout-header.jsp" />
 
 <%-- Page Title --%>
-<page-title name=""></page-title>
+<pagetitle name=""></pagetitle>
 
 <%-- Style URL ../css us bit required --%>
-<style-url url=""></style-url>
+<styleurl url=""></styleurl>
 
 <div class="ui grid">
     <div class="one column row">
@@ -20,5 +20,5 @@
 
 
 <%-- Put JS Scripts ../css is not required --%>
-<js-script src=""></js-script>
-<jsp:include page="layout-footer.jsp" />
+<jsscript src=""></jsscript>
+<jsp:include page="/layout-footer.jsp" />
