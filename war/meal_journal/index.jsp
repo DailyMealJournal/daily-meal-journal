@@ -1,10 +1,10 @@
 <jsp:include page="/layout-header.jsp" />
 
 <%-- Page Title --%>
-<pagetitle name=""></pagetitle>
+<pagetitle name="Meal Journal"></pagetitle>
 
 <%-- Style URL ../css us bit required --%>
-<styleurl url=""></styleurl>
+
 
 <div style="height: 275px; background-image: url(calowriebanner.png)">
 	<h1 style="text-align:center; position: relative; top: 50%; transform: translateY(-50%);">CALOWRIE</h1>
@@ -35,7 +35,7 @@
 	</div>
 </div>
     
-<div style="height: 200px; width:15em; float: right; background-color: purple">
+<div style="height: 200px; width:15em; float: right; background-color: purple"><!-- Just a simple rule: never do this, never do inline css elements. -->
 	<div>
 	</div>
 	<div>
@@ -45,5 +45,5 @@
 </div>
 
 <%-- Put JS Scripts ../css is not required --%>
-<jsscript src=""></jsscript>
+
 <jsp:include page="/layout-footer.jsp" />

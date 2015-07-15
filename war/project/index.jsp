@@ -46,7 +46,7 @@
 						<div class="field frm-btn">
 							 <div class="ui inverted button" id="signup-btn">Sign Up</div>
 		
-							 <div class="ui inverted green button" id="login-btn">Log In</div>
+							 <a href="${base_url}meal_journal"><div class="ui inverted green button" id="login-btn">Log In</div></a>
 						 </div>
 					</form>
 				</div>
