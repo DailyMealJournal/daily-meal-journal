@@ -12,8 +12,8 @@
 </head>
 <body class="pushable item hide">
 	<jsp:include page="sidebar.jsp" />
-    <div class="ui inverted green basic big launch right attached fixed toggle button">
+  <!--<div class="ui inverted green basic big launch right attached fixed toggle button">
 	    <i class="content icon"></i>
 	    <span class="text">Dashboard</span>
-  	</div>
+  	</div> -->
 	<div class=" main-content pusher">

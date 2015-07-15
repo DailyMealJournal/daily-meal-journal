@@ -1,9 +1,9 @@
-<div class="ui left demo basic vertical thin inverted labeled icon sidebar menu visible">
+<div class="ui sidebar inverted vertical slide menu">
   <a class="item" href="/">
     <i class="home icon"></i>
     Home
   </a>
-  <a class="active item">
+  <a class="active item" href="${base_url}meal_management">
     <i class="heart icon"></i>
     Current Section
   </a>
