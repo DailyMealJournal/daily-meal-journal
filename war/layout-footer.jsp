@@ -1,5 +1,5 @@
 
-	</div>
+	</main>
 </body>
 <scripts>
     <script type="text/javascript" src="${base_url}/js/lib/angular.js"></script>
