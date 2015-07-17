@@ -36,8 +36,12 @@ meal_management.controller('MealsController', ['$scope', function($scope) {
 
 
 				  ];
+
 }]);
 
+meal_management.controller('AllController', ['$scope', function($scope) {
+
+}]);
 meal_management.controller('MealCategoryController', ['$scope', function($scope) {
 	$scope.categories = [
 							{
@@ -64,3 +68,30 @@ meal_management.directive('backImg', function(){
         });
     };
 });
+
+ $(document).ready(function(){
+ 	$('#list_meals').hide();
+ 	$('.grid-view').attr('disabled', 'disabled')
+ 	$('#loader').hide();
+	$('.grid-view').click(function(e){
+		e.preventDefault();
+		$(this).addClass('blue-text')
+		$(this).attr('disabled','disabled');
+		$('.list-view').removeClass('blue-text');
+		$('.list-view').removeAttr('disabled');
+		$('#list_meals').fadeOut(100);	
+		$('#loader').fadeIn(500).delay(800).fadeOut(100);
+		$('#grid_meals').delay(1350).fadeIn(200);
+	});
+
+	$('.list-view').click(function(e){
+		e.preventDefault();
+		$(this).addClass('blue-text')
+		$(this).attr('disabled','disabled');
+		$('.grid-view').removeClass('blue-text');
+		$('.grid-view').removeAttr('disabled');
+		$('#grid_meals').fadeOut(100);
+		$('#loader').fadeIn(500).delay(800).fadeOut(100);
+		$('#list_meals').delay(1350).fadeIn(200);
+	})
+})

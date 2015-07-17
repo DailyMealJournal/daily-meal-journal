@@ -18,6 +18,24 @@
   width: 20%;
 }
 
+.list-meal {
+  margin: 10% 0 0 0;
+}
+
+.section {
+  padding: 0px;
+}
+.divider {
+  overflow: visible;
+}
+
+#loader {
+  margin: 15% 0 0 0;
+}
+.no-meals {
+  margin: 15% 0 0 0;
+}
+
 .text-size-16 {
   font-size: 16px !important;
 }
