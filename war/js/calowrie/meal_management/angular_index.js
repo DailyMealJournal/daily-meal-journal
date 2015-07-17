@@ -83,9 +83,7 @@ meal_management.controller('MealCategoryController', ['$scope', function($scope)
 								image: base_url + 'assets/img/icons/32px/143.png',
 								name: 'Snacks',
 								filters: ['Chips', 'Fries']
-							}
-
-
+                            }
 						];
 }]);
 

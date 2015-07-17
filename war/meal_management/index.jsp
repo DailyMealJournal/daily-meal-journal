@@ -1,12 +1,12 @@
 <jsp:include page="/layout-header.jsp" />
 
 <%--  Page Title --%>
-<pagetitle name="Calowrie - Meal Management"></pagetitle>
+<pagetitle name="Meal Management"></pagetitle>
 
 <%--  Style URL ../css is not required --%>
 <styleurl url="calowrie/meal_management/index.css"></styleurl>
 
-<div class="meal-management container section row"  ng-modules="myMeals">
+<div class="meal-management container section row"  ng-module="myMeals">
   <div ng-controller="AllController">
         <div class="col s12">
           <div class="row">
@@ -41,7 +41,7 @@
             <div class="col s12 m6 l4" ng-repeat="meal in meals | filter: global.search">   
               <div class="card small hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" ng-src="{{ meal.image }}">
+                  <img class="activator responsive-img" ng-src="{{ meal.image }}">
                   <span class="card-title">{{ meal.header }}</span>
                 </div>
                 <div class="card-content">
@@ -50,11 +50,16 @@
                    <p class="truncate">{{ meal.desc }} </p>
                 </div>
                 <div class="card-reveal">
-                  <span class="card-title text-size-16 grey-text text-darken-4 ">{{ meal.header }}<i class="material-icons right">close</i></span>
-                  <div class="description">
-                      <p>{{ meal.desc }} </p>
+                  <div class="row reveal-row">
+                    <span class="card-title text-size-16 grey-text text-darken-4 row">
+                      <i class="col s9">{{ meal.header }}</i>
+                      <i class="material-icons right col s3">close</i>
+                    </span>
+                    <div class="description">
+                        <p>{{ meal.desc }} </p>
+                    </div>
                   </div>
-                  <a class="waves-effect waves-light btn right"><i class="material-icons left"></i>Add Meal</a>
+                  <a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>
                 </div>
               </div>
             </div>
@@ -66,6 +71,7 @@
           <div class="section" ng-repeat="meal in meals | filter: global.search">
             <div class="row">
               <h3 class="title">{{ meal.header }}</h3>
+              <a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>
               <div class="col s12 m4">   
                 <img class="responsive-img materialboxed z-depth-2 list-meal" ng-src="{{ meal.image }}">
               </div>
