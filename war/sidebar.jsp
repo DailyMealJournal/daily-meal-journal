@@ -9,8 +9,8 @@
 			</div>
 			<div class="card-reveal">
 				<span class="card-title grey-text text-darken-4 ">{{ sidebarProfile.firstName }} {{ sidebarProfile.lastName }}<i class="material-icons right">face</i></span>
-					<li><a href="#" class="black-text">Account</a></li>
-					<li><a href="#" class="black-text">Log Out</a></li>
+					<li><a class="black-text btn btn-flat">Account</a></li>
+					<li><a class="black-text btn btn-flat">Log Out</a></li>
 
 			</div>
 		</div>
