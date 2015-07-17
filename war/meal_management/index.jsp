@@ -12,8 +12,8 @@
           <div class="row">
             <div class=" col s3 center-aligned">
               <div class="center-aligned">
-                <button class="view-type list-view btn-flat"><i class="material-icons prefix input-field">reorder</i></button>
-                <button class="view-type grid-view btn-flat blue-text"><i class="material-icons prefix input-field">dashboard</i></button>
+                <a class="view-type list-view btn-flat"><i class="material-icons prefix input-field">reorder</i></a>
+                <a class="view-type grid-view btn-flat blue-text"><i class="material-icons prefix input-field">dashboard</i></a>
               </div>
             </div>
             <div class="input-field col s3 offset-s3">
