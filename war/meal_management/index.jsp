@@ -41,7 +41,7 @@
             <div class="col s12 m6 l4" ng-repeat="meal in meals | filter: global.search">   
               <div class="card small hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" ng-src="{{ meal.image }}">
+                  <img class="activator responsive-img" ng-src="{{ meal.image }}">
                   <span class="card-title">{{ meal.header }}</span>
                 </div>
                 <div class="card-content">
@@ -50,7 +50,10 @@
                    <p class="truncate">{{ meal.desc }} </p>
                 </div>
                 <div class="card-reveal">
-                  <span class="card-title text-size-16 grey-text text-darken-4 ">{{ meal.header }}<i class="material-icons right">close</i></span>
+                  <span class="card-title text-size-16 grey-text text-darken-4 row">
+                    <i class="col s9">{{ meal.header }}</i>
+                    <i class="material-icons right col s3">close</i>
+                  </span>
                   <div class="description">
                       <p>{{ meal.desc }} </p>
                   </div>
