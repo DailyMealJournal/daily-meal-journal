@@ -4,46 +4,89 @@
 <pagetitle name="Meal Journal"></pagetitle>
 
 <%-- Style URL ../css us bit required --%>
-
-
-<div style="height: 275px; background-image: url(calowriebanner.png)">
-	<h1 style="text-align:center; position: relative; top: 50%; transform: translateY(-50%);">CALOWRIE</h1>
-</div>
-
-
-<div style="width:75%; float: left">
-	<div class="ui grid">
-	    <div class="row">
-	        <div class="column" style="background-color:green">
-	            <h1 style="text-align:center">MEAL JOURNAL</h1>
-	        </div>
-	    </div>
-	    <div class="six column centered row">
-	        <div class="column" style="background-color: blue">
-	        	<h2 style="color:white; text-align:center">THIS IS A TEST</h2>
-	        </div>
-	        <div class="column" style="background-color: yellow">
-	        	<h2 style="text-align:center">THIS IS A TEST</h2>
-	        </div>
-	        <div class="column" style="background-color: red">
-	        	<h2 style="color:white; text-align:center">THIS IS A TEST</h2>
-	        </div>
-	        <div class="column" style="background-color: black">
-	        	<h2 style="color:white; text-align:center">THIS IS A TEST</h2>
-	        </div>
-	    </div>
+<styleurl url="calowrie/meal_journal/index.css"></styleurl>
+<div ng-module="myJournal" ng-controller="MealJournalController">
+	<div class="row">
+		<div class="offset-s3 col s1 arrow-left">
+			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1"><i class="material-icons">arrow_back</i></a>
+		</div>
+		<div class="col s4">
+			<h5 class="center-align">{{ journal.date }}</h5>
+		</div>
+		<div class="col s1 arrow-right">
+			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1"><i class="material-icons">arrow_forward</i></a>
+		</div>
 	</div>
-</div>
-    
-<div style="height: 200px; width:15em; float: right; background-color: purple"><!-- Just a simple rule: never do this, never do inline css elements. -->
-	<div>
-	</div>
-	<div>
-	</div>
-	<div>
+	<div class = "row">
+		<div class="col s7 offset-s2">
+			<div class="divider"></div>
+			<div ng-repeat="meal in journal.meals">
+				<div class = "section">
+					<div class="row meal">
+						<div class="col s10">
+							<h4 class="meal-header">{{ meal.header }}</h4>
+							<p class="grey-text text-darken-1">{{ meal.desc }}</p>
+						</div>
+						<div>
+							<a style="margin-top:5px; margin-right:5px; z-index:-1;" class="btn-floating btn-medium waves-effect waves-light teal"><i class="material-icons">mode_edit</i></a>
+							<a style="margin-top:5px; z-index:-1;" class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">delete</i></a>
+						</div>
+					</div>
+					<div class="row">
+						<table class="centered bordered card-panel table-journal">
+							<thead>
+								<tr>
+									<th>No. of Servings</th>
+									<th>Unit</th>
+									<th>Name of Food</th>
+									<th>Calories</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="food in meal.food_list">
+									<td>{{ food.no_of_servings }}</td>
+									<td>{{ food.unit }}</td>
+									<td><a class="red-text text-accent-2" href="#">{{ food.name }}</a></td>
+									<td>{{ food.calories}}</td>
+								</tr>
+								<tr class="total-cal">
+									<td colspan="2"></td>
+									<td style="right-align"><b>TOTAL CALORIES: </b></td>
+									<td class="teal-text text-lighten-1"><b>{{ meal.total_calories }} Calories</b></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="divider"></div>
+			</div>
+		</div>
+		<div class="fixed col s3">
+			<div class="input-field fixed-pos search-side">
+				<i class="material-icons prefix" style="">search</i>
+			    <input id="search" type="text" class="validate">
+			    <label for="search">Search</label>
+	         </div>
+		     <div  class="card-panel fixed-pos cal-info">
+		     	<p class="total-cal-info">TOTAL CALORIES</p>
+		     	<p style="text-align:center; margin-top:1px;">for the day</p>
+		     	<p  class="teal-text text-darken 4" style="text-align:center; font-size:72px; margin-bottom:0px; margin-top:-14px;">
+		     		<b>{{ journal.calories_consumed }}</b>
+		     	</p>
+		     	<p class="cal-sub-text center-align">
+		     		Calories 
+		     		<br> 		     	
+		     		<h7>Out of {{ journal.calorie_limit }} </h7>
+		     	</p>
+		     	<div class="divider"></div>
+		     	<center><a class="waves-effect waves-teal btn-flat red-text text-accent-1">Monthly View</a>
+		     	<a class="waves-effect waves-light btn">Add a Meal</a></center>
+		     </div>
+		</div>
 	</div>
 </div>
 
 <%-- Put JS Scripts ../css is not required --%>
-
+<jsscript src="calowrie/meal_journal/angular_index.js"></jsscript>
+<jsscript src="calowrie/meal_journal/index.js"></jsscript>
 <jsp:include page="/layout-footer.jsp" />

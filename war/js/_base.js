@@ -23,6 +23,7 @@ $('jsscript').each(function(){
  $('[ng-module]').each(function() {
     a_modules.push($(this).attr('ng-module'));
  });
+ 
 
  var app = angular.module('Calowrie', a_modules);
 
@@ -30,6 +31,12 @@ $('jsscript').each(function(){
     if(page_title == 'Home') {
 	//sidebar
         $('.side-nav').addClass('hide');
+    }else{
+        $('.button-collapse').sideNav({
+            menuWidth: 300, // Default is 240
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        });
     }
 	//end of sidebar
 
