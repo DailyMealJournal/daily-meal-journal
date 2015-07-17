@@ -33,7 +33,7 @@
 		<a href="#" class="button-collapse top-nav full hide-on-large-only" data-activates="nav-mobile"></a>
 		<i class="mdi-navigation-menu"></i>
 	</div>
-	<nav class="top-nav">
+	<nav class="top-nav teal">
 		<div class="nav-wrapper">
 			<a class="page-title">Meal Management</a>
 		</div>
