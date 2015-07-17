@@ -6,11 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
 <sheetsstyler>
- <link rel="stylesheet" type="text/css" href="${base_url}/css/lib/semantic.min.css" />
- <link rel="stylesheet" type="text/css" href="${base_url}/css/lib/global.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="${base_url}css/lib/materialize.min.css" />
+	<link rel="stylesheet" type="text/css" href="${base_url}css/lib/global.css" />
 </sheetsstyler>
 </head>
-<body class="pushable item hide">
+<body class="pushable item hide" ng-app="Calowrie">
 	<jsp:include page="sidebar.jsp" />
   <!--<div class="ui inverted green basic big launch right attached fixed toggle button">
 	    <i class="content icon"></i>
