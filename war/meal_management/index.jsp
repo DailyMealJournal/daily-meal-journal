@@ -50,14 +50,16 @@
                    <p class="truncate">{{ meal.desc }} </p>
                 </div>
                 <div class="card-reveal">
-                  <span class="card-title text-size-16 grey-text text-darken-4 row">
-                    <i class="col s9">{{ meal.header }}</i>
-                    <i class="material-icons right col s3">close</i>
-                  </span>
-                  <div class="description">
-                      <p>{{ meal.desc }} </p>
+                  <div class="row reveal-row">
+                    <span class="card-title text-size-16 grey-text text-darken-4 row">
+                      <i class="col s9">{{ meal.header }}</i>
+                      <i class="material-icons right col s3">close</i>
+                    </span>
+                    <div class="description">
+                        <p>{{ meal.desc }} </p>
+                    </div>
                   </div>
-                  <a class="waves-effect waves-light btn right"><i class="material-icons left"></i>Add Meal</a>
+                  <a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>
                 </div>
               </div>
             </div>
@@ -69,6 +71,7 @@
           <div class="section" ng-repeat="meal in meals | filter: global.search">
             <div class="row">
               <h3 class="title">{{ meal.header }}</h3>
+              <a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>
               <div class="col s12 m4">   
                 <img class="responsive-img materialboxed z-depth-2 list-meal" ng-src="{{ meal.image }}">
               </div>
