@@ -3,9 +3,38 @@
         <div class="collection fixed-pos"  ng-controller="MealCategoryController">
             <div class="collection-item">
                 <h5>Filters</h5>
-                <div class=""  ng-repeat="category in categories"> 
+<!--
+                <div class=""  ng-repeat="category in categories">
+                    <img ng-src="{{ category.image }}"> 
                     <span class="">{{ category.name }}</span>
+                    <ul ng-repeat="filter in category.filters">
+                        <li class="">{{ filter }}</li>
+                    </ul>
                 </div>
+-->
+<!--
+                <div class=""  >
+                    <img ng-src="{{ category.image }}"> 
+                    <span class="">{{ category.name }}</span>
+                    <ul ng-repeat="filter in category.filters">
+                        <li class="">{{ filter }}</li>
+                    </ul>
+                </div>  
+-->
+                
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li ng-repeat="category in categories">
+                        <div class="collapsible-header"><img class="accordion-header-img" ng-src="{{ category.image }}"> {{ category.name }}</div>
+                        <div class="collapsible-body">
+                            <div class="accordion-list">
+                                <div ng-repeat="filter in category.filters">
+                                    <input type=checkbox id="food_{{filter}}" />
+                                    <label for="food_{{filter}}">{{ filter }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="collection-item">
                 <!-- Modal Trigger -->
