@@ -1,59 +1,29 @@
-.main-content {
-	background: rgba(36, 7, 7, 0.56);
+.description {
+	height: 100%;
+  max-height: 170px;
 }
 
-.ui.cards > .card > .content > .header, .ui.cards > .card > .content > .description, .ui.cards > .card > .content > .meta > p, .ui.cards > .card > .content > .description {
-	color: rgba(255,255,255, 0.85) !important;
+.desc-fold {
+  padding-bottom: 5px;
 }
 
-.ui.cards > .card > .content {
-	background: rgba(145, 52, 52, 0.72);
+.fixed-pos {
+  position: fixed !important;
+  width: 20%;
 }
 
-.ui.cards > .card {
-	-webkit-transition: all .2s ease-in-out;
-	transition: all .2s ease-in-out;
+.text-size-16 {
+  font-size: 16px !important;
 }
 
-.ui.cards > .card:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
+.meal-management {
+	margin-right: 0;
+  margin-left: calc(20% + 10px);
 }
 
-.narrow > img{
-	height: 100px !important;
-	-webkit-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	-moz-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
+.card .card-reveal {
+	overflow: hidden;
 }
-.ui.segment, .ui.segment > a{
-	color: rgba(255,255,255, 0.85) !important;
-	background: rgba(36, 7, 7, 0.11);
-}
-
-
-a {
-	color: rgba(255,255,255, 0.85) !important;
-}
-
-.ui.segment > .title {
-	text-align: center;
-}
-
-.item > .ui > .overlap {
-	text-align: center;
-	height: 100px !important;
-	-webkit-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	-moz-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-}
-
-.item {
-  margin: 0 !important;
-  padding: 0;
-
-}
-
 .category {
 	padding: 0px !important;
 }
