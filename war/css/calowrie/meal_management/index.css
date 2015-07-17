@@ -1,3 +1,9 @@
+.accordion-list{
+    padding-top:1rem;
+    padding-left:1rem;
+    padding-bottom:1rem;
+}
+
 .description {
 	height: 100%;
   max-height: 170px;
