@@ -1,7 +1,7 @@
 <jsp:include page="/layout-header.jsp" />
 
 <%--  Page Title --%>
-<pagetitle name="Calowrie - Meal Management"></pagetitle>
+<pagetitle name="Meal Management"></pagetitle>
 
 <%--  Style URL ../css is not required --%>
 <styleurl url="calowrie/meal_management/index.css"></styleurl>

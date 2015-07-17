@@ -1,6 +1,7 @@
 //sets title page
 var page_title = $('pagetitle').attr('name')
-$('title').html(page_title);
+$('title').html('Calowrie -' + page_title);
+$('.page-title').html(page_title);
 $('pagetitle').remove();
 
 var base_url = window.location.origin + '/';
