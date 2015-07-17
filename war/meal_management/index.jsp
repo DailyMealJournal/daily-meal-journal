@@ -49,6 +49,7 @@
       <jsp:include page="/meal_management/category.jsp"/>
 </div>
 <%--  Put JS Scripts ../js is not required --%>
+<jsscript src="calowrie/meal_management/angular_index.js"></jsscript>
 <jsscript src="calowrie/meal_management/index.js"></jsscript>
 
 <jsp:include page="/layout-footer.jsp" />
