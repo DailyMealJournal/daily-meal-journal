@@ -38,10 +38,11 @@
 			    	</div>
 		    	</form>
 			</div>
+            
 			<div class="col s12 m4">
 				<ul class="collapsible" data-collapsible="accordion">
 					<li>
-						<div class="collapsible-header">Poultry</div>
+						<div class="collapsible-header"><img class="accordion-header-img" src="http://localhost:8888/assets/img/icons/32px/61.png"> Poultry</div>
 						<div class="collapsible-body">
                             <div class="accordion-list">
                                 <div>
@@ -56,7 +57,7 @@
 						</div>
 					</li>
 					<li>
-						<div class="collapsible-header">Meat</div>
+						<div class="collapsible-header"><img class="accordion-header-img" src="http://localhost:8888/assets/img/icons/32px/66.png"> Meat</div>
 						<div class="collapsible-body">	
                             <div class="accordion-list">
                                 <div>
@@ -71,7 +72,7 @@
 						</div>
 					</li>
 					<li>
-						<div class="collapsible-header">Seafood</div>
+						<div class="collapsible-header"><img class="accordion-header-img" src="http://localhost:8888/assets/img/icons/32px/127.png"> Seafood</div>
 						<div class="collapsible-body">
                             <div class="accordion-list">
                                 <div>
@@ -86,7 +87,7 @@
 						</div>	
 					</li>
 					<li>
-						<div class="collapsible-header">Fruits & Vegetables</div>
+						<div class="collapsible-header"><img class="accordion-header-img" src="http://localhost:8888/assets/img/icons/32px/51.png"> Fruits & Vegetables</div>
 						<div class="collapsible-body">
                             <div class="accordion-list">
                                 <div>
@@ -109,7 +110,7 @@
 						</div>
 					</li>
 					<li>
-						<div class="collapsible-header">Dairy</div>
+						<div class="collapsible-header"><img class="accordion-header-img" src="http://localhost:8888/assets/img/icons/32px/57.png"> Dairy</div>
 						<div class="collapsible-body">
                             <div class="accordion-list">
                                 <div>
@@ -128,7 +129,7 @@
 						</div>
 					</li>
 					<li>
-						<div class="collapsible-header">Dessert</div>
+						<div class="collapsible-header"><img class="accordion-header-img" src="http://localhost:8888/assets/img/icons/32px/122.png"> Dessert</div>
 						<div class="collapsible-body">
                             <div class="accordion-list">
                                 <div>
@@ -143,7 +144,7 @@
 						</div>
 					</li>
 					<li>
-						<div class="collapsible-header">Beverage</div>
+						<div class="collapsible-header"><img class="accordion-header-img" src="http://localhost:8888/assets/img/icons/32px/100.png"> Beverage</div>
 						<div class="collapsible-body">
                             <div class="accordion-list">
                                 <div>
@@ -166,7 +167,7 @@
 						</div>
 					</li>
 					<li>
-						<div class="collapsible-header">Snacks</div>
+						<div class="collapsible-header"><img class="accordion-header-img" src="http://localhost:8888/assets/img/icons/32px/143.png"> Snacks</div>
 						<div class="collapsible-body">
                             <div class="accordion-list">
                                 <div>
