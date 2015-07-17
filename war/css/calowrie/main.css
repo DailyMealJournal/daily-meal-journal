@@ -8,7 +8,8 @@
 }
 
 .parallax-container {
-  height: 800px;
+  height: 1000px;
+  max-height: 100%;
   z-index: -3;
   margin: auto;
     margin-left: -100%;
@@ -83,10 +84,6 @@
   color: #212121;  
 }
 
-.second-row {
-  margin-top: 5%;
-}
-
 .circle.responsive-img {
   height: 155px;
   width: 155px;
@@ -94,6 +91,19 @@
 
 .center-align h5 {
   margin-left: -15%;
+}
+
+.loading-pin {
+  margin-top: 10%;
+  font-size: 14px;
+}
+
+.loading-pin > i {
+  font-size: 14px !important;
+}
+
+.loading-pin.second-row {
+  margin-top: 15%;
 }
 
 .introduction {
@@ -170,6 +180,22 @@
     width: auto;  
     height: auto;
   }
+
+  .team-members {
+    margin:auto;
+    margin-left: 5%;
+  }
+
+  .team-header {
+    text-align: center;
+  }
+
+}
+
+@media screen and (min-width: 992px) {
+  .second-row {
+    margin-top: 5%;
+  }
 }
 
 @media screen and (max-width: 601px) {
@@ -179,6 +205,16 @@
   .parallax img{
     width: auto;  
     height: auto;
+  }
+
+  .team-members {
+    margin:auto;
+    margin-left: 0;
+  }
+
+  .team-member h5 {
+    text-align: center;
+    margin-left: calc(2% - 2px);
   }
 }
 
