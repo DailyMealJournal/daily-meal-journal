@@ -1,3 +1,4 @@
+<!--
     <div class="col s3">
       <div class="collection fixed-pos"  ng-controller="MealCategoryController">
           <div class="collection-item"   ng-repeat="category in categories">
@@ -12,10 +13,10 @@
           </div>
       </div>
     </div>
-    
+-->
     
 <!-- Modal Trigger -->
-<button id="btn_add_new_meal" data-target="modal1" class="btn modal-trigger">Add New Meal</button>
+<button id="btn_add_new_meal" data-target="modal_add_new_meal" class="btn modal-trigger">Add New Meal</button>
     
 <div id="modal_add_new_meal" class="modal modal-fixed-footer">
 	<div class="modal-content container">
@@ -189,6 +190,7 @@
 		</div>	
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-	</div>
+        <button id="btn_add_new_meal_close" data-target="modal_add_new_meal" class="btn modal-trigger red lighten-2">Cancel</button>
+        <button id="btn_add_new_meal_close" data-target="modal_add_new_meal" class="btn modal-trigger">Add Meal</button>
+	</div>		
 </div>
