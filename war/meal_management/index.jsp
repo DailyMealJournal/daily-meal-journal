@@ -78,6 +78,7 @@
             </div>
             <div class="divider"></div>
           </div>
+          <div class="center-align no-meals" ng-hide="(meals | filter: global.search).length">No Meals Found</div>
         </div>
 
         <jsp:include page="/meal_management/category.jsp"/>
