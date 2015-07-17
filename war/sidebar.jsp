@@ -1,4 +1,4 @@
-<ul class="side-nav fixed  brown lighten-1" id="nav-mobile" ng-module="sidebar">
+<ul class="side-nav fixed  teal lighten-1" id="nav-mobile" ng-module="sidebar">
 	<div class="sidebar-profile" ng-controller="SidebarController">
 		<div class="card">
 			<div class="card-image waves-effect waves-block waves-light">

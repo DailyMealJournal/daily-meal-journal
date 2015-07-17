@@ -46,21 +46,7 @@
           </div>
         </div>
       </div>
-
-    <div class="col s3">
-      <div class="collection fixed-pos"  ng-controller="MealCategoryController">
-          <div class="collection-item"   ng-repeat="category in categories">
-            <h2 class="title">  </h2>
-              <div class="ui items">
-                <a class="item">
-                  <div class="ui middle  content ">
-                    <div back-img="{{ category.image }}" class="wide-div"> <span class="item-text">{{ category.name }}</span> </div>
-                  </div>
-                </a>
-              </div>
-          </div>
-      </div>
-    </div>
+      <jsp:include page="/meal_management/category.jsp"/>
 </div>
 <%--  Put JS Scripts ../js is not required --%>
 <jsscript src="calowrie/meal_management/index.js"></jsscript>
