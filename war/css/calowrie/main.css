@@ -3,25 +3,73 @@
        Fold CSS         
 ****************************************/
 .main-content {
- position: relative;
-  text-align: center;
-  padding: 0em;
-  overflow: hidden;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 0px;
-  border-bottom: none;
-  background-color: #009189 !important;
-  background-position: relative;
-  background-size: cover  !important;
- 
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  -ms-transition: background-color 1s ease-in-out 0.5s  !important;
-  -moz-transition: background-color 1s ease-in-out 0.5s  !important;
-  -webkit-transition: background-color 1s ease-in-out 0.5s  !important;
-  transition: background-color 1s ease-in-out 0.5s  !important;
-  z-index: -3;
 
+  max-height: 100%;
+}
+
+.parallax-container {
+  height: 1000px;
+  z-index: -3;
+  margin: auto;
+    margin-left: -100%;
+
+}
+
+.parallax img {
+  width: 25%;
+  background-size: cover;
+}
+.login {
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  margin: auto;
+  margin-top: 10%;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.login .white-text {
+  text-shadow: 1px 1px #212121;
+}
+
+.logo {
+ margin-left: -10%;
+}
+
+.logo .responsive-img{
+  height: 50%;
+  width: 50%;
+}
+
+.logo .col {
+  padding: 0;
+}
+
+.logo h4 {
+  margin-top: 12%;
+  text-shadow: 1px 1px #212121;
+}
+
+.logo h6 {
+  text-shadow: 1px 1px #212121;
+}
+
+.btn-login .btn{
+  background: transparent;
+  padding-right: 20.5%;
+  padding-left: 20.5%;
+  border: 1px solid;
+  border-color: #FEFEFE;
+  color: #FEFEFE;
+}
+
+.btn-login .btn:hover {
+  background: #FEFEFE;
+  border: none;
+  color: #212121;  
 }
 
 .introduction {
@@ -90,7 +138,32 @@
   animation: floatUnderline 2s normal ease-out;
 }
 
+@media screen and (max-width: 992px) {
+  .login {
+    width: 60%;
+  }
+  .parallax img{
+    width: auto;  
+    height: auto;
+  }
+}
 
+@media screen and (max-width: 601px) {
+  .login {
+    width: 100%;
+  }
+  .parallax img{
+    width: auto;  
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 635px) {
+  .btn-login .btn {
+    margin: 5px;
+    width: 100%;
+  }
+} 
 /**************************************
        Animation CSS           
 ****************************************/

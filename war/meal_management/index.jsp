@@ -72,7 +72,7 @@
             <div class="row">
               <h3 class="title">{{ meal.header }}</h3>
               <a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>
-              <div class="col s12 m4">   
+              <div class="col s12 m6 l4">   
                 <img class="responsive-img materialboxed z-depth-2 list-meal" ng-src="{{ meal.image }}">
               </div>
               <div class="col s8">

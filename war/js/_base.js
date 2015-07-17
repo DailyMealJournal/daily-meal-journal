@@ -31,6 +31,7 @@ $('jsscript').each(function(){
     if(page_title == 'Home') {
 	//sidebar
         $('.side-nav').addClass('hide');
+        $('.top-nav').addClass('hide');
     }else{
         $('.button-collapse').sideNav({
             menuWidth: 300, // Default is 240
