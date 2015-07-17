@@ -6,7 +6,7 @@
 <%--  Style URL ../css is not required --%>
 <styleurl url="calowrie/meal_management/index.css"></styleurl>
 
-<div class="meal-management container section row"  ng-modules="myMeals">
+<div class="meal-management container section row"  ng-module="myMeals">
   <div ng-controller="AllController">
         <div class="col s12">
           <div class="row">
