@@ -17,4 +17,4 @@
 	    <i class="content icon"></i>
 	    <span class="text">Dashboard</span>
   	</div> -->
-	<div class=" main-content pusher">
+	<main class=" main-content pusher">
