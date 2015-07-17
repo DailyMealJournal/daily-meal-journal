@@ -7,8 +7,8 @@
 <title></title>
 <sheetsstyler>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="${base_url}/css/lib/materialize.min.css" />
-	<link rel="stylesheet" type="text/css" href="${base_url}/css/lib/global.css" />
+	<link rel="stylesheet" type="text/css" href="${base_url}css/lib/materialize.min.css" />
+	<link rel="stylesheet" type="text/css" href="${base_url}css/lib/global.css" />
 </sheetsstyler>
 </head>
 <body class="pushable item hide" ng-app="Calowrie">

@@ -1,23 +1,18 @@
-<!--
+
     <div class="col s3">
-      <div class="collection fixed-pos"  ng-controller="MealCategoryController">
-          <div class="collection-item"   ng-repeat="category in categories">
-            <h2 class="title">  </h2>
-              <div class="ui items">
-                <a class="item">
-                  <div class="ui middle  content ">
-                    <div back-img="{{ category.image }}" class="wide-div"> <span class="item-text">{{ category.name }}</span> </div>
-                  </div>
-                </a>
-              </div>
-          </div>
-      </div>
-    </div>
--->
-    
-<!-- Modal Trigger -->
-<button id="btn_add_new_meal" data-target="modal_add_new_meal" class="btn modal-trigger">Add New Meal</button>
-    
+        <div class="collection fixed-pos"  ng-controller="MealCategoryController">
+            <div class="collection-item">
+                <h5>Filters</h5>
+                <div class=""  ng-repeat="category in categories"> 
+                    <span class="">{{ category.name }}</span>
+                </div>
+            </div>
+            <div class="collection-item">
+                <!-- Modal Trigger -->
+                <button id="btn_add_new_meal" data-target="modal_add_new_meal" class="btn modal-trigger">Add New Meal</button>
+            </div>
+        </div>
+    </div>    
 <div id="modal_add_new_meal" class="modal modal-fixed-footer">
 	<div class="modal-content container">
 		<h3>Add New Meal</h3>
