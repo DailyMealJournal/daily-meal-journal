@@ -8,6 +8,10 @@
 	margin-right:25px;
 }
 
+.journal-action-btn > a{
+	margin: 5px 5px 0 5px;
+	z-index: -1;
+}
 .table-journal {
 	width:95%; 
 	margin: 0 auto;
@@ -19,6 +23,15 @@
 	border-color:#ffcdd2;
 }
 
+.total-cal > .right-align {
+	text-align: right !important;
+}
+
+.calorie-consumed {
+	font-size:72px; 
+	margin-bottom:0px; 
+	margin-top:-14px;
+}
 .cal-sub-text {
 	font-size:24px; 
 	margin-top:-14px;
@@ -54,4 +67,7 @@
 	font-size:24px; 
 	margin-bottom:0px; 
 	margin-top:6px;
+}
+.cal-info > .total-cal-info-sub {
+	margin-top: 1px
 }

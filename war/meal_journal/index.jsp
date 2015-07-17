@@ -27,9 +27,9 @@
 							<h4 class="meal-header">{{ meal.header }}</h4>
 							<p class="grey-text text-darken-1">{{ meal.desc }}</p>
 						</div>
-						<div>
-							<a style="margin-top:5px; margin-right:5px; z-index:-1;" class="btn-floating btn-medium waves-effect waves-light teal"><i class="material-icons">mode_edit</i></a>
-							<a style="margin-top:5px; z-index:-1;" class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">delete</i></a>
+						<div class="journal-action-btn">
+							<a class="btn-floating btn-medium waves-effect waves-light teal"><i class="material-icons">mode_edit</i></a>
+							<a class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">delete</i></a>
 						</div>
 					</div>
 					<div class="row">
@@ -51,7 +51,7 @@
 								</tr>
 								<tr class="total-cal">
 									<td colspan="2"></td>
-									<td style="right-align"><b>TOTAL CALORIES: </b></td>
+									<td class="right-align"><b>TOTAL CALORIES: </b></td>
 									<td class="teal-text text-lighten-1"><b>{{ meal.total_calories }} Calories</b></td>
 								</tr>
 							</tbody>
@@ -63,14 +63,14 @@
 		</div>
 		<div class="fixed col s3">
 			<div class="input-field fixed-pos search-side">
-				<i class="material-icons prefix" style="">search</i>
+				<i class="material-icons prefix">search</i>
 			    <input id="search" type="text" class="validate">
 			    <label for="search">Search</label>
 	         </div>
 		     <div  class="card-panel fixed-pos cal-info">
 		     	<p class="total-cal-info">TOTAL CALORIES</p>
-		     	<p style="text-align:center; margin-top:1px;">for the day</p>
-		     	<p  class="teal-text text-darken 4" style="text-align:center; font-size:72px; margin-bottom:0px; margin-top:-14px;">
+		     	<p class="center-align total-cal-info-sub">for the day</p>
+		     	<p  class="teal-text text-darken-4 calorie-consumed center-align">
 		     		<b>{{ journal.calories_consumed }}</b>
 		     	</p>
 		     	<p class="cal-sub-text center-align">
@@ -79,7 +79,7 @@
 		     		<h7>Out of {{ journal.calorie_limit }} </h7>
 		     	</p>
 		     	<div class="divider"></div>
-		     	<center><a class="waves-effect waves-teal btn-flat red-text text-accent-1">Monthly View</a>
+		     	<center><a class="waves-effect waves-teal btn-flat red-text text-accent-1">Daily View</a>
 		     	<a class="waves-effect waves-light btn">Add a Meal</a></center>
 		     </div>
 		</div>
