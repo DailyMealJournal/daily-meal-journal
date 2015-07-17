@@ -1,6 +1,6 @@
 //sets title page
 var page_title = $('pagetitle').attr('name')
-$('title').html('Calowrie -' + page_title);
+$('title').html('Calowrie - ' + page_title);
 $('.page-title').html(page_title);
 $('pagetitle').remove();
 
