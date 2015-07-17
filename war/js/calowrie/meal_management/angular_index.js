@@ -45,14 +45,10 @@ meal_management.controller('AllController', ['$scope', function($scope) {
 meal_management.controller('MealCategoryController', ['$scope', function($scope) {
 	$scope.categories = [
 							{
-								image: base_url + 'assets/img/food/category/all_vegtables.png',
-								name: 'Pure Vegtables'
-							},
-
-							{
-								image: base_url + 'assets/img/food/category/all_meat.png',
-								name: 'Pure Meat'
-							},
+								image: base_url + 'assets/img/icons/32 px/61.png',
+								name: 'Poultry',
+								filters: ['Chicken', 'Duck']
+							}
 
 
 						];

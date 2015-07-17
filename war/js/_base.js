@@ -1,6 +1,7 @@
 //sets title page
 var page_title = $('pagetitle').attr('name')
-$('title').html(page_title);
+$('title').html('Calowrie -' + page_title);
+$('.page-title').html(page_title);
 $('pagetitle').remove();
 
 var base_url = window.location.origin + '/';
@@ -18,7 +19,12 @@ $('jsscript').each(function(){
     $('scripts').append(js_element);
     $(this).remove();
 });
- var app = angular.module('Calowrie', ['sidebar', 'myMeals']);
+ var a_modules = [];
+ $('[ng-module]').each(function() {
+    a_modules.push($(this).attr('ng-module'));
+ });
+
+ var app = angular.module('Calowrie', a_modules);
 
  $(document).ready(function() {
     if(page_title == 'Home') {
