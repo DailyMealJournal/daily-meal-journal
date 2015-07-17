@@ -8,7 +8,7 @@
 }
 
 .parallax-container {
-  height: 1000px;
+  height: 800px;
   z-index: -3;
   margin: auto;
     margin-left: -100%;
@@ -22,7 +22,7 @@
 .login {
   position: absolute;
   width: 30%;
-  height: 100%;
+
   margin: auto;
   margin-top: 10%;
   top:0;
@@ -31,6 +31,17 @@
   right: 0;
 }
 
+.team {
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  margin-top: 50%;
+  color: #FFFFFF;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .login .white-text {
   text-shadow: 1px 1px #212121;
 }
@@ -70,6 +81,19 @@
   background: #FEFEFE;
   border: none;
   color: #212121;  
+}
+
+.second-row {
+  margin-top: 5%;
+}
+
+.circle.responsive-img {
+  height: 155px;
+  width: 155px;
+}
+
+.center-align h5 {
+  margin-left: -15%;
 }
 
 .introduction {
