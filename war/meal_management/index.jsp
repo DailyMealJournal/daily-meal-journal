@@ -16,7 +16,7 @@
                 <a class="view-type grid-view btn-flat blue-text"><i class="material-icons prefix input-field">dashboard</i></a>
               </div>
             </div>
-            <div class="input-field col s3 offset-s3">
+            <div class="input-field col s3 offset-s3 hide-on-large-only">
             <i class="material-icons prefix">search</i>
               <input id="search" type="text" class="validate" ng-model="global.search" ng-change="apiSearch()">
               <label for="search">Search</label>

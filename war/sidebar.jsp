@@ -1,4 +1,4 @@
-<ul class="side-nav fixed  teal lighten-1" id="nav-mobile" ng-module="sidebar">
+<ul class="side-nav fixed  teal lighten-1" id="nav_mobile" ng-module="sidebar">
 	<div class="sidebar-profile" ng-controller="SidebarController">
 		<div class="card">
 			<div class="card-image waves-effect waves-block waves-light">
@@ -33,16 +33,19 @@
 				Meal Management
 		</a>
 	</li>
+	<div class="hide" id="include_content"></div>
 </ul>
 <header>
 	<nav class="top-nav red lighten-2">
+		<div class="btn-responsive white-text">
+			<div class="container full hide-on-large-only">
+				<a href="#" class="button-collapse top-nav sidebar-btn hide-on-large-only" data-activates="nav_mobile">
+					<i class="mdi-navigation-menu"></i>
+				</a>
+			</div>
+		</div>
 		<div class="nav-wrapper center-align">
 			<a class="page-title">Meal Management</a>
 		</div>
 	</nav>
-	<div class="container full hide-on-large-only">
-		<a href="#" class="button-collapse top-nav sidebar-btn hide-on-large-only black-text" data-activates="nav-mobile">
-			<i class="mdi-navigation-menu"></i>
-		</a>
-	</div>
 </header>
