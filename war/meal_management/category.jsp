@@ -39,7 +39,7 @@
 
 
 <!-- RESPONSIVE SIDEBAR RIGHT -->
-<ul class="right fixed side-nav category-sidebar  right white lighten-1 hide-on-large-only" id="cat_sidebar">
+<div class="right fixed side-nav category-sidebar  right white lighten-1 hide-on-large-only" id="cat_sidebar">
     <div class="collection"  ng-controller="MealCategoryController">
         <div class="collection-item">
             <h5>Filters</h5>
@@ -62,7 +62,7 @@
             <button id="btn_add_new_meal" data-target="modal_add_new_meal" class="btn modal-trigger">Add New Meal</button>
         </div>
     </div>
-</ul>
+</div>
 <!-- RESPONSIVE RIGHT SIDEBAR END -->
 
 <!-- MODAL -->
