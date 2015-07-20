@@ -45,20 +45,32 @@
 	<form id="register" class="hide" action="${base_url}register" method="POST">
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="username" type="text" class="validate">
+				<input id="username" type="text" class="validate" name="username" placeholder="Minimum 8 characters">
 				<label for="username" class="white-text">Username</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="password" type="password" class="validate">
+				<input id="password" type="password" class="validate" name="password" placeholder="Minimum 8 characters">
 				<label for="password" class="white-text">Password</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="conf_password" type="password" class="validate">
+				<input id="conf_password" type="password" class="validate" name="conf_password">
 				<label for="conf_password" class="white-text">Confirm Password</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12 white-text">
+				<input id="firstname" type="text" class="validate" name="firstname" >
+				<label for="firstname" class="white-text">First Name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12 white-text">
+				<input id="lastname" type="text" class="validate" name="lastname">
+				<label for="lastname" class="white-text">Last Name</label>
 			</div>
 		</div>
 		<div class="row btn-login center-align">
