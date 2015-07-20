@@ -41,22 +41,22 @@
             <div class="col s12  l6" ng-repeat="meal in meals | filter: global.search">   
               <div class="card small hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator responsive-img" ng-src="{{ meal.image }}">
-                  <span class="card-title">{{ meal.header }}</span>
+                  <img class="activator responsive-img" ng-src="{{ meal.Picture }}">
+                  <span class="card-title">{{ meal.MealName }}</span>
                 </div>
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                   <p>Calorie Power: <br> {{ meal.meta_calorie }} <span class="unit">{{ meal.meta_unit }}</span></p>
-                   <p class="truncate">{{ meal.desc }} </p>
+                   <p>Calorie Power: <br> {{ meal.CalorieCount }} <span class="unit">{{ meal.Unit }}</span></p>
+                   <p class="truncate">{{ meal.Description }} </p>
                 </div>
                 <div class="card-reveal">
                   <div class="row reveal-row">
                     <span class="card-title text-size-16 grey-text text-darken-4 row">
-                      <i class="col s9">{{ meal.header }}</i>
+                      <i class="col s9">{{ meal.MealName }}</i>
                       <i class="material-icons right col s3">close</i>
                     </span>
                     <div class="description">
-                        <p>{{ meal.desc }} </p>
+                        <p>{{ meal.Description }} </p>
                     </div>
                   </div>
                   <a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>
@@ -70,15 +70,15 @@
         <div class="col s9"  id="list_meals" ng-controller="MealsController">
           <div class="section" ng-repeat="meal in meals | filter: global.search">
             <div class="row">
-              <h3 class="title">{{ meal.header }}</h3>
+              <h3 class="title">{{ meal.MealName }}</h3>
               <a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>
               <div class="col s12 m6 l4">   
-                <img class="responsive-img materialboxed z-depth-2 list-meal" ng-src="{{ meal.image }}">
+                <img class="responsive-img materialboxed z-depth-2 list-meal" ng-src="{{ meal.Picture }}">
               </div>
               <div class="col s8">
-                <p>Calorie Power: <br> {{ meal.meta_calorie }} <span class="unit">{{ meal.meta_unit }}</span></p>
+                <p>Calorie Power: <br> {{ meal.CalorieCount }} <span class="unit">{{ meal.Unit }}</span></p>
                 <div class="description">
-                  <p>{{ meal.desc }}</p>
+                  <p>{{ meal.Description }}</p>
                 </div>
               </div>
             </div>
