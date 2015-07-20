@@ -9,8 +9,18 @@ import org.slim3.datastore.Model;
 
 @Model(schemaVersion = 1)
 public class Meal implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
+    public static final String KIND_NAME= "MEAL";
+    public static final String[] KIND_ATTRIBUTES = {"Name","Calories","Description","Unit","Tags", "Picture"};
+    
+    private String name;
+    private int calories;
+    private String description;
+    private String unit;
+    private String tags;
+    private String picture;        
+    
 
     @Attribute(primaryKey = true)
     private Key key;
@@ -84,5 +94,53 @@ public class Meal implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }
