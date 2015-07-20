@@ -23,8 +23,8 @@
 	<form id="login">
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="email" type="email" class="validate">
-				<label for="email" class="white-text">Email</label>
+				<input id="username" type="text" class="validate">
+				<label for="username" class="white-text">Username</label>
 			</div>
 		</div>
 		<div class="row">
@@ -42,11 +42,11 @@
 			</div>
 		</div>
 	</form>
-	<form id="register" class="hide">
+	<form id="register" class="hide" action="${base_url}register" method="POST">
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="email" type="email" class="validate">
-				<label for="email" class="white-text">Email</label>
+				<input id="username" type="text" class="validate">
+				<label for="username" class="white-text">Username</label>
 			</div>
 		</div>
 		<div class="row">
@@ -62,8 +62,11 @@
 			</div>
 		</div>
 		<div class="row btn-login center-align">
-			<div class="col s12 right">
-				<a class="waves-effect waves-light btn" href="${base_url}meal_journal">Register</a>
+			<div class="col s12 m4 l5 offset-m2 offset-l1">
+				<a href="#" class="waves-effect waves-light btn" id="btn_back">Back</a>
+			</div>
+			<div class="col s12 m4 l5">
+				<a class="waves-effect waves-light btn" href="#" id="btn_register">Register</a>
 			</div>
 		</div>
 	</form>

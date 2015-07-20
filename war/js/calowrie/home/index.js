@@ -18,6 +18,19 @@ $(document).ready(function(){
 		$('#register').removeClass('hide');
 		$('#register').hide().fadeIn(700);
 	});
+
+	$('#btn_back').click(function(e) {
+		e.preventDefault();
+		$('#register').addClass('hide');
+		$('#login').removeClass('hide');
+		$('#login').hide().fadeIn(700)
+	});
+
+	$('#btn_register').click(function(e){
+		e.preventDefault();
+		$('#register').submit();
+	});
+
 	$('.parallax').parallax();
 	$(window).scrollTop();
 	$('.team-member').each(function(){
