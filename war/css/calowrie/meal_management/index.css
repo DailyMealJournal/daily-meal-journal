@@ -42,6 +42,14 @@
   margin: 15% 0 0 0;
 }
 
+.filters {
+  margin-top: -4.5% !important;
+}
+
+.search-field {
+  margin-bottom: -5px;
+}
+
 .text-size-16 {
   font-size: 16px !important;
 }
@@ -56,6 +64,21 @@
 }
 .category {
 	padding: 0px !important;
+}
+
+.category-sidebar .collection {
+  border: none;
+}
+
+.category-sidebar .collection {
+  background: transparent;
+
+}
+
+.category-sidebar .collapsible-header {
+    padding-left: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 div[back-img]{
     width: 100%;

@@ -1,0 +1,73 @@
+.arrow-left {
+	margin-top: 15px; 
+	margin-left: 21% !important;
+}
+
+.arrow-right {
+	margin-top:15px;
+	margin-right:25px;
+}
+
+.journal-action-btn > a{
+	margin: 5px 5px 0 5px;
+	z-index: -1;
+}
+.table-journal {
+	width:95%; 
+	margin: 0 auto;
+}
+
+.total-cal {
+	border-top: thin double; 
+	border-bottom: 0px; 
+	border-color:#ffcdd2;
+}
+
+.total-cal > .right-align {
+	text-align: right !important;
+}
+
+.calorie-consumed {
+	font-size:72px; 
+	margin-bottom:0px; 
+	margin-top:-14px;
+}
+.cal-sub-text {
+	font-size:24px; 
+	margin-top:-14px;
+}
+
+.cal-sub-text > h7 {
+	font-size: 16px;
+}
+.meal {
+	margin:20px;
+}
+
+.meal-header {
+	margin-top: 0;
+}
+
+.search-side {
+	width:21%;
+}
+
+.search-side > i {
+	margin-left:12px; 
+	margin-top:10px;
+}
+
+.cal-info {
+	margin-top: 90px; 
+	width:23%;
+}
+
+.cal-info > .total-cal-info {
+	text-align:center; 
+	font-size:24px; 
+	margin-bottom:0px; 
+	margin-top:6px;
+}
+.cal-info > .total-cal-info-sub {
+	margin-top: 1px
+}
