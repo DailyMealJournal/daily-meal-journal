@@ -8,10 +8,17 @@ import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
 @Model(schemaVersion = 1)
-public class AdminModel implements Serializable {
+public class MealFood implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    public static final String KIND_NAME= "MealFood";
+    public static final String[] KIND_ATTRIBUTES = {"MealKey","FoodKey","FoodQty"};
 
+    private int mealKey;
+    private int foodKey;
+    private int foodQty;
+    
     @Attribute(primaryKey = true)
     private Key key;
 
@@ -75,7 +82,7 @@ public class AdminModel implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        AdminModel other = (AdminModel) obj;
+        MealFood other = (MealFood) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -84,5 +91,29 @@ public class AdminModel implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public int getMealKey() {
+        return mealKey;
+    }
+
+    public void setMealKey(int mealKey) {
+        this.mealKey = mealKey;
+    }
+
+    public int getFoodKey() {
+        return foodKey;
+    }
+
+    public void setFoodKey(int foodKey) {
+        this.foodKey = foodKey;
+    }
+
+    public int getFoodQty() {
+        return foodQty;
+    }
+
+    public void setFoodQty(int foodQty) {
+        this.foodQty = foodQty;
     }
 }

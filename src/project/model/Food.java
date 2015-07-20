@@ -8,16 +8,24 @@ import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
 @Model(schemaVersion = 1)
-public class MainModel implements Serializable {
+public class Food implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    /*protected String KIND_NAME;
-    protected String[] KIND_ATTRIBUTES;*/
+    public static final String KIND_NAME= "FOOD";
+    public static final String[] KIND_ATTRIBUTES = {"Name","Category","Unit","Calories","Description", "Picture"};
+    
+    private String name;
+    private String category;
+    private String unit;
+    private int calories;
+    private String description;
+    private String picture;
+    
 
     @Attribute(primaryKey = true)
     private Key key;
-    
+
     @Attribute(version = true)
     private Long version;
 
@@ -78,7 +86,7 @@ public class MainModel implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        MainModel other = (MainModel) obj;
+        Food other = (Food) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -87,5 +95,53 @@ public class MainModel implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

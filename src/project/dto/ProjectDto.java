@@ -6,5 +6,6 @@
 package project.dto;
 
 public class ProjectDto {
-
+    private List<String> errorList;
+    private String 
 }

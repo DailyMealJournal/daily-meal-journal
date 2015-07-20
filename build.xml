@@ -12,7 +12,7 @@
             <include name="**/*.jar" />
         </fileset>
     </path>
-
+	
     <taskdef name="gen-model" classname="org.slim3.gen.task.GenModelTask" classpathref="classpath"/>
     <taskdef name="gen-dao" classname="org.slim3.gen.task.GenDaoTask" classpathref="classpath"/>
     <taskdef name="gen-view" classname="org.slim3.gen.task.GenViewTask" classpathref="classpath"/>

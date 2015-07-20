@@ -8,16 +8,21 @@ import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
 @Model(schemaVersion = 1)
-public class MainModel implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    /*protected String KIND_NAME;
-    protected String[] KIND_ATTRIBUTES;*/
+    public static final String KIND_NAME= "USER";
+    public static final String[] KIND_ATTRIBUTES = {"Username","Password","FirstName","LastName"};
+    
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
 
     @Attribute(primaryKey = true)
     private Key key;
-    
+
     @Attribute(version = true)
     private Long version;
 
@@ -78,7 +83,7 @@ public class MainModel implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        MainModel other = (MainModel) obj;
+        User other = (User) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -88,4 +93,38 @@ public class MainModel implements Serializable {
         }
         return true;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
+    
 }
