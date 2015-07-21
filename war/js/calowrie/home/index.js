@@ -27,10 +27,34 @@ $(document).ready(function(){
 	});
 
 	$('#btn_register').click(function(e){
-		e.preventDefault();
-		$('#register').submit();
+		var password = $('#register_password').val();
+		var confirm = $('#conf_password').val();
+		
+		if(password != confirm){
+			e.preventDefault();
+			$('#register_form_errors').show(600);
+		}
+		else{
+			$('#register_form_errors').hide(600);
+		}
 	});
-
+	
+	$("#register_password, #conf_password").keyup(function(){
+		var password = $('#register_password');
+		var confirm = $('#conf_password');
+		
+		password.addClass("invalid");
+		confirm.addClass("invalid");
+		
+		if((password.val() == confirm.val()) && (password.val().length != 0)){
+			password.removeClass("invalid");
+			confirm.removeClass("invalid");
+			
+			password.addClass("valid");
+			confirm.addClass("valid");
+		}
+	});
+	
 	$('.parallax').parallax();
 	$(window).scrollTop();
 	$('.team-member').each(function(){

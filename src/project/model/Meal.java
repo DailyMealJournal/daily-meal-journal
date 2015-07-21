@@ -12,9 +12,10 @@ public class Meal implements Serializable {
     
     private static final long serialVersionUID = 1L;
     public static final String KIND_NAME= "MEAL";
-    public static final String[] KIND_ATTRIBUTES = {"Name","Calories","Description","Unit","Tags", "Picture"};
+    public static final String[] KIND_ATTRIBUTES = {"Name", "UserKey", "Calories", "Description", "Unit", "Tags", "Picture"};
     
     private String name;
+    private int userKey;
     private int calories;
     private String description;
     private String unit;
@@ -102,6 +103,14 @@ public class Meal implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(int userKey) {
+        this.userKey = userKey;
     }
 
     public int getCalories() {

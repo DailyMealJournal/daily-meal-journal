@@ -5,6 +5,7 @@
 
 <%--  Style URL ../css is not required --%>
 <styleurl url="calowrie/main.css"></styleurl>
+<styleurl url="calowrie/login_register/index.css"></styleurl>
 <div class="parallax-container">
 	<div class="parallax"><img src="${base_url}assets/img/backgrounds/main.jpg"></div>
 </div>
@@ -23,14 +24,14 @@
 	<form id="login">
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="username" type="text" class="validate">
-				<label for="username" class="white-text">Username</label>
+				<input id="login_username" type="text" class="validate" name="username">
+				<label for="login_username" class="white-text">Username</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="password" type="password" class="validate">
-				<label for="password" class="white-text">Password</label>
+				<input id="login_password" type="password" class="validate" name="password">
+				<label for="login_password" class="white-text">Password</label>
 			</div>
 		</div>
 		<div class="row btn-login center-align">
@@ -42,35 +43,42 @@
 			</div>
 		</div>
 	</form>
-	<form id="register" class="hide" action="${base_url}register" method="POST">
+	<form id="register" class="hide" action="${base_url}user_management/register" method="POST">
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="username" type="text" class="validate" name="username" placeholder="Minimum 8 characters">
-				<label for="username" class="white-text">Username</label>
+				<input id="register_username" type="text" class="validate" name="username" minlength="8" placeholder="Minimum 8 characters" required="required">
+				<label for="register_username" class="white-text" >Username</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="password" type="password" class="validate" name="password" placeholder="Minimum 8 characters">
-				<label for="password" class="white-text">Password</label>
+				<input id="register_password" type="password" class="" name="password" minlength="8" placeholder="Minimum 8 characters" required="required">
+				<label for="register_password" class="white-text">Password</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="conf_password" type="password" class="validate" name="conf_password">
+				<input id="conf_password" type="password" class="" name="conf_password" required="required">
 				<label for="conf_password" class="white-text">Confirm Password</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="firstname" type="text" class="validate" name="firstname" >
+				<input id="firstname" type="text" class="validate" name="firstname" required="required">
 				<label for="firstname" class="white-text">First Name</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="lastname" type="text" class="validate" name="lastname">
+				<input id="lastname" type="text" class="validate" name="lastname" required="required">
 				<label for="lastname" class="white-text">Last Name</label>
+			</div>
+		</div>
+		<div class="row center-align">
+			<div class="col s12 white-text">
+				<p id="register_form_errors" class="register-error">
+					Passwords do not match.
+				</p>
 			</div>
 		</div>
 		<div class="row btn-login center-align">
@@ -78,7 +86,7 @@
 				<a href="#" class="waves-effect waves-light btn" id="btn_back">Back</a>
 			</div>
 			<div class="col s12 m4 l5">
-				<a class="waves-effect waves-light btn" href="#" id="btn_register">Register</a>
+				<button class="btn waves-effect waves-light" type="submit" id="btn_register">Register</button>
 			</div>
 		</div>
 	</form>

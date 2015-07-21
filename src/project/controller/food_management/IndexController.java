@@ -1,19 +1,13 @@
-package project.controller;
+package project.controller.food_management;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
-import org.slim3.datastore.Datastore;
-import com.google.appengine.api.datastore.Key;
 
-public class LoginController extends Controller {
+public class IndexController extends Controller {
 
     @Override
     protected Navigation run() throws Exception {
         // TODO Auto-generated method stub
-        
-        
-        
-        
         return null;
     }
 

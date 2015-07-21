@@ -10,7 +10,6 @@ import java.util.List;
 import org.slim3.datastore.Datastore;
 
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Transaction;
 
 import project.meta.UserMeta;

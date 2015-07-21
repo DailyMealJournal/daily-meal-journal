@@ -1,6 +1,6 @@
 package project.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-07-20 17:21:54")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-07-21 01:04:24")
 /** */
 public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.Meal> {
 
@@ -24,6 +24,9 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<project.model.Meal> unit = new org.slim3.datastore.StringAttributeMeta<project.model.Meal>(this, "unit", "unit");
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Integer> userKey = new org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Integer>(this, "userKey", "userKey", int.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Long>(this, "version", "version", java.lang.Long.class);
@@ -52,6 +55,7 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
         model.setPicture((java.lang.String) entity.getProperty("picture"));
         model.setTags((java.lang.String) entity.getProperty("tags"));
         model.setUnit((java.lang.String) entity.getProperty("unit"));
+        model.setUserKey(longToPrimitiveInt((java.lang.Long) entity.getProperty("userKey")));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
@@ -71,6 +75,7 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
         entity.setProperty("picture", m.getPicture());
         entity.setProperty("tags", m.getTags());
         entity.setProperty("unit", m.getUnit());
+        entity.setProperty("userKey", m.getUserKey());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
         return entity;
@@ -160,6 +165,8 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
             writer.setNextPropertyName("unit");
             encoder0.encode(writer, m.getUnit());
         }
+        writer.setNextPropertyName("userKey");
+        encoder0.encode(writer, m.getUserKey());
         if(m.getVersion() != null){
             writer.setNextPropertyName("version");
             encoder0.encode(writer, m.getVersion());
@@ -186,6 +193,8 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
         m.setTags(decoder0.decode(reader, m.getTags()));
         reader = rootReader.newObjectReader("unit");
         m.setUnit(decoder0.decode(reader, m.getUnit()));
+        reader = rootReader.newObjectReader("userKey");
+        m.setUserKey(decoder0.decode(reader, m.getUserKey()));
         reader = rootReader.newObjectReader("version");
         m.setVersion(decoder0.decode(reader, m.getVersion()));
         return m;

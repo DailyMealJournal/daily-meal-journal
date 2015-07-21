@@ -3,7 +3,6 @@
        Fold CSS         
 ****************************************/
 .main-content {
-
   max-height: 100%;
 }
 
@@ -12,7 +11,7 @@
   max-height: 100%;
   z-index: -3;
   margin: auto;
-    margin-left: -100%;
+  margin-left: -100%;
 
 }
 

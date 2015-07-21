@@ -1,0 +1,8 @@
+.register-error{
+	display: none;
+	text-align: center;
+	color: white;
+	width: 100%;
+	background: rgba(244, 67, 54, 0.5);
+	vertical-align: middle;
+}
