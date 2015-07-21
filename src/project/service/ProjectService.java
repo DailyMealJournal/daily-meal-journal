@@ -16,14 +16,21 @@ public class ProjectService {
     ProjectDao dao = new ProjectDao();
     
     public UserDto user(UserDto input, String action){
+        User user = new User();
         if(action.equals("create")){
-            User user = new User();
             user.setUsername(input.getUsername());
             user.setPassword(input.getPassword());
             user.setFirstName(input.getFirstname());
             user.setLastName(input.getLastname());
             
             if(!this.dao.createUser(user)){
+                input.setErrorList(new ArrayList<String>());
+                input.getErrorList().add("error!");
+            }
+        } else if(action.equals("login")) {
+            user.setUsername(input.getUsername());
+            user.setPassword(input.getPassword());
+            if(!this.dao.checkUser(input)){
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("error!");
             }

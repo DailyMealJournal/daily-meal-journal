@@ -1,6 +1,7 @@
 package project.controller.user_management;
 
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +12,18 @@ import org.slim3.controller.validator.Validators;
 import org.slim3.util.BeanUtil;
 import org.slim3.util.RequestMap;
 
+import api.controller.APIController;
 import project.dto.UserDto;
 import project.service.ProjectService;
 
 
-public class RegisterController extends Controller {
+public class RegisterController extends APIController {
     
     private ProjectService service = new ProjectService();
     
     @Override
-    protected Navigation run() throws Exception {        
+    protected Navigation run() throws Exception { 
+        
         //Validators
         Validators v = new Validators(this.request);
         v.add("username", v.required("Field required"), v.minlength(8, "Must contain at least 8 characters"), v.maxlength(64));
@@ -36,8 +39,9 @@ public class RegisterController extends Controller {
             Map<String,Object> input = new RequestMap(this.request);
             UserDto userDto = new UserDto();
             BeanUtil.copy(input, userDto);
-            service.user(userDto, "create");
-            return redirect("http://localhost:8888/");
+            String firstName = service.user(userDto, "create").getFirstname();
+            sessionScope("user", firstName);
+            return redirect(getBaseUrl() + "meal_journal");
         } else {
             StringBuffer errors = new StringBuffer("Errors: ");
             for (int i = 0; i < v.getErrors().size(); i++) {

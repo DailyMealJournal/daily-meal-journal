@@ -21,7 +21,7 @@
 			<h6>It's not just a choice. It's a <i>lifestyle</i>.</h6>
 		</div>
 	</div>
-	<form id="login">
+	<form id="login" action="${base_url}user_management/login" method="POST">
 		<div class="row">
 			<div class="input-field col s12 white-text">
 				<input id="login_username" type="text" class="validate" name="username">

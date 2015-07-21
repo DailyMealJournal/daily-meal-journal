@@ -8,10 +8,13 @@ package project.dao;
 import java.util.List;
 
 import org.slim3.datastore.Datastore;
+import org.slim3.datastore.ModelQuery;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Transaction;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 
+import project.dto.UserDto;
 import project.meta.UserMeta;
 import project.model.User;
 
@@ -32,6 +35,19 @@ public class ProjectDao {
         }
         
         return result;
+    }
+
+    public boolean checkUser(UserDto user){
+        UserMeta m = new UserMeta();
+        ModelQuery<User> query = Datastore.query(m);
+        query.filter("username",FilterOperator.EQUAL, user.getUsername());
+        query.filter("password",FilterOperator.EQUAL, user.getPassword());
+        if(query.asSingleEntity() != null) {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
     
     public List<User> getAllUsers() {
