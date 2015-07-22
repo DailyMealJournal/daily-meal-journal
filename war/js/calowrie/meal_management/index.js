@@ -32,6 +32,7 @@ $(function() {
 		}
 	});
 
+	
 	$('.list-view').click(function(e){
 		e.preventDefault();
 		if(!$(this).hasClass('active')) {

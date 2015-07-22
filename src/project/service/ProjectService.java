@@ -8,6 +8,8 @@ package project.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.appengine.api.datastore.Entity;
+
 import project.dao.ProjectDao;
 import project.dto.UserDto;
 import project.model.User;
@@ -27,18 +29,14 @@ public class ProjectService {
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("error!");
             }
-        } else if(action.equals("login")) {
-            user.setUsername(input.getUsername());
-            user.setPassword(input.getPassword());
-            if(!this.dao.checkUser(input)){
-                input.setErrorList(new ArrayList<String>());
-                input.getErrorList().add("error!");
-            }
-        }
+        } 
         
         return input;
     }
     
+    public Entity getEntity(UserDto input) {
+        return this.dao.getUser(input);
+    }
     public List<User> getUserList() {
         return this.dao.getAllUsers();
     }

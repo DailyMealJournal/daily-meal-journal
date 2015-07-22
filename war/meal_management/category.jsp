@@ -25,7 +25,7 @@
             </div>
             <div class="collection-item">
                 <!-- Modal Trigger -->
-                <button id="btn_add_new_meal" data-target="modal_add_new_meal" class="btn modal-trigger">Add New Meal</button>
+   
             </div>
         </div>
     </div>

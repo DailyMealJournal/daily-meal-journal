@@ -6,7 +6,7 @@
 <%--  Style URL ../css is not required --%>
 <styleurl url="calowrie/meal_management/index.css"></styleurl>
 
-<div class="meal-management container section row"  ng-module="myMeals">
+<div class="meal-management section row"  ng-module="myMeals">
   <div ng-controller="AllController">
         <div class="col s12">
           <div class="row">
@@ -20,6 +20,9 @@
             <i class="material-icons prefix">search</i>
               <input id="search" type="text" class="validate" ng-model="global.search" ng-change="apiSearch()">
               <label for="search">Search</label>
+            </div>
+            <div class="col s3 offset-s3 hide-on-med-and-down right-align add-meal">
+               <a id="btn_add_new_meal" data-target="modal_add_new_meal" class="btn modal-trigger btn-floating"><i class="material-icons">add</i></a>
             </div>
           </div>
         </div>
