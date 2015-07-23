@@ -94,7 +94,9 @@
   </div>
 </div>
 <%--  Put JS Scripts ../js is not required --%>
-<jsscript src="calowrie/meal_management/angular_index.js"></jsscript>
 <jsscript src="calowrie/meal_management/index.js"></jsscript>
+<jsscript src="calowrie/angular/controllers/meal_controller.js"></jsscript>
+<jsscript src="calowrie/angular/controllers/all_controller.js"></jsscript>
+<jsscript src="calowrie/angular/controllers/category_controller.js"></jsscript>
 
 <jsp:include page="/layout-footer.jsp" />

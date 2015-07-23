@@ -26,7 +26,6 @@ public class LoginController extends APIController {
         Map<String,Object> input = new RequestMap(this.request);
         BeanUtil.copy(input, userDto);
         Entity user = service.getEntity(userDto);
-        System.out.println(user);
         if(user != null) {
             sessionScope("user", user);
         }

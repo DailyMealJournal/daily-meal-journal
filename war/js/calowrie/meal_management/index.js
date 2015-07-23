@@ -46,3 +46,5 @@ $(function() {
 		}
 	})
 });
+
+var meal_management = angular.module("myMeals", []);

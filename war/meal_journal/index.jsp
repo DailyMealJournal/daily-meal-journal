@@ -87,6 +87,6 @@
 </div>
 
 <%-- Put JS Scripts ../css is not required --%>
-<jsscript src="calowrie/meal_journal/angular_index.js"></jsscript>
+<jsscript src="calowrie/angular/controllers/meal_journal_controller.js"></jsscript>
 <jsscript src="calowrie/meal_journal/index.js"></jsscript>
 <jsp:include page="/layout-footer.jsp" />

@@ -71,25 +71,27 @@
 		<h3>Add New Meal</h3>
 		<div class="row">
 			<div class="col s12 m8">
-				<form>	
-				    <div class="input-field">
-				    	<input id="meal_name" type="text" class="validate">
-				    	<label for="first_name">Meal Name</label>
-				    </div>
-			        <div class="input-field">
-				        <textarea id="textarea1" class="materialize-textarea"></textarea>
-				        <label for="textarea1">Meal Description</label>
-			        </div>
-	      			<div class="file-field input-field col s12">
-					    <div class="btn">
-						    <span>File</span>
-						    <input type="file" />
-					    </div>
-					    <div class="file-path-wrapper">
-					    	<input class="file-path validate" type="text"/>
-					    </div>
-			    	</div>
-		    	</form>
+                <div class="row">
+    				<form id="add_meal" ngSubmit="addMeal()" class="form-meal" xurl="${base_url}meal_management/create" method="POST">
+    				    <div class="input-field col s6">
+    				    	<input id="meal_name" type="text" class="validate">
+    				    	<label for="first_name">Meal Name</label>
+    				    </div>
+    			        <div class="input-field col s12">
+    				        <textarea id="textarea1" class="materialize-textarea"></textarea>
+    				        <label for="textarea1">Meal Description</label>
+    			        </div>
+    	      			<div class="file-field input-field col s8">
+    					    <div class="btn btn-flat">
+    						    <span>File</span>
+    						    <input type="file" />
+    					    </div>
+    					    <div class="file-path-wrapper">
+    					    	<input class="file-path validate" type="text"/>
+    					    </div>
+    			    	</div>
+    		    	</form>
+                </div>
 			</div>
             
 			<div class="col s12 m4">
@@ -115,8 +117,10 @@
                 <button id="btn_add_new_meal_close" data-target="modal_add_new_meal" class="btn modal-trigger red lighten-2">Cancel</button>
             </div>
             <div class="col s3">
-                <button id="btn_add_new_meal_close" data-target="modal_add_new_meal" class="btn modal-trigger">Add Meal</button>
+                <button id="btn_add_new_meal" class="btn">Add Meal</button>
             </div>
         </div>
 	</div>		
 </div>
+
+
