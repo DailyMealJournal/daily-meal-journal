@@ -51,9 +51,11 @@ $(document).ready(function(){
 		password.addClass("invalid");
 		confirm.addClass("invalid");
 		
-		if((password.val() == confirm.val()) && (password.val().length != 0)){
+		if((password.val() == confirm.val()) && (password.val().length >= 8)){
 			password.removeClass("invalid");
 			confirm.removeClass("invalid");
+			
+			$("register_form_errors").removeClass("register-error");
 			
 			password.addClass("valid");
 			confirm.addClass("valid");
