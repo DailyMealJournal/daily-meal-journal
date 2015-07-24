@@ -1,6 +1,15 @@
-var meal_management = angular.module("myMeals", []);
-
 meal_management.controller('MealsController', ['$scope', function($scope) {
+	
+	$scope.addMeal = function(e) {
+		console.log(e)
+		var request = $http({
+		    method: $('#add_meal').attr('method'),
+		    url: $('#add_meal').attr('xurl'),
+		    transformRequest: transformRequestAsFormPost,
+		    data: $('#add_meal').serialize()
+		});
+	}
+
 	$scope.meals = [
 					{
 						Picture: base_url + 'assets/img/food/k8.jpg',

@@ -38,6 +38,11 @@ $(document).ready(function(){
 			$('#register_form_errors').hide(600);
 		}
 	});
+
+	$('#btn_submit').click(function(e){
+		e.preventDefault();
+		$('#login').submit();
+	});
 	
 	$("#register_password, #conf_password").keyup(function(){
 		var password = $('#register_password');

@@ -21,7 +21,7 @@
 			<h6>It's not just a choice. It's a <i>lifestyle</i>.</h6>
 		</div>
 	</div>
-	<form id="login">
+	<form id="login" action="${base_url}user_management/login" method="POST">
 		<div class="row">
 			<div class="input-field col s12 white-text">
 				<input id="login_username" type="text" class="validate" name="username">
@@ -39,7 +39,7 @@
 				<a href="#" class="waves-effect waves-light btn" id="btn_signup">Sign up</a>
 			</div>
 			<div class="col s12 m4 l5">
-				<a class="waves-effect waves-light btn" href="${base_url}meal_journal">Login</a>
+				<a class="waves-effect waves-light btn btn-submit" href="#" id="btn_submit">Login</a>
 			</div>
 		</div>
 	</form>

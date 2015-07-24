@@ -22,6 +22,6 @@ public class IndexController extends APIController {
     protected Navigation run() throws Exception {
 
     	requestScope("base_url", getBaseUrl());
-        return forward("index.jsp");
+        return proceedTo("index.jsp");
     }
 }

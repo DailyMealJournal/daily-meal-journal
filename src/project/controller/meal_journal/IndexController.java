@@ -15,11 +15,12 @@ import org.slim3.controller.Navigation;
  *
  */
 public class IndexController extends APIController {
-
+    
+    
     @Override
     protected Navigation run() throws Exception {
-
+        
     	requestScope("base_url", getBaseUrl());
-        return forward("index.jsp");
+        return proceedTo("index.jsp");
     }
 }

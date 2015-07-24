@@ -32,6 +32,7 @@ $(function() {
 		}
 	});
 
+	
 	$('.list-view').click(function(e){
 		e.preventDefault();
 		if(!$(this).hasClass('active')) {
@@ -45,3 +46,5 @@ $(function() {
 		}
 	})
 });
+
+var meal_management = angular.module("myMeals", []);

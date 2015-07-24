@@ -6,7 +6,7 @@
 <%--  Style URL ../css is not required --%>
 <styleurl url="calowrie/meal_management/index.css"></styleurl>
 
-<div class="meal-management container section row"  ng-module="myMeals">
+<div class="meal-management section row"  ng-module="myMeals">
   <div ng-controller="AllController">
         <div class="col s12">
           <div class="row">
@@ -20,6 +20,9 @@
             <i class="material-icons prefix">search</i>
               <input id="search" type="text" class="validate" ng-model="global.search" ng-change="apiSearch()">
               <label for="search">Search</label>
+            </div>
+            <div class="col s3 offset-s3 hide-on-med-and-down right-align add-meal">
+               <a id="btn_add_new_meal" data-target="modal_add_new_meal" class="btn modal-trigger btn-floating"><i class="material-icons">add</i></a>
             </div>
           </div>
         </div>
@@ -91,7 +94,9 @@
   </div>
 </div>
 <%--  Put JS Scripts ../js is not required --%>
-<jsscript src="calowrie/meal_management/angular_index.js"></jsscript>
 <jsscript src="calowrie/meal_management/index.js"></jsscript>
+<jsscript src="calowrie/angular/controllers/meal_controller.js"></jsscript>
+<jsscript src="calowrie/angular/controllers/all_controller.js"></jsscript>
+<jsscript src="calowrie/angular/controllers/category_controller.js"></jsscript>
 
 <jsp:include page="/layout-footer.jsp" />

@@ -50,13 +50,16 @@
   margin-bottom: -5px;
 }
 
+.add-meal {
+  padding-top: 3% !important;
+}
 .text-size-16 {
   font-size: 16px !important;
 }
 
 .meal-management {
 	margin-right: 0;
-  margin-left: calc(20% + 10px);
+  margin-left: calc(15% + 10px);
 }
 
 .card .card-reveal {
@@ -116,6 +119,18 @@ div[back-img]:hover{
     position: absolute;
 }
 
+@media screen and (max-width: 1110px) {
+  .meal-management {
+    margin-left: calc(20% + 10px);
+  }
+}
+@media screen and (max-width: 992px) {
+  .meal-management {
+    margin-right: 0;
+    margin-left: calc(15% + 45px);
+    width: 100%;
+  }
+}
 /**************************************
        Animation CSS           
 ****************************************/
