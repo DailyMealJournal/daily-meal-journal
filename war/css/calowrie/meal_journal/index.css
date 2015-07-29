@@ -23,6 +23,14 @@
 	border-color:#ffcdd2;
 }
 
+.list-meal {
+  margin: 15% 0 0 0;
+}
+
+.section {
+  padding: 0px;
+}
+
 .total-cal > .right-align {
 	text-align: right !important;
 }

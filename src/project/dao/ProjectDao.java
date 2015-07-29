@@ -44,6 +44,7 @@ public class ProjectDao {
         EntityQuery query = Datastore.query("USER");
         query.filter("username",FilterOperator.EQUAL, user.getUsername());
         query.filter("password",FilterOperator.EQUAL, user.getPassword());
+        System.out.print(user.getPassword());
         return query.asSingleEntity();
     }
     
