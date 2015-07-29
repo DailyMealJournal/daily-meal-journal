@@ -3,55 +3,37 @@ var meal_journal = angular.module("myJournal", []);
 meal_journal.controller('MealJournalController', ['$scope', function($scope) {
 	$scope.journal  = { 
 						meals: [{
-							header: 'Breakfast at Tiffany'+"'"+'s',
-							desc: 'Eat your heart out!',
-							food_list: [{
-											name: 'Carbonara',
-											no_of_servings: 2,
-											unit: 'Plate',
-											calories: 500
-										},
-										{
-											name: 'Samgyupsal',
-											no_of_servings: 1,
-											unit: 'Bowl',
-											calories: 500
-										}
-										],
-							total_calories: 1500
+									Picture: base_url + 'assets/img/food/k8.jpg',
+									MealName: 'Sushi',
+									CalorieCount: 40,
+									Unit: 'per piece',
+									Description: 'Classic Japanese Cuisine. Raw and unsavory flavor, tread carefully or else.'
+								},
 
-							},
-							{
-								header: 'Tea Time',
-								desc: 'Just Chillin',
-								food_list: [{
-												name: 'Green Tea',
-												no_of_servings: 1,
-												unit: 'Bottle',
-												calories: 50
-											},
-											{
-												name: 'Wheat Bread',
-												no_of_servings: 3,
-												unit: 'Slice',
-												calories: 150
-											},
-											{
-												name: 'Omellete',
-												no_of_servings: 1,
-												unit: 'Plate',
-												calories: 120
-											},
-											{
-												name: 'Yogurt',
-												no_of_servings: 1,
-												unit: 'Cup',
-												calories: 100
-											}
-											],
-								total_calories: 720
+								{
+									Picture: base_url + 'assets/img/food/g4.jpg',
+									MealName: 'Skewered Pork Salad',
+									CalorieCount: 200,
+									Unit: 'per serving',
+									Description: 'This dish is carefully constructed salad that provides plenty of nutrients by the day.'
+								},
 
-							}],
+								{
+									Picture: base_url + 'assets/img/food/g1.jpg',
+									MealName: 'Roasted Chicken Salad',
+									CalorieCount: 110,
+									Unit: 'per serving',
+									Description: 'This dish is carefully constructed salad that provides plenty of nutrients by the day.'
+								},
+
+								{
+									Picture: base_url + 'assets/img/food/pic10.jpg',
+									MealName: 'Assorted Fruit Salad',
+									CalorieCount: 110,
+									Unit: 'per serving',
+									Description: 'Cleanse your body with fruit diet. Perfectly sustainable nutrients for short term diet cleansing.'
+								},
+					],
 						date: 'Friday, July 17, 2015',
 						calories_consumed: 2220,
 						calorie_limit: 2000

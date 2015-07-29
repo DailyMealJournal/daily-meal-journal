@@ -1,8 +1,14 @@
 package api.controller;
 
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
+import org.slim3.repackaged.org.json.JSONObject;
 
 public abstract class APIController extends Controller{
     
@@ -25,5 +31,13 @@ public abstract class APIController extends Controller{
         } else {
             return forward(requestURL);
         }
+    }
+    
+    public void responseSuccess(HttpServletResponse response, JSONObject success) throws IOException {
+        response.getWriter().print(success);
+    }  
+
+    public void responseFail(HttpServletResponse response, JSONObject error) throws IOException {
+        response.getWriter().print(error);
     }
 }

@@ -21,7 +21,7 @@
 			<h6>It's not just a choice. It's a <i>lifestyle</i>.</h6>
 		</div>
 	</div>
-	<form id="login" action="${base_url}user_management/login" method="POST">
+	<form id="login" data-post-url="${base_url}user_management/login" data-success-url="${base_url}meal_journal" method="POST">
 		<div class="row">
 			<div class="input-field col s12 white-text">
 				<input id="login_username" type="text" class="validate" name="username">
@@ -32,6 +32,12 @@
 			<div class="input-field col s12 white-text">
 				<input id="login_password" type="password" class="validate" name="password">
 				<label for="login_password" class="white-text">Password</label>
+			</div>
+		</div>
+		<div class="row center-align">
+			<div class="col s12 white-text">
+				<p id="login_form_errors" class="register-error">
+				</p>
 			</div>
 		</div>
 		<div class="row btn-login center-align">

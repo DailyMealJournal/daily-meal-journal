@@ -39,10 +39,6 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#btn_submit').click(function(e){
-		e.preventDefault();
-		$('#login').submit();
-	});
 	
 	$("#register_password, #conf_password").keyup(function(){
 		var password = $('#register_password');
@@ -61,6 +57,43 @@ $(document).ready(function(){
 			confirm.addClass("valid");
 		}
 	});
+
+	$("#btn_submit").click(function(e){
+		e.preventDefault();
+		$('#login_form_errors').fadeOut(100);
+		var form = $('#login');
+		$.ajax({
+			method: form.attr('method'),
+			url: form.data('post-url'),
+			data: {
+					username: $('#login_username').val(),
+					password: $('#login_password').val()
+
+			},
+			success: function(o_response, s_status, s_xhr) {
+				console.log(o_response)
+				if(typeof o_response != 'undefined') {
+					console.log(o_response)
+					if(typeof o_response.errors != 'undefined' && o_response.errors.length == 0) {
+						$('#login_username, #login_password')
+							.removeClass('valid')
+							.addClass('invalid');
+					} else {
+						window.location.href = base_url + 'meal_journal';
+					}
+				}
+			},
+			error: function(o_response, status, error) {
+				if(typeof o_response.responseJSON != 'undefined') {
+					$('#login_username, #login_password')
+						.removeClass('valid')
+						.addClass('invalid');
+					$('#login_form_errors').fadeIn(200);
+					$('#login_form_errors').text(o_response.responseJSON.message);
+				} 
+			}
+		});
+	});	
 	
 	$('.parallax').parallax();
 	$(window).scrollTop();
