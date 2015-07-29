@@ -6,6 +6,13 @@ $(function() {
 	$("#btn_add_new_meal_close").click(function () {
 		$("#modal_add_new_meal").closeModal();
 	});
+	
+	$('.add_meal_filter_food').click(function(){
+		var name = $(this).attr('id');
+		name = substring(6);
+		
+		alert(name);
+	});
 
 	if($('#category_btn').length > 0) {
 		category_btn = $('#category_btn');

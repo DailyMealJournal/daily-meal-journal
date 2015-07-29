@@ -25,7 +25,6 @@
             </div>
             <div class="collection-item">
                 <!-- Modal Trigger -->
-   
             </div>
         </div>
     </div>
@@ -49,7 +48,7 @@
                     <div class="collapsible-body">
                         <div class="accordion-list">
                             <div ng-repeat="filter in category.filters">
-                                <input type=checkbox id="food_{{filter}}" />
+                                <input type=checkbox class="add_meal_filter_food" id="food_{{filter}}" />
                                 <label for="food_{{filter}}">{{ filter }}</label>
                             </div>
                         </div>
@@ -73,7 +72,7 @@
 			<div class="col s12 m8">
                 <div class="row">
     				<form id="add_meal" ngSubmit="addMeal()" class="form-meal" xurl="${base_url}meal_management/create" method="POST">
-    				    <div class="input-field col s6">
+    				    <div class="input-field  col s12">
     				    	<input id="meal_name" type="text" class="validate">
     				    	<label for="first_name">Meal Name</label>
     				    </div>
@@ -81,15 +80,54 @@
     				        <textarea id="textarea1" class="materialize-textarea"></textarea>
     				        <label for="textarea1">Meal Description</label>
     			        </div>
-    	      			<div class="file-field input-field col s8">
-    					    <div class="btn btn-flat">
+    	      			<div class="file-field input-field col s12">
+    					    <div class="btn btn-small">
     						    <span>File</span>
-    						    <input type="file" />
+    						    <input type="file" accept=".jpg"/>
     					    </div>
     					    <div class="file-path-wrapper">
     					    	<input class="file-path validate" type="text"/>
     					    </div>
     			    	</div>
+    			    	<div class="col s12">
+    			    		<table class="respsonsive-table">
+					    		<thead>
+					    			<tr>
+					    				<td>Food</td>
+					    				<td>Calories</td>
+					    				<td>Unit</td>
+					    				<td>Qty</td>
+					    				<td class="food_list_subtotal">Subtotal</td>
+					    				<td>&nbsp;</td>
+					    			</tr>
+					    		</thead>
+					    		<tbody id="add_meal_food_list">
+					    			<tr>
+					    				<td>Name</td>
+					    				<td>Calories</td>
+					    				<td><select>
+										      <option value="" disabled selected>Choose your option</option>
+										      <option value="1">Option 1</option>
+										      <option value="2">Option 2</option>
+										      <option value="3">Option 3</option>
+										    </select>
+										</td>
+					    				<td>
+					    					<div class="input-field">
+												<select>
+													<option value="" disabled selected>Choose your option</option>
+													<option value="1">Option 1</option>
+													<option value="2">Option 2</option>
+													<option value="3">Option 3</option>
+												</select>
+											</div>
+					    				</td>
+					    				<td>500</td>
+					    				<td>X</td>
+					    			</tr>
+					    		</tbody>
+					    	</table>	
+    			    	</div>	
     		    	</form>
                 </div>
 			</div>
@@ -101,7 +139,7 @@
                         <div class="collapsible-body">
                             <div class="accordion-list">
                                 <div ng-repeat="filter in category.filters">
-                                    <input type=checkbox id="food_{{filter}}" />
+                                    <input type="checkbox" id="food_{{filter}}" />
                                     <label for="food_{{filter}}">{{ filter }}</label>
                                 </div>
                             </div>

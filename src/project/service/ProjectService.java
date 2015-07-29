@@ -11,7 +11,10 @@ import java.util.List;
 import com.google.appengine.api.datastore.Entity;
 
 import project.dao.ProjectDao;
+import project.dto.FoodDto;
 import project.dto.UserDto;
+import project.model.Food;
+import project.model.FoodInfo;
 import project.model.User;
 
 public class ProjectService {
@@ -40,4 +43,35 @@ public class ProjectService {
     public List<User> getUserList() {
         return this.dao.getAllUsers();
     }
+    
+    public FoodDto food(FoodDto input, String action){
+        Food food = new Food();
+        FoodInfo foodInfo = new FoodInfo();
+        
+        if(action.equals("create_food")){
+            food.setName(input.getName());
+            food.setCategory(input.getCategory());
+            food.setDescription(input.getDescription());
+            food.setPicture(input.getPicture());
+                        
+            if(!this.dao.createFood(food)){
+                input.setErrorList(new ArrayList<String>());
+                input.getErrorList().add("error!");
+            }
+        } else if(action.equals("create_info")){
+            food.setName(input.getName());
+            food.setCategory(input.getCategory());
+            foodInfo.setCalories(input.getCalorie());
+            foodInfo.setUnit(input.getUnit());
+           
+            
+            if(!this.dao.createFoodInfo(food, foodInfo)){
+                input.setErrorList(new ArrayList<String>());
+                input.getErrorList().add("error!");
+            }
+        }
+        
+        return input;
+    }
+    
 }

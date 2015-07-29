@@ -1,19 +1,15 @@
 package project.controller.user_management;
 
-import java.io.IOException;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
 import org.slim3.util.BeanUtil;
 import org.slim3.util.RequestMap;
 
-import api.controller.APIController;
 import project.dto.UserDto;
 import project.service.ProjectService;
+import api.controller.APIController;
 
 
 public class RegisterController extends APIController {

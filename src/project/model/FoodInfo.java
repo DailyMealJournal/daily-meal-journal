@@ -8,18 +8,16 @@ import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
 @Model(schemaVersion = 1)
-public class Food implements Serializable {
+public class FoodInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    public static final String KIND_NAME= "FOOD";
-    public static final String[] KIND_ATTRIBUTES = {"Name","Category","Description", "Picture"};
+    public static final String KIND_NAME= "FoodInfo";
+    public static final String[] KIND_ATTRIBUTES = {"FoodKey", "Calories", "Unit"};
     
-    private String name;
-    private String category;
-    private String description;
-    private String picture;
-    
+    private Key foodKey;
+    private int calories;
+    private String unit;
 
     @Attribute(primaryKey = true)
     private Key key;
@@ -84,7 +82,7 @@ public class Food implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Food other = (Food) obj;
+        FoodInfo other = (FoodInfo) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -95,35 +93,27 @@ public class Food implements Serializable {
         return true;
     }
 
-    public String getName() {
-        return name;
+    public Key getFoodKey() {
+        return foodKey;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFoodKey(Key foodKey) {
+        this.foodKey = foodKey;
     }
 
-    public String getCategory() {
-        return category;
+    public int getCalories() {
+        return calories;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
 
-    public String getDescription() {
-        return description;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }
