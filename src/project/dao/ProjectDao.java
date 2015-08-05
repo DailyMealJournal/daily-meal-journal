@@ -10,16 +10,15 @@ import java.util.List;
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.EntityQuery;
 
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.Transaction;
-import com.google.appengine.api.datastore.Query.FilterOperator;
-
 import project.dto.UserDto;
 import project.meta.UserMeta;
-import project.model.Food;
-import project.model.FoodInfo;
+import project.model.Meal;
 import project.model.User;
+
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Transaction;
 
 public class ProjectDao {
 
@@ -53,7 +52,7 @@ public class ProjectDao {
         return Datastore.query(m).asList();
     }
     
-    public boolean createFood(Food foodModel){
+    /*public boolean createFood(Food foodModel){
         boolean result = true;
         try{
             Transaction tx = Datastore.beginTransaction();
@@ -70,9 +69,9 @@ public class ProjectDao {
         }
         
         return result;
-    }
+    }*/
     
-    public boolean createFoodInfo(Food foodModel, FoodInfo foodInfoModel){
+    /*public boolean createFoodInfo(Food foodModel, FoodInfo foodInfoModel){
         boolean result = true;
         try{
             Entity entity;
@@ -94,6 +93,64 @@ public class ProjectDao {
         } catch(Exception e){
             result = false;
         }
+        
+        return result;
+    }*/
+    
+    public boolean createMeal(Meal mealModel){
+        boolean result = true;
+        
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            Key mealKey = Datastore.allocateId(Meal.KIND_NAME);
+            
+            mealModel.setKey(mealKey);
+            
+            Datastore.put(mealModel);
+            
+            tx.commit();
+            
+        } catch(Exception e){
+            result = false;
+        }
+        
+        return result;
+    }
+    
+    public boolean updateMeal(Meal mealModel){
+        boolean result = true;
+        
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            
+            
+            
+            tx.commit();
+            
+        } catch(Exception e){
+            
+            
+        }
+        
+        
+        return result;
+    }
+    
+    public boolean deleteMeal(Meal mealModel){
+        boolean result = true;
+        
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            
+            Datastore.delete(mealModel.getKey());
+                        
+            tx.commit();
+            
+        } catch(Exception e){
+            
+            
+        }
+        
         
         return result;
     }

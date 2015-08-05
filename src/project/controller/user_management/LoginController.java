@@ -3,17 +3,15 @@ package project.controller.user_management;
 import java.util.Map;
 
 import org.slim3.controller.Navigation;
-
 import org.slim3.repackaged.org.json.JSONObject;
-
 import org.slim3.util.BeanUtil;
 import org.slim3.util.RequestMap;
 
-import com.google.appengine.api.datastore.Entity;
-
-import api.controller.APIController;
 import project.dto.UserDto;
 import project.service.ProjectService;
+import api.controller.APIController;
+
+import com.google.appengine.api.datastore.Entity;
 
 
 public class LoginController extends APIController {
@@ -43,6 +41,7 @@ public class LoginController extends APIController {
                 json = new JSONObject();
             }
         }
+        
         response.setContentType("application/json");
         if(error != null) {
             response.setStatus(response.SC_NOT_ACCEPTABLE);

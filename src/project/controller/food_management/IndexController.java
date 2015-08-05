@@ -31,7 +31,7 @@ public class IndexController extends Controller {
         int k = 0;
         int kTemp;
         
-        for(; i < categories.length; i++){ //for each category
+        /*for(; i < categories.length; i++){ //for each category
             foodDto.setCategory(categories[i]);
             jTemp = 0;
             
@@ -50,7 +50,7 @@ public class IndexController extends Controller {
                     service.food(foodDto, "create_info");
                 }
             }
-        }
+        }*/
         
         /*foodDto.setName("Chicken");
         foodDto.setCategory("Poultry");

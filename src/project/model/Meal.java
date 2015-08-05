@@ -12,15 +12,14 @@ public class Meal implements Serializable {
     
     private static final long serialVersionUID = 1L;
     public static final String KIND_NAME= "MEAL";
-    public static final String[] KIND_ATTRIBUTES = {"Name", "UserKey", "Calories", "Description", "Unit", "Tags", "Picture"};
+    public static final String[] KIND_ATTRIBUTES = {"Key", "Name", "Def_Quantity", "Unit", "Calories", "Description", "Picture"};
     
     private String name;
-    private int userKey;
+    private int def_quantity;
+    private String unit;
     private int calories;
     private String description;
-    private String unit;
-    private String tags;
-    private String picture;        
+    private String picture;
     
 
     @Attribute(primaryKey = true)
@@ -105,12 +104,20 @@ public class Meal implements Serializable {
         this.name = name;
     }
 
-    public int getUserKey() {
-        return userKey;
+    public int getDef_quantity() {
+        return def_quantity;
     }
 
-    public void setUserKey(int userKey) {
-        this.userKey = userKey;
+    public void setDef_quantity(int def_quantity) {
+        this.def_quantity = def_quantity;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public int getCalories() {
@@ -129,22 +136,6 @@ public class Meal implements Serializable {
         this.description = description;
     }
 
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
     public String getPicture() {
         return picture;
     }
@@ -152,4 +143,5 @@ public class Meal implements Serializable {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
 }

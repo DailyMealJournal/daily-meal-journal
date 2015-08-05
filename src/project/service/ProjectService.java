@@ -12,9 +12,11 @@ import com.google.appengine.api.datastore.Entity;
 
 import project.dao.ProjectDao;
 import project.dto.FoodDto;
+import project.dto.MealDto;
 import project.dto.UserDto;
 import project.model.Food;
 import project.model.FoodInfo;
+import project.model.Meal;
 import project.model.User;
 
 public class ProjectService {
@@ -44,7 +46,7 @@ public class ProjectService {
         return this.dao.getAllUsers();
     }
     
-    public FoodDto food(FoodDto input, String action){
+    /*public FoodDto food(FoodDto input, String action){
         Food food = new Food();
         FoodInfo foodInfo = new FoodInfo();
         
@@ -70,6 +72,55 @@ public class ProjectService {
                 input.getErrorList().add("error!");
             }
         }
+        
+        return input;
+    }*/
+    
+    public MealDto meal(MealDto input, String action){
+        Meal meal = new Meal();
+        
+            if(action.equals("create_meal")){
+                meal.setName(input.getName());
+                meal.setDef_quantity(input.getDef_quantity());
+                meal.setUnit(input.getUnit());
+                meal.setCalories(input.getCalories());
+                meal.setDescription(input.getDescription());
+                meal.setPicture(input.getPicture());
+                
+                if(!this.dao.createMeal(meal)){
+                    input.setErrorList(new ArrayList<String>());
+                    input.getErrorList().add("error!");
+                }
+                
+            } else if(action.equals("delete_meal")){
+                meal.setName(input.getName());
+                meal.setDef_quantity(input.getDef_quantity());
+                meal.setUnit(input.getUnit());
+                meal.setCalories(input.getCalories());
+                meal.setDescription(input.getDescription());
+                meal.setPicture(input.getPicture());
+                
+                if(!this.dao.deleteMeal(meal)){
+                    input.setErrorList(new ArrayList<String>());
+                    input.getErrorList().add("error!");
+                }
+                
+            } else if(action.equals("update_meal")){
+                meal.setName(input.getName());
+                meal.setDef_quantity(input.getDef_quantity());
+                meal.setUnit(input.getUnit());
+                meal.setCalories(input.getCalories());
+                meal.setDescription(input.getDescription());
+                meal.setPicture(input.getPicture());
+                
+                if(!this.dao.updateMeal(meal)){
+                    input.setErrorList(new ArrayList<String>());
+                    input.getErrorList().add("error!");
+                }
+                
+            }
+            
+            
         
         return input;
     }
