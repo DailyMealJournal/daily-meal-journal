@@ -18,6 +18,8 @@ local.properties
 .settings/*
 .loadpath
 
+war/WEB-INF/classes/
+src/project/meta/
 # External tool builders
 .externalToolBuilders/
 
