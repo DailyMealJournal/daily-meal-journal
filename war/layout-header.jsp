@@ -12,6 +12,12 @@
 </sheetsstyler>
 </head>
 <body class="pushable item hide" ng-app="Calowrie">
+	<div class="hidden" id="session_data">
+		<c:out value="${sessionScope.user.id}"  index-val="id"></c:out>
+		<c:out value="${sessionScope.user.first_name}" index-val="first_name"></c:out>
+		<c:out value="${sessionScope.user.last_name}" index-val="last_name"></c:out>
+		<c:out value="${sessionScope.user.username}" index-val="user_name"></c:out>
+	</div>
 	<jsp:include page="sidebar.jsp" />
   <!--<div class="ui inverted green basic big launch right attached fixed toggle button">
 	    <i class="content icon"></i>
