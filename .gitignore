@@ -1,5 +1,4 @@
 appengine-java-sdk-1.8.1/*
-
 #################
 ## Eclipse
 #################
@@ -19,6 +18,7 @@ local.properties
 .loadpath
 
 war/WEB-INF/classes/
+war/WEB-INF/appengine-generated/
 src/project/meta/
 # External tool builders
 .externalToolBuilders/
