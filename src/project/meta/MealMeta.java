@@ -1,6 +1,6 @@
 package project.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-08-05 10:13:39")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-08-08 11:59:46")
 /** */
 public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.Meal> {
 
@@ -8,10 +8,16 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
     public final org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Integer> calories = new org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Integer>(this, "calories", "calories", int.class);
 
     /** */
+    public final org.slim3.datastore.StringAttributeMeta<project.model.Meal> category = new org.slim3.datastore.StringAttributeMeta<project.model.Meal>(this, "category", "category");
+
+    /** */
     public final org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Integer> def_quantity = new org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Integer>(this, "def_quantity", "def_quantity", int.class);
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<project.model.Meal> description = new org.slim3.datastore.StringAttributeMeta<project.model.Meal>(this, "description", "description");
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Long> id = new org.slim3.datastore.CoreAttributeMeta<project.model.Meal, java.lang.Long>(this, "id", "id", long.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<project.model.Meal, com.google.appengine.api.datastore.Key> key = new org.slim3.datastore.CoreAttributeMeta<project.model.Meal, com.google.appengine.api.datastore.Key>(this, "__key__", "key", com.google.appengine.api.datastore.Key.class);
@@ -46,8 +52,10 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
     public project.model.Meal entityToModel(com.google.appengine.api.datastore.Entity entity) {
         project.model.Meal model = new project.model.Meal();
         model.setCalories(longToPrimitiveInt((java.lang.Long) entity.getProperty("calories")));
+        model.setCategory((java.lang.String) entity.getProperty("category"));
         model.setDef_quantity(longToPrimitiveInt((java.lang.Long) entity.getProperty("def_quantity")));
         model.setDescription((java.lang.String) entity.getProperty("description"));
+        model.setId(longToPrimitiveLong((java.lang.Long) entity.getProperty("id")));
         model.setKey(entity.getKey());
         model.setName((java.lang.String) entity.getProperty("name"));
         model.setPicture((java.lang.String) entity.getProperty("picture"));
@@ -66,8 +74,10 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
         entity.setProperty("calories", m.getCalories());
+        entity.setProperty("category", m.getCategory());
         entity.setProperty("def_quantity", m.getDef_quantity());
         entity.setProperty("description", m.getDescription());
+        entity.setProperty("id", m.getId());
         entity.setProperty("name", m.getName());
         entity.setProperty("picture", m.getPicture());
         entity.setProperty("unit", m.getUnit());
@@ -136,12 +146,18 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
         org.slim3.datastore.json.Default encoder0 = new org.slim3.datastore.json.Default();
         writer.setNextPropertyName("calories");
         encoder0.encode(writer, m.getCalories());
+        if(m.getCategory() != null){
+            writer.setNextPropertyName("category");
+            encoder0.encode(writer, m.getCategory());
+        }
         writer.setNextPropertyName("def_quantity");
         encoder0.encode(writer, m.getDef_quantity());
         if(m.getDescription() != null){
             writer.setNextPropertyName("description");
             encoder0.encode(writer, m.getDescription());
         }
+        writer.setNextPropertyName("id");
+        encoder0.encode(writer, m.getId());
         if(m.getKey() != null){
             writer.setNextPropertyName("key");
             encoder0.encode(writer, m.getKey());
@@ -172,10 +188,14 @@ public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
         reader = rootReader.newObjectReader("calories");
         m.setCalories(decoder0.decode(reader, m.getCalories()));
+        reader = rootReader.newObjectReader("category");
+        m.setCategory(decoder0.decode(reader, m.getCategory()));
         reader = rootReader.newObjectReader("def_quantity");
         m.setDef_quantity(decoder0.decode(reader, m.getDef_quantity()));
         reader = rootReader.newObjectReader("description");
         m.setDescription(decoder0.decode(reader, m.getDescription()));
+        reader = rootReader.newObjectReader("id");
+        m.setId(decoder0.decode(reader, m.getId()));
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
         reader = rootReader.newObjectReader("name");

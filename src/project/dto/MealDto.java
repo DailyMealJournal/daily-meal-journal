@@ -2,16 +2,20 @@ package project.dto;
 
 import java.util.List;
 
+import com.google.appengine.api.datastore.Key;
+
 public class MealDto {
     private List<String> errorList;
-    private int id;
+    
+    private long id;
+    private Key key;
     private String name;
+    private String category;
     private int def_quantity;
     private String unit;
     private int calories;
     private String description;
     private String picture;
-    
     
     public List<String> getErrorList() {
         return errorList;
@@ -19,17 +23,30 @@ public class MealDto {
     public void setErrorList(List<String> errorList) {
         this.errorList = errorList;
     }
-    public int getId() {
+    
+    public long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
+    }
+    public Key getKey() {
+        return key;
+    }
+    public void setKey(Key key) {
+        this.key = key;
     }
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public String getCategory() {
+        return category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
     }
     public int getDef_quantity() {
         return def_quantity;

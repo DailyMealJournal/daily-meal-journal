@@ -8,16 +8,13 @@ package project.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.appengine.api.datastore.Entity;
-
 import project.dao.ProjectDao;
-import project.dto.FoodDto;
 import project.dto.MealDto;
 import project.dto.UserDto;
-import project.model.Food;
-import project.model.FoodInfo;
 import project.model.Meal;
 import project.model.User;
+
+import com.google.appengine.api.datastore.Entity;
 
 public class ProjectService {
     ProjectDao dao = new ProjectDao();
@@ -46,41 +43,12 @@ public class ProjectService {
         return this.dao.getAllUsers();
     }
     
-    /*public FoodDto food(FoodDto input, String action){
-        Food food = new Food();
-        FoodInfo foodInfo = new FoodInfo();
-        
-        if(action.equals("create_food")){
-            food.setName(input.getName());
-            food.setCategory(input.getCategory());
-            food.setDescription(input.getDescription());
-            food.setPicture(input.getPicture());
-                        
-            if(!this.dao.createFood(food)){
-                input.setErrorList(new ArrayList<String>());
-                input.getErrorList().add("error!");
-            }
-        } else if(action.equals("create_info")){
-            food.setName(input.getName());
-            food.setCategory(input.getCategory());
-            foodInfo.setCalories(input.getCalorie());
-            foodInfo.setUnit(input.getUnit());
-           
-            
-            if(!this.dao.createFoodInfo(food, foodInfo)){
-                input.setErrorList(new ArrayList<String>());
-                input.getErrorList().add("error!");
-            }
-        }
-        
-        return input;
-    }*/
-    
     public MealDto meal(MealDto input, String action){
         Meal meal = new Meal();
         
             if(action.equals("create_meal")){
                 meal.setName(input.getName());
+                meal.setCategory(input.getCategory());
                 meal.setDef_quantity(input.getDef_quantity());
                 meal.setUnit(input.getUnit());
                 meal.setCalories(input.getCalories());
@@ -89,21 +57,28 @@ public class ProjectService {
                 
                 if(!this.dao.createMeal(meal)){
                     input.setErrorList(new ArrayList<String>());
-                    input.getErrorList().add("error!");
+                    input.getErrorList().add("An error occurred while adding the meal to Datastore");
                 }
                 
-            } else if(action.equals("delete_meal")){
+            } else if(action.equals("read_meal_one")){
                 meal.setName(input.getName());
-                meal.setDef_quantity(input.getDef_quantity());
-                meal.setUnit(input.getUnit());
-                meal.setCalories(input.getCalories());
-                meal.setDescription(input.getDescription());
-                meal.setPicture(input.getPicture());
+                List<Meal> mealList = this.dao.readMeal(meal, "one");
                 
-                if(!this.dao.deleteMeal(meal)){
+                if(mealList.isEmpty()){
                     input.setErrorList(new ArrayList<String>());
-                    input.getErrorList().add("error!");
-                }
+                    input.getErrorList().add("That meal does not exist");
+                } else {
+                    meal = mealList.get(0);
+                    
+                    input.setKey(meal.getKey());
+                    input.setName(meal.getName());
+                    input.setCategory(meal.getCategory());
+                    input.setDef_quantity(meal.getDef_quantity());
+                    input.setUnit(meal.getUnit());
+                    input.setCalories(meal.getCalories());
+                    input.setDescription(meal.getDescription());
+                    input.setPicture(meal.getPicture());
+                }          
                 
             } else if(action.equals("update_meal")){
                 meal.setName(input.getName());
@@ -115,14 +90,49 @@ public class ProjectService {
                 
                 if(!this.dao.updateMeal(meal)){
                     input.setErrorList(new ArrayList<String>());
-                    input.getErrorList().add("error!");
+                    input.getErrorList().add("An occurred while updating the meal in Datastore");
                 }
                 
-            }
-            
-            
-        
+            } else if(action.equals("delete_meal")){
+                meal.setId(input.getId());
+                /*meal.setDef_quantity(input.getDef_quantity());
+                meal.setUnit(input.getUnit());
+                meal.setCalories(input.getCalories());
+                meal.setDescription(input.getDescription());
+                meal.setPicture(input.getPicture());*/
+                
+                if(!this.dao.deleteMeal(meal)){
+                    input.setErrorList(new ArrayList<String>());
+                    input.getErrorList().add("That meal does not exist");
+                }
+            } 
+
         return input;
+    }
+    
+    public List<Meal> readAllMeals(){
+        List<Meal> mealList = this.dao.readMeal(null, "all");
+        
+//        for(Meal m : mealList){
+//            System.out.println("Project Service: " + m.getId());
+//        }
+        
+        /*List<MealDto> mealList = new ArrayList<MealDto>();
+        MealDto mealDto;
+        
+        for(Meal meal : mealModels){
+            mealDto = new MealDto();
+            mealDto.setKey(meal.getKey());
+            mealDto.setName(meal.getName());
+            mealDto.setDef_quantity(meal.getDef_quantity());
+            mealDto.setUnit(meal.getUnit());
+            mealDto.setCalories(meal.getCalories());
+            mealDto.setDescription(meal.getDescription());
+            mealDto.setPicture(meal.getPicture());
+            mealList.add(mealDto);
+        }*/
+        
+        return mealList;   
     }
     
 }

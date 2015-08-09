@@ -25,28 +25,16 @@ public class DeleteController extends APIController {
 
     private ProjectService service = new ProjectService();
     
+    
     @Override
     protected Navigation run() throws Exception {
-        //Validators
-        Validators v = new Validators(this.request);
-
-        if (v.validate()) {
-            this.requestScope("errors", "");
-            Map<String,Object> input = new RequestMap(this.request);
-            MealDto mealDto = new MealDto();
-            BeanUtil.copy(input, mealDto);
-            service.meal(mealDto, "delete_meal");
-        } else {
-            StringBuffer errors = new StringBuffer("Errors: ");
-            for (int i = 0; i < v.getErrors().size(); i++) {
-                if(i > 0) {
-                    errors.append(", ");
-                }
-                errors.append(v.getErrors().get(i));
-            }
-            this.requestScope("errors", errors.toString());
-            
-        }
+        Map<String,Object> input = new RequestMap(this.request);
+        MealDto mealDto = new MealDto();
+        mealDto.setName(input.get("meal_name").toString());
+        service.meal(mealDto, "delete_meal");
+        
+        this.requestScope("","");
+        
         return null;
     }
 

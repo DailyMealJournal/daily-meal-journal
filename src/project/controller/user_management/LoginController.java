@@ -47,8 +47,11 @@ public class LoginController extends APIController {
             response.setStatus(response.SC_NOT_ACCEPTABLE);
             response.getWriter().print(error);
         } else {
-            response.getWriter().print(json);  
+            response.getWriter().print(json);
+            sessionScope("user", "duh");
+            System.out.println("LoginController");
         }
+        
         return null;
     }
 

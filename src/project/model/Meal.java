@@ -14,7 +14,9 @@ public class Meal implements Serializable {
     public static final String KIND_NAME= "MEAL";
     public static final String[] KIND_ATTRIBUTES = {"Key", "Name", "Def_Quantity", "Unit", "Calories", "Description", "Picture"};
     
+    private long id;
     private String name;
+    private String category;
     private int def_quantity;
     private String unit;
     private int calories;
@@ -96,12 +98,28 @@ public class Meal implements Serializable {
         return true;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getDef_quantity() {
