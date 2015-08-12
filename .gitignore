@@ -17,7 +17,7 @@ local.properties
 .settings/*
 .loadpath
 
-war/WEB-INF/classes/
+#war/WEB-INF/classes/
 war/WEB-INF/appengine-generated/
 #src/project/meta/
 # External tool builders
