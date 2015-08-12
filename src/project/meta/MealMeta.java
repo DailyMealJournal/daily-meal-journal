@@ -1,6 +1,6 @@
 package project.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-08-12 09:34:16")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-08-12 11:12:29")
 /** */
 public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.Meal> {
 
