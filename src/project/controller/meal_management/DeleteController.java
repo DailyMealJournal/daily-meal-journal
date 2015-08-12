@@ -5,8 +5,16 @@
  * --------------------------------------------------------------------------- */
 package project.controller.meal_management;
 
-import api.controller.*;
+import java.util.Map;
+
 import org.slim3.controller.Navigation;
+import org.slim3.controller.validator.Validators;
+import org.slim3.util.BeanUtil;
+import org.slim3.util.RequestMap;
+
+import project.dto.MealDto;
+import project.service.ProjectService;
+import api.controller.APIController;
 
 /**
  * Main Screen Delete controller.
@@ -15,10 +23,19 @@ import org.slim3.controller.Navigation;
  */
 public class DeleteController extends APIController {
 
+    private ProjectService service = new ProjectService();
+    
+    
     @Override
     protected Navigation run() throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        Map<String,Object> input = new RequestMap(this.request);
+        MealDto mealDto = new MealDto();
+        mealDto.setId(Long.valueOf(input.get("meal_id").toString()));
+        service.meal(mealDto, "delete_meal");
+        
+        this.requestScope("","");
+        
+        return proceedTo("index.jsp");
     }
 
 }
