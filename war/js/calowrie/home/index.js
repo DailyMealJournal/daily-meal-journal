@@ -27,15 +27,47 @@ $(document).ready(function(){
 	});
 
 	$('#btn_register').click(function(e){
+		e.preventDefault();
+		var form = $('form#register');
 		var password = $('#register_password').val();
 		var confirm = $('#conf_password').val();
-		
-		if(password != confirm){
-			e.preventDefault();
+		$('input').removeClass('invalid');
+		if(password != confirm || password == '' || confirm == ''){
+			$('#register_form_errors').removeClass('hidden');
+			$('#register_password').addClass('invalid');
+			$('#conf_password')	.addClass('invalid');
+			$('#register_form_errors').text('Invalid Password/Confirm Password does not match with Password')
 			$('#register_form_errors').show(600);
 		}
 		else{
-			$('#register_form_errors').hide(600);
+			$('#register_form_errors').addClass('hidden');
+			$('#register_form_errors').hide();
+			$.ajax({
+				method: form.attr('method'),
+				url: form.data('post-url'),
+				data: form.serializeObject(),
+				success: function(o_response, s_status, s_xhr) {
+					if(typeof o_response.errors != 'undefined') {
+						var text = '';
+						for(var i in o_response.errors) {
+							$('input[name="'+ i +'"').addClass('invalid');
+							text += o_response.errors[i] + '<br>';
+						}
+						$('#register_form_errors').html(text);
+						$('#register_form_errors').removeClass('hidden');
+						$('#register_form_errors').fadeIn(600);
+
+					}else{
+						$('#btn_back').trigger('click');
+						$('#login_form_success').text("Registration Successful. Please Login.")
+						$('#login_form_success').show(600);
+					}
+
+				},
+				error: function(o_response, s_status, s_xhr) {
+
+				}
+			});
 		}
 	});
 
@@ -46,12 +78,12 @@ $(document).ready(function(){
 		
 		password.addClass("invalid");
 		confirm.addClass("invalid");
-		
+		$("register_form_errors").removeClass("hidden");
 		if((password.val() == confirm.val()) && (password.val().length >= 8)){
 			password.removeClass("invalid");
 			confirm.removeClass("invalid");
 			
-			$("register_form_errors").removeClass("register-error");
+			$("register_form_errors").addClass("hidden");
 			
 			password.addClass("valid");
 			confirm.addClass("valid");
@@ -60,6 +92,7 @@ $(document).ready(function(){
 
 	$("#btn_submit").click(function(e){
 		e.preventDefault();
+		$('#login_form_success').fadeOut(100);
 		$('#login_form_errors').fadeOut(100);
 		var form = $('#login');
 		$.ajax({
@@ -103,5 +136,5 @@ $(document).ready(function(){
 	var options = [
 		{selector: '.team-member', offset: 300, callback: 'globalFunction()' }
 	];
-	setInterval(Materialize.scrollFire(options),1000);
+	setInterval(Materialize.scrollFire(options),1200);
 });

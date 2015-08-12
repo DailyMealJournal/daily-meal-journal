@@ -20,7 +20,10 @@ public class IndexController extends APIController {
     protected Navigation run() throws Exception {
         
         requestScope("base_url", getBaseUrl());
-
-        return proceedTo("project/index.jsp");
+        if(sessionScope("user") == null) {
+            return proceedTo("project/index.jsp");
+        } else {
+            return redirect(getBaseUrl()+"meal_journal");
+        }
     }
 }

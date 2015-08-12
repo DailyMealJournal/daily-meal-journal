@@ -8,14 +8,13 @@ package project.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.appengine.api.datastore.Entity;
-
 import project.dao.ProjectDao;
-import project.dto.FoodDto;
+import project.dto.MealDto;
 import project.dto.UserDto;
-import project.model.Food;
-import project.model.FoodInfo;
+import project.model.Meal;
 import project.model.User;
+
+import com.google.appengine.api.datastore.Entity;
 
 public class ProjectService {
     ProjectDao dao = new ProjectDao();
@@ -44,34 +43,78 @@ public class ProjectService {
         return this.dao.getAllUsers();
     }
     
-    public FoodDto food(FoodDto input, String action){
-        Food food = new Food();
-        FoodInfo foodInfo = new FoodInfo();
+    public MealDto meal(MealDto input, String action){
+        Meal meal = new Meal();
         
-        if(action.equals("create_food")){
-            food.setName(input.getName());
-            food.setCategory(input.getCategory());
-            food.setDescription(input.getDescription());
-            food.setPicture(input.getPicture());
-                        
-            if(!this.dao.createFood(food)){
-                input.setErrorList(new ArrayList<String>());
-                input.getErrorList().add("error!");
-            }
-        } else if(action.equals("create_info")){
-            food.setName(input.getName());
-            food.setCategory(input.getCategory());
-            foodInfo.setCalories(input.getCalorie());
-            foodInfo.setUnit(input.getUnit());
-           
-            
-            if(!this.dao.createFoodInfo(food, foodInfo)){
-                input.setErrorList(new ArrayList<String>());
-                input.getErrorList().add("error!");
-            }
-        }
-        
+            if(action.equals("create_meal")){
+                meal.setName(input.getName());
+                meal.setCategory(input.getCategory());
+                meal.setDef_quantity(input.getDef_quantity());
+                meal.setUnit(input.getUnit());
+                meal.setCalories(input.getCalories());
+                meal.setDescription(input.getDescription());
+                meal.setPicture(input.getPicture());
+                
+                if(!this.dao.createMeal(meal)){
+                    input.setErrorList(new ArrayList<String>());
+                    input.getErrorList().add("An error occurred while adding the meal to Datastore");
+                }
+                
+            } else if(action.equals("read_meal_single")){                
+                meal.setId(input.getId());
+                
+                List<Meal> mealList = this.dao.readMeal(meal, "single");
+                
+                if(mealList.isEmpty()){
+                    input.setErrorList(new ArrayList<String>());
+                    input.getErrorList().add("That meal does not exist");
+                } else {
+                    
+                    meal = mealList.get(0);
+
+                    input.setKey(meal.getKey());
+                    input.setName(meal.getName());
+                    input.setCategory(meal.getCategory());
+                    input.setDef_quantity(meal.getDef_quantity());
+                    input.setUnit(meal.getUnit());
+                    input.setCalories(meal.getCalories());
+                    input.setDescription(meal.getDescription());
+                    input.setPicture(meal.getPicture());
+                }          
+                
+            } else if(action.equals("update_meal")){
+                meal.setId(input.getId());
+                meal.setName(input.getName());
+                meal.setCategory(input.getCategory());
+                meal.setDef_quantity(input.getDef_quantity());
+                meal.setUnit(input.getUnit());
+                meal.setCalories(input.getCalories());
+                meal.setDescription(input.getDescription());
+                meal.setPicture(input.getPicture());
+                
+                System.out.println("\n\nProjectService, updateMeal" + meal.toString());
+                
+                if(!this.dao.updateMeal(meal)){
+                    input.setErrorList(new ArrayList<String>());
+                    input.getErrorList().add("An occurred while updating the meal in Datastore");
+                }
+                
+            } else if(action.equals("delete_meal")){
+                meal.setId(input.getId());
+                
+                if(!this.dao.deleteMeal(meal)){
+                    input.setErrorList(new ArrayList<String>());
+                    input.getErrorList().add("That meal does not exist");
+                }
+            } 
+
         return input;
+    }
+    
+    public List<Meal> readAllMeals(){
+        List<Meal> mealList = dao.readMeal(null, "all");
+                
+        return mealList;   
     }
     
 }

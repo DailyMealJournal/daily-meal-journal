@@ -20,8 +20,9 @@ public class IndexController extends APIController {
 
     @Override
     protected Navigation run() throws Exception {
-
     	requestScope("base_url", getBaseUrl());
+        
+    	
         return proceedTo("index.jsp");
     }
 }
