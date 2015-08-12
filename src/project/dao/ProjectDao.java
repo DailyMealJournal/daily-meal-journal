@@ -63,8 +63,8 @@ public class ProjectDao {
         
         try{
             Transaction tx = Datastore.beginTransaction();
-            
             temp = Datastore.query(m).filter(m.name.equal(mealModel.getName())).asSingle();
+            
             if(temp == null){
                 Key mealKey = Datastore.allocateId(Meal.KIND_NAME);
                 
@@ -92,7 +92,6 @@ public class ProjectDao {
         try{            
             if(selection.equals("all")){
                 list = Datastore.query(Meal.KIND_NAME).asList();
-                
                 Map<String,Object> properties;
                 
                 for(Entity e : list){
@@ -131,12 +130,9 @@ public class ProjectDao {
         
         try{
             Transaction tx = Datastore.beginTransaction();
-            
             Entity e = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingleEntity();
 
-            if(e != null){
-                System.out.println("\n variable e not null");
-                
+            if(e != null){                
                 e.setProperty("name", mealModel.getName());
                 e.setProperty("category", mealModel.getCategory());
                 e.setProperty("def_quantity", mealModel.getDef_quantity());
