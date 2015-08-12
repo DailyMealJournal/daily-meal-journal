@@ -45,11 +45,11 @@
               <div class="card small hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
                   <img class="activator responsive-img" ng-src="{{ meal.Picture }}">
-                  <span class="card-title">{{ meal.MealName }}</span>
+                  <span class="card-title" style="">{{ meal.MealName }}</span>
                 </div>
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                   <p>Calorie Power: <br> {{ meal.CalorieCount }} <span class="unit">{{ meal.Unit }}</span></p>
+                   <p>Calorie Power: {{ meal.CalorieCount }} <span class="unit">{{ meal.Unit }}</span></p>
                    <p class="truncate">{{ meal.Description }} </p>
                 </div>
                 <div class="card-reveal">
@@ -92,6 +92,44 @@
 
         <jsp:include page="/meal_management/category.jsp"/>
   </div>
+
+    <div class="container">
+        <div class="row">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Default Quantity</th>
+                        <th>Unit</th>
+                        <th>Calories</th>
+                        <th>Description</th>
+                        <th>Picture</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody id="testBody">
+                    <tr>
+                        <td>1</td>
+                        <td>Chicken</td>
+                        <td>Poultry</td>
+                        <td>1</td>
+                        <td>Piece</td>
+                        <td>200</td>
+                        <td>A scrumptious chicken piece</td>
+                        <td>No picture</td>
+                        <td><button class="btn"><i class="small material-icons">reorder</i></button>&nbsp;<button class="btn" style="display: inline; vertical-align:middle"><i class="small material-icons">delete</i></button></td>
+                    </tr>
+                    <!-- loop here -->
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!--<script type="text/javascript" src="calowrie/meal_management/index.js"></script>-->
+    
 </div>
 <%--  Put JS Scripts ../js is not required --%>
 <jsscript src="calowrie/meal_management/index.js"></jsscript>

@@ -2,14 +2,20 @@ package project.dto;
 
 import java.util.List;
 
+import com.google.appengine.api.datastore.Key;
+
 public class MealDto {
     private List<String> errorList;
-    private String MealName;
-    private int Calories;
-    private int UserKey;
-    private String Description;
-    private String Tags;
-    private String Picture;
+    
+    private long id;
+    private Key key;
+    private String name;
+    private String category;
+    private int def_quantity;
+    private String unit;
+    private int calories;
+    private String description;
+    private String picture;
     
     public List<String> getErrorList() {
         return errorList;
@@ -18,45 +24,69 @@ public class MealDto {
         this.errorList = errorList;
     }
     
-    public String getMealName() {
-        return MealName;
+    public long getId() {
+        return id;
     }
-    public void setMealName(String MealName) {
-        this.MealName = MealName;
+    public void setId(long id) {
+        this.id = id;
     }
-
+    public Key getKey() {
+        return key;
+    }
+    public void setKey(Key key) {
+        this.key = key;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getCategory() {
+        return category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    public int getDef_quantity() {
+        return def_quantity;
+    }
+    public void setDef_quantity(int def_quantity) {
+        this.def_quantity = def_quantity;
+    }
+    public String getUnit() {
+        return unit;
+    }
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
     public int getCalories() {
-        return Calories;
+        return calories;
     }
-    public void setCalories(int Calories) {
-        this.Calories = Calories;
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
-    
-    public int getUserKey() {
-        return UserKey;
-    }  
-    public void setUserKey(int UserKey) {
-        this.UserKey = UserKey;
-    }
-    
     public String getDescription() {
-        return Description;
+        return description;
     }
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
-    public String getTags() {
-        return Tags;
-    }
-    public void setTags(String Tags) {
-        this.Tags = Tags;
-    }
-
     public String getPicture() {
-        return Picture;
+        return picture;
     }
-    public void setPicture(String Picture) {
-        this.Picture = Picture;
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+    
+    public String toString(){
+        String result = null;
+    
+        result = "Id: " + this.id + "\nName: " + this.name + "\nCategory: " + this.category + 
+                "\nDefault Quantity: " + this.def_quantity + "\nUnit: " + this.unit + 
+                "\nCalories: " + this.calories + "\nDescription: " + this.description + 
+                "\nPicture: " + this.picture;
+        
+        return result;
     }
 }
