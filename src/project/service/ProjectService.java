@@ -60,16 +60,24 @@ public class ProjectService {
                     input.getErrorList().add("An error occurred while adding the meal to Datastore");
                 }
                 
-            } else if(action.equals("read_meal_one")){
-                meal.setName(input.getName());
-                List<Meal> mealList = this.dao.readMeal(meal, "one");
+            } else if(action.equals("read_meal_single")){
+//                System.out.println("3) ProjectService, read_meal_single");
+                
+                meal.setId(input.getId());
+                
+//                System.out.println("4) ProjectService, read_meal_single, mealId for input: " + meal.getId());
+                
+                List<Meal> mealList = this.dao.readMeal(meal, "single");
+                
+//                System.out.println("7) ProjectService, read_meal_single, mealList size: " + mealList.size());
                 
                 if(mealList.isEmpty()){
                     input.setErrorList(new ArrayList<String>());
                     input.getErrorList().add("That meal does not exist");
                 } else {
-                    meal = mealList.get(0);
                     
+                    meal = mealList.get(0);
+
                     input.setKey(meal.getKey());
                     input.setName(meal.getName());
                     input.setCategory(meal.getCategory());
@@ -78,15 +86,21 @@ public class ProjectService {
                     input.setCalories(meal.getCalories());
                     input.setDescription(meal.getDescription());
                     input.setPicture(meal.getPicture());
+                    
+//                    System.out.println("8) " + input.getName());
                 }          
                 
             } else if(action.equals("update_meal")){
+                meal.setId(input.getId());
                 meal.setName(input.getName());
+                meal.setCategory(input.getCategory());
                 meal.setDef_quantity(input.getDef_quantity());
                 meal.setUnit(input.getUnit());
                 meal.setCalories(input.getCalories());
                 meal.setDescription(input.getDescription());
                 meal.setPicture(input.getPicture());
+                
+                System.out.println("\n\nProjectService, updateMeal" + meal.toString());
                 
                 if(!this.dao.updateMeal(meal)){
                     input.setErrorList(new ArrayList<String>());
@@ -95,11 +109,6 @@ public class ProjectService {
                 
             } else if(action.equals("delete_meal")){
                 meal.setId(input.getId());
-                /*meal.setDef_quantity(input.getDef_quantity());
-                meal.setUnit(input.getUnit());
-                meal.setCalories(input.getCalories());
-                meal.setDescription(input.getDescription());
-                meal.setPicture(input.getPicture());*/
                 
                 if(!this.dao.deleteMeal(meal)){
                     input.setErrorList(new ArrayList<String>());
@@ -111,27 +120,8 @@ public class ProjectService {
     }
     
     public List<Meal> readAllMeals(){
-        List<Meal> mealList = this.dao.readMeal(null, "all");
-        
-//        for(Meal m : mealList){
-//            System.out.println("Project Service: " + m.getId());
-//        }
-        
-        /*List<MealDto> mealList = new ArrayList<MealDto>();
-        MealDto mealDto;
-        
-        for(Meal meal : mealModels){
-            mealDto = new MealDto();
-            mealDto.setKey(meal.getKey());
-            mealDto.setName(meal.getName());
-            mealDto.setDef_quantity(meal.getDef_quantity());
-            mealDto.setUnit(meal.getUnit());
-            mealDto.setCalories(meal.getCalories());
-            mealDto.setDescription(meal.getDescription());
-            mealDto.setPicture(meal.getPicture());
-            mealList.add(mealDto);
-        }*/
-        
+        List<Meal> mealList = dao.readMeal(null, "all");
+                
         return mealList;   
     }
     

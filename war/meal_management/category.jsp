@@ -67,7 +67,9 @@
 <!-- ADD MEAL MODAL -->
 <div id="modal_add_new_meal" class="modal modal-fixed-footer">
 	<div class="modal-content container">
-		<h3>Add New Meal</h3>
+        <div class="row teal" style="padding: 1% 0%">
+            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Add New Meal</h3>
+        </div>
 		<div class="row">
 			<div class="col s12">
 				<form id="form_add_meal" action="create" class="form-meal" method="POST">
@@ -77,7 +79,7 @@
 					    	<label for="meal_name">Meal Name</label>
 					    </div>
 					    <div class="input-field col s12 m4">
-						    <select name="meal_category" required="required">
+						    <select id="meal_category" name="meal_category" required="required">
 						     	<option value="Poultry">Poultry</option>
 						      	<option value="Meat">Meat</option>
 						      	<option value="Seafood">Seafood</option>
@@ -149,18 +151,22 @@
 
 <!-- EDIT MEAL MODAL -->
 <div id="modal_edit_meal" class="modal modal-fixed-footer">
-	<div class="modal-content container">
-		<h3>Edit Meal</h3>
+	<div class="modal-content container">        
+        <div class="row teal" style="padding: 1% 0%">
+            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Edit Meal</h3>
+        </div>
 		<div class="row">
 			<div class="col s12">
-				<form id="form_add_meal" action="create" class="form-meal" method="POST">
+				<form id="form_edit_meal" action="update" class="form-meal" method="POST">
+                    <input id="edit_meal_id" type="hidden" name="meal_id" value="">
+                    
 					<div class="row">
 						<div class="input-field  col s12 m8">
-					    	<input id="meal_name" type="text" name="meal_name" class="validate" required="required">
+					    	<input id="edit_meal_name" type="text" name="meal_name" class="validate" required="required">
 					    	<label for="meal_name">Meal Name</label>
 					    </div>
 					    <div class="input-field col s12 m4">
-						    <select name="meal_category" required="required">
+						    <select id="edit_meal_category" name="meal_category" required="required">
 						     	<option value="Poultry">Poultry</option>
 						      	<option value="Meat">Meat</option>
 						      	<option value="Seafood">Seafood</option>
@@ -170,26 +176,26 @@
 						      	<option value="Beverage">Beverage</option>
 						      	<option value="Snacks">Snacks</option>
 						    </select>				    	
-						    <label>Category</label>
+                            <label>Category</label>
 					  	</div>
 					</div>
 				    <div class="row">
 				    	<div class="input-field col s12 m4">
-    				        <input id="meal_defQuantity" type="number" min="1" name="meal_defQuantity" class="materialize-textarea" required="required">
+    				        <input id="edit_meal_defQuantity" type="number" min="1" name="meal_defQuantity" class="materialize-textarea" required="required">
     				        <label for="meal_defQuantity">Default Quantity</label>
     			        </div>
     			         <div class="input-field col s12 m4">
-    				        <input id="meal_unit" type="text" name="meal_unit" class="materialize-textarea" required="required">
+    				        <input id="edit_meal_unit" type="text" name="meal_unit" class="materialize-textarea" required="required">
     				        <label for="meal_unit">Unit</label>
     			        </div>
     			         <div class="input-field col s12 m4">
-    				        <input id="meal_calories" type="number" min="0" name="meal_calories" class="materialize-textarea" required="required">
+    				        <input id="edit_meal_calories" type="number" min="0" name="meal_calories" class="materialize-textarea" required="required">
     				        <label for="meal_calories">Calories</label>
     			        </div>
 				    </div>
 				    <div class="row">
 				    	<div class="input-field col s12">
-					        <textarea id="meal_description" name="meal_description" class="materialize-textarea" maxlength="300" placeholder="300 characters"></textarea>
+					        <textarea id="edit_meal_description" name="meal_description" class="materialize-textarea" maxlength="300" placeholder="300 characters"></textarea>
 					        <label for="meal_description">Meal Description</label>
 				        </div>
 		      			<div class="file-field input-field col s12">
@@ -198,7 +204,7 @@
 							    <input type="file" accept=".jpg" name=""/>
 						    </div>
 						    <div class="file-path-wrapper">
-						    	<input class="file-path validate" type="text" name="meal_picture" placeholder="Optional"/>
+						    	<input id="edit_meal_picture" class="file-path validate" type="text" name="meal_picture" placeholder="Optional"/>
 						    </div>
 				    	</div>
 				    </div>
@@ -212,4 +218,25 @@
 	</div>		
 </div>
 
-
+<!-- DELETE MEAL MODAL -->
+<div id="modal_delete_meal" class="modal modal-fixed-footer">
+	<div class="modal-content container">        
+        <div class="row teal" style="padding: 1% 0%">
+            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Delete Meal</h3>
+        </div>
+		<div class="row">
+			<div class="col s12">
+				<form id="form_delete_meal" action="delete" class="form-meal" method="POST">
+                    <input id="delete_meal_id" type="hidden" name="meal_id" value="">
+		    	</form>
+			</div>
+            <div>
+                <p class="flow-text">Are you sure you want to delete this meal?</p>
+            </div>
+		</div>	
+	</div>
+	<div class="modal-footer">
+	    <button id="btn_delete_meal" style="margin-left: 8px; margin-right: 8px" class="btn">Delete Meal</button>        
+	    <button id="btn_delete_meal_close" data-target="modal_edit_meal" class="btn modal-trigger red lighten-2">Cancel</button>
+	</div>		
+</div>

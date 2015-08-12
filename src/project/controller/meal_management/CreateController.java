@@ -57,7 +57,7 @@ public class CreateController extends APIController {
             this.requestScope("errors", errors.toString());
             
         }
-        return null;
+        return proceedTo("index.jsp");
     }
 
 }

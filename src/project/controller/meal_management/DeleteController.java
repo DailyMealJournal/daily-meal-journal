@@ -30,12 +30,12 @@ public class DeleteController extends APIController {
     protected Navigation run() throws Exception {
         Map<String,Object> input = new RequestMap(this.request);
         MealDto mealDto = new MealDto();
-        mealDto.setName(input.get("meal_name").toString());
+        mealDto.setId(Long.valueOf(input.get("meal_id").toString()));
         service.meal(mealDto, "delete_meal");
         
         this.requestScope("","");
         
-        return null;
+        return proceedTo("index.jsp");
     }
 
 }

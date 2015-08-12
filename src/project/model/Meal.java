@@ -161,5 +161,16 @@ public class Meal implements Serializable {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+    
+    public String toString(){
+        String result = null;
+    
+        result = "Id: " + this.id + "\nName: " + this.name + "\nCategory: " + this.category + 
+                "\nDefault Quantity: " + this.def_quantity + "\nUnit: " + this.unit + 
+                "\nCalories: " + this.calories + "\nDescription: " + this.description + 
+                "\nPicture: " + this.picture;
+        
+        return result;
+    }
 
 }

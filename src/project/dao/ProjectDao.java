@@ -134,44 +134,42 @@ public class ProjectDao {
     public List<Meal> readMeal(Meal mealModel, String selection){
         List<Entity> list = null;
         List<Meal> mealList = new ArrayList<Meal>();
-        Meal meal = new Meal();
-        MealMeta m = new MealMeta();
+        Meal meal = null;
         
         try{            
             if(selection.equals("all")){
                 list = Datastore.query(Meal.KIND_NAME).asList();
                 
-                System.out.println("List size: " + list.size());
-                
                 Map<String,Object> properties;
                 
                 for(Entity e : list){
                     properties = e.getProperties();
-                    
-                    System.out.println(properties.values());
+                    meal = new Meal();
                     
                     BeanUtil.copy(properties, meal);
                     
-//                    meal.setId((Long)properties.get("id"));
-//                    meal.setName((String)properties.get("name"));
-//                    meal.setDef_quantity((Integer)properties.get("def_quantity"));
-//                    meal.setUnit((String)properties.get("unit"));
-//                    meal.setCalories((Integer)properties.get("calories"));
-//                    meal.setDescription((String)properties.get("description"));
-//                    meal.setPicture((String)properties.get("picture"));
-                    
-                    System.out.println("Meal ID: " + meal.getId());
-                    
                     mealList.add(meal);
-                    
-                    System.out.println("Meal " + meal.getId() + "added");
-                }                
+                }                                
+            } else if(mealModel != null & selection.equals("single")){
+//                System.out.println("5) ProjectDao, single, mealModel ID: " + mealModel.getId());
                 
-            } else if(mealModel != null & selection.equals("one")){
-                Meal temp = Datastore.query(m).filter("id", FilterOperator.EQUAL, mealModel.getId()).sort("name", SortDirection.ASCENDING).asSingle();
+                Entity e = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingleEntity();
                 
-                if(temp != null){
-                    mealList.add(temp);
+//                System.out.println(e.getProperty("name"));
+                
+                
+                
+                if(e != null){
+                    Map<String,Object> properties;
+                    properties = e.getProperties();
+                    meal = new Meal();
+                    BeanUtil.copy(properties, meal);
+                }
+                
+//                System.out.println("6) ProjectDao, single, Meal temp name : " + meal.getName());
+                
+                if(meal != null){
+                    mealList.add(meal);
                 }
             }
             
@@ -188,22 +186,31 @@ public class ProjectDao {
         MealMeta m = null;
         Meal update = new Meal();
         
+        System.out.println("ProjectDao, updateMeal() enter, " + mealModel.toString());
+        
         try{
             Transaction tx = Datastore.beginTransaction();
             m = new MealMeta();
             
-            update = Datastore.query(m).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingle();
-            if(update != null){
-                BeanUtil.copy(mealModel, update);
+            Entity e = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingleEntity();
+
+            if(e != null){
+                System.out.println("\n variable e not null");
                 
-                Datastore.put(update);
+                e.setProperty("name", mealModel.getName());
+                e.setProperty("category", mealModel.getCategory());
+                e.setProperty("def_quantity", mealModel.getDef_quantity());
+                e.setProperty("unit", mealModel.getUnit());
+                e.setProperty("description", mealModel.getDescription());
+                e.setProperty("calories", mealModel.getCalories());
+                e.setProperty("picture", mealModel.getPicture());
+                
+                Datastore.put(e);
+                tx.commit();
             }
             
-            tx.commit();
-            
         } catch(Exception e){
-            
-            
+            result = false;
         }
         
         
@@ -212,12 +219,11 @@ public class ProjectDao {
     
     public boolean deleteMeal(Meal mealModel){
         boolean result = true;
-        MealMeta m = new MealMeta();
         
         try{
             Transaction tx = Datastore.beginTransaction();
             
-            Datastore.delete(Datastore.query(m).filter(m.name.equal(mealModel.getName())).asSingle().getKey());
+            Datastore.delete(Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingleEntity().getKey());
                         
             tx.commit();
             

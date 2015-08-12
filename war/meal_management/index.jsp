@@ -100,6 +100,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Category</th>
                         <th>Default Quantity</th>
                         <th>Unit</th>
                         <th>Calories</th>
@@ -112,12 +113,13 @@
                     <tr>
                         <td>1</td>
                         <td>Chicken</td>
+                        <td>Poultry</td>
                         <td>1</td>
                         <td>Piece</td>
                         <td>200</td>
                         <td>A scrumptious chicken piece</td>
                         <td>No picture</td>
-                        <td><button class="btn"><i class="small material-icons">reorder</i><span>Edit</span></button>&nbsp;<button class="btn" style="display: inline; vertical-align:middle"><i class="small material-icons">delete</i><span>Delete</span></button></td>
+                        <td><button class="btn"><i class="small material-icons">reorder</i></button>&nbsp;<button class="btn" style="display: inline; vertical-align:middle"><i class="small material-icons">delete</i></button></td>
                     </tr>
                     <!-- loop here -->
                     
