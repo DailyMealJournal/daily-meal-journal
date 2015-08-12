@@ -60,16 +60,10 @@ public class ProjectService {
                     input.getErrorList().add("An error occurred while adding the meal to Datastore");
                 }
                 
-            } else if(action.equals("read_meal_single")){
-//                System.out.println("3) ProjectService, read_meal_single");
-                
+            } else if(action.equals("read_meal_single")){                
                 meal.setId(input.getId());
                 
-//                System.out.println("4) ProjectService, read_meal_single, mealId for input: " + meal.getId());
-                
                 List<Meal> mealList = this.dao.readMeal(meal, "single");
-                
-//                System.out.println("7) ProjectService, read_meal_single, mealList size: " + mealList.size());
                 
                 if(mealList.isEmpty()){
                     input.setErrorList(new ArrayList<String>());
@@ -86,8 +80,6 @@ public class ProjectService {
                     input.setCalories(meal.getCalories());
                     input.setDescription(meal.getDescription());
                     input.setPicture(meal.getPicture());
-                    
-//                    System.out.println("8) " + input.getName());
                 }          
                 
             } else if(action.equals("update_meal")){

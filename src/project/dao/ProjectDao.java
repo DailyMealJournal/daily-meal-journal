@@ -11,7 +11,6 @@ import java.util.Map;
 
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.EntityQuery;
-import org.slim3.datastore.ModelQuery;
 import org.slim3.util.BeanUtil;
 
 import project.dto.UserDto;
@@ -23,7 +22,6 @@ import project.model.User;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.Transaction;
 
 public class ProjectDao {
@@ -57,51 +55,6 @@ public class ProjectDao {
         UserMeta m = new UserMeta();
         return Datastore.query(m).asList();
     }
-    
-    /*public boolean createFood(Food foodModel){
-        boolean result = true;
-        try{
-            Transaction tx = Datastore.beginTransaction();
-            Key foodKey = Datastore.allocateId(Food.KIND_NAME);
-            
-            foodModel.setKey(foodKey);
-            
-            Datastore.put(foodModel);
-            
-            tx.commit();
-            
-        } catch(Exception e){
-            result = false;
-        }
-        
-        return result;
-    }*/
-    
-    /*public boolean createFoodInfo(Food foodModel, FoodInfo foodInfoModel){
-        boolean result = true;
-        try{
-            Entity entity;
-            Transaction tx = Datastore.beginTransaction();
-            
-            EntityQuery query = Datastore.query(Food.KIND_NAME);
-            query.filter("name",FilterOperator.EQUAL, foodModel.getName());
-            entity = query.asSingleEntity();
-            
-            Key foodInfoKey = Datastore.allocateId(entity.getKey(), FoodInfo.KIND_NAME);
-            
-            foodInfoModel.setKey(foodInfoKey);
-            foodInfoModel.setFoodKey(entity.getKey());
-            
-            Datastore.put(foodInfoModel);
-            
-            tx.commit();
-        
-        } catch(Exception e){
-            result = false;
-        }
-        
-        return result;
-    }*/
     
     public boolean createMeal(Meal mealModel){
         boolean result = true;
@@ -150,14 +103,8 @@ public class ProjectDao {
                     
                     mealList.add(meal);
                 }                                
-            } else if(mealModel != null & selection.equals("single")){
-//                System.out.println("5) ProjectDao, single, mealModel ID: " + mealModel.getId());
-                
+            } else if(mealModel != null & selection.equals("single")){                
                 Entity e = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingleEntity();
-                
-//                System.out.println(e.getProperty("name"));
-                
-                
                 
                 if(e != null){
                     Map<String,Object> properties;
@@ -165,8 +112,6 @@ public class ProjectDao {
                     meal = new Meal();
                     BeanUtil.copy(properties, meal);
                 }
-                
-//                System.out.println("6) ProjectDao, single, Meal temp name : " + meal.getName());
                 
                 if(meal != null){
                     mealList.add(meal);
@@ -183,14 +128,9 @@ public class ProjectDao {
     
     public boolean updateMeal(Meal mealModel){
         boolean result = true;
-        MealMeta m = null;
-        Meal update = new Meal();
-        
-        System.out.println("ProjectDao, updateMeal() enter, " + mealModel.toString());
         
         try{
             Transaction tx = Datastore.beginTransaction();
-            m = new MealMeta();
             
             Entity e = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingleEntity();
 

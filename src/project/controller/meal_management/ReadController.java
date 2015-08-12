@@ -30,18 +30,12 @@ public class ReadController extends APIController {
                 json.put("mealList", mealList);
             }
             else if(json.getString("selection").equals("single")){
-//                System.out.println("1) ReadController, single");
-                
                 MealDto input = new MealDto();
                 input.setId(json.getLong("id"));
-                
-//                System.out.println("2) " + input.getId());
                 
                 input = service.meal(input, "read_meal_single"); 
                 
                 mealList = new ArrayList<Meal>();
-                
-//                System.out.println("9) MealDto input status: ");
                 
                 Meal set = new Meal();
 
@@ -54,14 +48,9 @@ public class ReadController extends APIController {
                 set.setDescription(input.getDescription());
                 set.setPicture(input.getPicture());
                 
-                mealList.add(set);
-                
-//                System.out.println("10) ReadController, Meal set values OK");
-                
+                mealList.add(set);                
                 
                 json.put("meal", mealList);
-                
-//                System.out.println("11) JSON object: " + json.toString(3));
             }
             
         } catch(Exception e){
