@@ -2,13 +2,17 @@ package api.controller;
 
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
+import org.slim3.repackaged.org.json.JSONException;
 import org.slim3.repackaged.org.json.JSONObject;
+
+import project.model.Session;
 
 public abstract class APIController extends Controller{
     
@@ -39,5 +43,22 @@ public abstract class APIController extends Controller{
 
     public void responseFail(HttpServletResponse response, JSONObject error) throws IOException {
         response.getWriter().print(error);
+    }
+    
+    public Map<String,String> setSession(JSONObject json) {
+        Session sess = new Session();
+        
+        try {
+            sess.setId(json.getJSONObject("key").get("id").toString());
+            sess.setUsername(json.getJSONObject("properties").get("username").toString());
+            sess.setFirstName(json.getJSONObject("properties").get("firstName").toString());
+            sess.setLastName(json.getJSONObject("properties").get("lastName").toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            sess = null;
+        }
+        System.out.print(sess.getMap());
+        return sess.getMap();
     }
 }

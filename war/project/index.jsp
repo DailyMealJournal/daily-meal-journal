@@ -38,6 +38,8 @@
 			<div class="col s12 white-text">
 				<p id="login_form_errors" class="register-error">
 				</p>
+				<p id="login_form_success" class="login-success">
+				</p>
 			</div>
 		</div>
 		<div class="row btn-login center-align">
@@ -49,10 +51,10 @@
 			</div>
 		</div>
 	</form>
-	<form id="register" class="hide" action="${base_url}user_management/register" method="POST">
+	<form id="register" class="hide" data-post-url="${base_url}user_management/register"  method="POST">
 		<div class="row">
 			<div class="input-field col s12 white-text">
-				<input id="register_username" type="text" class="validate" name="username" minlength="8" placeholder="Minimum 8 characters" required="required">
+				<input id="register_username" type="text" class="validate" name="username" minlength="6" placeholder="Minimum 6 characters" required="required">
 				<label for="register_username" class="white-text" >Username</label>
 			</div>
 		</div>
@@ -82,7 +84,7 @@
 		</div>
 		<div class="row center-align">
 			<div class="col s12 white-text">
-				<p id="register_form_errors" class="register-error">
+				<p id="register_form_errors" class="register-error hidden">
 					Passwords do not match.
 				</p>
 			</div>
@@ -92,7 +94,7 @@
 				<a href="#" class="waves-effect waves-light btn" id="btn_back">Back</a>
 			</div>
 			<div class="col s12 m4 l5">
-				<button class="btn waves-effect waves-light" type="submit" id="btn_register">Register</button>
+				<button class="btn waves-effect waves-light" id="btn_register">Register</button>
 			</div>
 		</div>
 	</form>

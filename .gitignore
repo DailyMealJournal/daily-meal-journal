@@ -7,17 +7,19 @@ appengine-java-sdk-1.8.1/*
 *.pydevproject
 .project
 .metadata
-bin/
-tmp/
+bin/*
+tmp/*
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
 .classpath
-.settings/
+.settings/*
 .loadpath
 
+war/WEB-INF/classes/
+src/project/meta/
 # External tool builders
 .externalToolBuilders/
 
