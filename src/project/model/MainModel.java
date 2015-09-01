@@ -11,10 +11,13 @@ import org.slim3.datastore.Model;
 public class MainModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    /*protected String KIND_NAME;
+    protected String[] KIND_ATTRIBUTES;*/
 
     @Attribute(primaryKey = true)
     private Key key;
-
+    
     @Attribute(version = true)
     private Long version;
 

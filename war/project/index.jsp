@@ -5,61 +5,164 @@
 
 <%--  Style URL ../css is not required --%>
 <styleurl url="calowrie/main.css"></styleurl>
-
-<div class="main-fold ">
-	<div class="centered row">
-		<div class="column height-top"></div>
+<styleurl url="calowrie/login_register/index.css"></styleurl>
+<div class="parallax-container">
+	<div class="parallax"><img src="${base_url}assets/img/backgrounds/main.jpg"></div>
+</div>
+<div class="login">
+	<div class="row logo">
+		<div class="col s6 right-align">
+			<img class="responsive-img" src="${base_url}assets/img/log.png"/>
+		</div>
+		<div class="col s6 left-align white-text">
+			<h4>Calowrie</h4>
+		</div>
+		<div class="col s12 center-align white-text">
+			<h6>It's not just a choice. It's a <i>lifestyle</i>.</h6>
+		</div>
 	</div>
-	<div class=" stackable ui grid">
-		<div class="two column row">
-			<div class="column">
-				<div class="introduction">
-					<h1 class="ui inverted header meal-title"> 
-						<img src="../assets/img/ico.png"/>
-						Calowrie
-					</h1>
-					<h2 class="sub-title">
-						Web's Most Advance Calorie Counter
-					</h2>
-						<p>
-							Started in 2015 by a group of students <br>
-						We now present to you one of the most advance<br>
-						calorie counter in the market<br>
-						Mobile coming soon!
-					</p>
-				</div>
-			 </div>
-			 <div class="column">
-				<div class="signup box">
-					<form class="ui form">
-						<h4 class="ui inverted header">Create an Account</h4>
-
-						<div class="field">
-							<input type="text" name="username" placeholder="Username">
-						</div>
-						<div class="field">
-							<input type="password" name="password" placeholder="Password">
-						</div>
-						<div class="field">
-							<input type="text" name="email_address" placeholder="Email">
-						</div>
-						<div class="field frm-btn">
-							 <div class="ui inverted button" id="signup-btn">Sign Up</div>
-		
-							 <div class="ui inverted green button" id="login-btn">Log In</div>
-						 </div>
-					</form>
-				</div>
+	<form id="login" data-post-url="${base_url}user_management/login" data-success-url="${base_url}meal_journal" method="POST">
+		<div class="row">
+			<div class="input-field col s12 white-text">
+				<input id="login_username" type="text" class="validate" name="username">
+				<label for="login_username" class="white-text">Username</label>
 			</div>
 		</div>
+		<div class="row">
+			<div class="input-field col s12 white-text">
+				<input id="login_password" type="password" class="validate" name="password">
+				<label for="login_password" class="white-text">Password</label>
+			</div>
+		</div>
+		<div class="row center-align">
+			<div class="col s12 white-text">
+				<p id="login_form_errors" class="register-error">
+				</p>
+				<p id="login_form_success" class="login-success">
+				</p>
+			</div>
+		</div>
+		<div class="row btn-login center-align">
+			<div class="col s12 m4 l5 offset-m2 offset-l1">
+				<a href="#" class="waves-effect waves-light btn" id="btn_signup">Sign up</a>
+			</div>
+			<div class="col s12 m4 l5">
+				<a class="waves-effect waves-light btn btn-submit" href="#" id="btn_submit">Login</a>
+			</div>
+		</div>
+	</form>
+	<form id="register" class="hide" data-post-url="${base_url}user_management/register"  method="POST">
+		<div class="row">
+			<div class="input-field col s12 white-text">
+				<input id="register_username" type="text" class="validate" name="username" minlength="6" placeholder="Minimum 6 characters" required="required">
+				<label for="register_username" class="white-text" >Username</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12 white-text">
+				<input id="register_password" type="password" class="" name="password" minlength="8" placeholder="Minimum 8 characters" required="required">
+				<label for="register_password" class="white-text">Password</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12 white-text">
+				<input id="conf_password" type="password" class="" name="conf_password" required="required">
+				<label for="conf_password" class="white-text">Confirm Password</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12 white-text">
+				<input id="firstname" type="text" class="validate" name="firstname" required="required">
+				<label for="firstname" class="white-text">First Name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12 white-text">
+				<input id="lastname" type="text" class="validate" name="lastname" required="required">
+				<label for="lastname" class="white-text">Last Name</label>
+			</div>
+		</div>
+		<div class="row center-align">
+			<div class="col s12 white-text">
+				<p id="register_form_errors" class="register-error hidden">
+					Passwords do not match.
+				</p>
+			</div>
+		</div>
+		<div class="row btn-login center-align">
+			<div class="col s12 m4 l5 offset-m2 offset-l1">
+				<a href="#" class="waves-effect waves-light btn" id="btn_back">Back</a>
+			</div>
+			<div class="col s12 m4 l5">
+				<button class="btn waves-effect waves-light" id="btn_register">Register</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="row left-align team-header">
+	<div class="col s12">
+		<h2>Meet The Team</h2>
 	</div>
-	<div class="three column stackable ui grid">
-		<div class="column"></div>
-		<div class="column">
+</div>
+<div class="row center-align team-members">
+	<div class="col s12 m4 l2 team-member">
+		<div class="center-align">
+			<h5>Rafael</h5>
 		</div>
-		<div class="column">
-				<img src="../assets/img/others/prototype_app.png" class="phone phone-app hidden"/>
+		<img src="${base_url}assets/img/team/rafael.jpg" alt="" class="circle responsive-img">
+	</div>
+	<div class="col s1 red-text loading-pin hide-on-med-and-down">
+		<i class="material-icons team-member">adjust</i>
+		<i class="material-icons team-member">adjust</i>
+		<i class="material-icons team-member">adjust</i>
+	</div>
+	<div class="col s12 m4 l2 team-member">
+		<div class="center-align">
+			<h5>Louiz</h5>
 		</div>
+		<img src="${base_url}assets/img/team/louiz.jpg" alt="" class="circle responsive-img">
+	</div>
+	<div class="col s1 red-text loading-pin hide-on-med-and-down">
+		<i class="material-icons team-member">adjust</i>
+		<i class="material-icons team-member">adjust</i>
+		<i class="material-icons team-member">adjust</i>
+	</div>
+	<div class="col s12 m4 l2 team-member">
+		<div class="center-align">
+			<h5>Sonia</h5>
+		</div>
+		<img src="${base_url}assets/img/team/sonia.jpg" alt="" class="circle responsive-img">
+	</div>
+	<div class="col s1 red-text loading-pin hide-on-med-and-down">
+		<i class="material-icons team-member">adjust</i>
+		<i class="material-icons team-member">adjust</i>
+		<i class="material-icons team-member">adjust</i>
+	</div>
+	<div class="col s12 m4 l2 team-member">
+		<div class="center-align">
+			<h5>Klifford</h5>
+		</div>
+		<img src="${base_url}assets/img/team/klifford.jpg" alt="" class="circle responsive-img">
+	</div>
+	<div class="col s1 red-text loading-pin hide-on-med-and-down offset-l2 empty-space">
+	  ..
+	</div>
+	<div class="col s12 m4 l2 second-row team-member">
+		<div class="center-align">
+			<h5>Pal</h5>
+		</div>
+		<img src="${base_url}assets/img/team/pal.jpg" alt="" class="circle responsive-img">
+	</div>
+	<div class="col s1 red-text loading-pin hide-on-med-and-down second-row">
+		<i class="material-icons team-member">adjust</i>
+		<i class="material-icons team-member">adjust</i>
+		<i class="material-icons team-member">adjust</i>
+	</div>
+	<div class="col s12 m4 l2 second-row team-member">
+		<div class="center-align">
+			<h5>Ralp</h5>
+		</div>
+		<img src="${base_url}assets/img/team/ralp.jpg" alt="" class="circle responsive-img">
 	</div>
 </div>
 	

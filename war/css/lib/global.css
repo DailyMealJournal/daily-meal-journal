@@ -1,82 +1,68 @@
 @CHARSET "utf-8";
-@font-face {
-    font-family: Bakersfield;
-    src: url('/assets/fonts/Bakersfield-Light.ttf');
-}
+@import url(http://fonts.googleapis.com/css?family=Lato:300);
 
 body, h1, h2, h3, h4, h5, h6 {
-	font-family: Bakersfield !important;
+	font-family: 'Lato', sans-serif !important;
 }
 
-
-.toggle.button {
-  position: fixed;
-  top: 63px;
-  left: -1px;
-  width: 55px;
-  height: auto;
-  white-space: nowrap;
-  overflow: hidden;
-  -webkit-transition: 0.3s width ease, 0.5s transform ease;
-  -moz-transition: 0.3s width ease, 0.5s transform ease;
-  -o-transition: 0.3s width ease, 0.5s transform ease;
-  -ms-transition: 0.3s width ease, 0.5s transform ease;
-  transition: 0.3s width ease, 0.5s transform ease;
+.main-content {
+	padding-left: 11%;
 }
 
-.toggle.button:hover {
-	width: 9% !important;
+.sidebar-profile > .card {
+  margin: 0;
 }
 
-.ui.button>.icon {
-  opacity: .8;
-  margin: 0 .4em 0 -.2em;
-  -webkit-transition: opacity .2s ease;
-  transition: opacity .2s ease;
-  vertical-align: baseline;
-  color: '';
+.side-nav > li > a > .material-icons {
+  margin-top: 18px;
 }
 
-
-.toggle.button .text {
-  position: absolute;
-  white-space: nowrap;
-  top: auto;
-  left: 54px;
-  opacity: 0;
-  -webkit-transition: 0.3s opacity 0.3s;
-  -moz-transition: 0.3s opacity 0.3s;
-  -o-transition: 0.3s opacity 0.3s;
-  -ms-transition: 0.3s opacity 0.3s;
-  transition: 0.3s opacity 0.3s;
+.side-nav .card-reveal > li {
+	padding: 0;
 }
 
-.toggle.button:hover .text {
-  position: absolute;
-  white-space: nowrap;
-  top: auto;
-  left:54px;
-  opacity: 1;
-  -webkit-transition: 0.3s opacity 0.3s;
-  -moz-transition: 0.3s opacity 0.3s;
-  -o-transition: 0.3s opacity 0.3s;
-  -ms-transition: 0.3s opacity 0.3s;
-  transition: 0.3s opacity 0.3s;
+.sidebar-btn {
+	font-size: 28px;
 }
-
-
-
-.ui.titles {
-	text-transform: uppercase;
-	text-align: center;
-}
-
 .hidden, .hide {
 	visibility: hidden;
 	display: none;
+}
+
+.side-nav a:hover {
+	color: #E57373 !important;
+}
+
+.empty-space {
+	width: 100%;
 }
 
 .hide {
 	visibility: hidden !important;
 }
 
+.fixed-pos {
+	position: fixed;
+}
+
+.view-type {
+	width: 0px;
+	padding: 10px;
+}
+
+.page-title {
+	font-size: 20px;
+
+}
+
+.reveal-row {
+	height: 80%;
+	max-height: 80%;
+}
+
+@media screen and (max-width: 992px) {
+	.main-content {
+		padding-left: 1%;
+		margin-left: -10%;
+	}
+}

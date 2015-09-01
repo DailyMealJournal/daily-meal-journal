@@ -1,4 +1,4 @@
-appengine-java-sdk-1.8.1/*
+
 
 #################
 ## Eclipse
@@ -7,17 +7,19 @@ appengine-java-sdk-1.8.1/*
 *.pydevproject
 .project
 .metadata
-bin/
-tmp/
+bin/*
+tmp/*
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
-.classpath
-.settings/
+
+.settings/*
 .loadpath
 
+
+src/project/meta/
 # External tool builders
 .externalToolBuilders/
 
@@ -216,3 +218,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/bin/
+/bin/

@@ -1,61 +1,87 @@
-.main-content {
-	background: rgba(36, 7, 7, 0.56);
+.accordion-list{
+    padding-top:1rem;
+    padding-left:1rem;
+    padding-bottom:1rem;
 }
 
-.ui.cards > .card > .content > .header, .ui.cards > .card > .content > .description, .ui.cards > .card > .content > .meta > p, .ui.cards > .card > .content > .description {
-	color: rgba(255,255,255, 0.85) !important;
+.accordion-header-img{
+    width:25px;
+    height:25px;
+    vertical-align:middle;
 }
 
-.ui.cards > .card > .content {
-	background: rgba(145, 52, 52, 0.72);
+.description {
+	height: 100%;
+  max-height: 170px;
 }
 
-.ui.cards > .card {
-	-webkit-transition: all .2s ease-in-out;
-	transition: all .2s ease-in-out;
+.desc-fold {
+  padding-bottom: 5px;
 }
 
-.ui.cards > .card:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
+.fixed-pos {
+  position: fixed !important;
+  width: 20%;
 }
 
-.narrow > img{
-	height: 100px !important;
-	-webkit-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	-moz-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-}
-.ui.segment, .ui.segment > a{
-	color: rgba(255,255,255, 0.85) !important;
-	background: rgba(36, 7, 7, 0.11);
+.list-meal {
+  margin: 10% 0 0 0;
 }
 
-
-a {
-	color: rgba(255,255,255, 0.85) !important;
+.section {
+  padding: 0px;
+}
+.divider {
+  overflow: visible;
 }
 
-.ui.segment > .title {
-	text-align: center;
+#loader {
+  margin: 15% 0 0 0;
+}
+.no-meals {
+  margin: 15% 0 0 0;
 }
 
-.item > .ui > .overlap {
-	text-align: center;
-	height: 100px !important;
-	-webkit-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	-moz-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
+.filters {
+  margin-top: -4.5% !important;
 }
 
-.item {
-  margin: 0 !important;
-  padding: 0;
-
+.search-field {
+  margin-bottom: -5px;
 }
 
+.add-meal {
+  padding-top: 3% !important;
+}
+.text-size-16 {
+  font-size: 16px !important;
+}
+
+.meal-management {
+	margin-right: 0;
+  margin-left: calc(15% + 10px);
+}
+
+.card .card-reveal {
+	overflow: hidden;
+}
 .category {
 	padding: 0px !important;
+}
+
+.category-sidebar .collection {
+  border: none;
+}
+
+.category-sidebar .collection {
+  background: transparent;
+
+}
+
+.category-sidebar .collapsible-header {
+    padding-left: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 div[back-img]{
     width: 100%;
@@ -93,6 +119,18 @@ div[back-img]:hover{
     position: absolute;
 }
 
+@media screen and (max-width: 1110px) {
+  .meal-management {
+    margin-left: calc(20% + 10px);
+  }
+}
+@media screen and (max-width: 992px) {
+  .meal-management {
+    margin-right: 0;
+    margin-left: calc(15% + 45px);
+    width: 100%;
+  }
+}
 /**************************************
        Animation CSS           
 ****************************************/
