@@ -20,6 +20,7 @@ public class LoginController extends APIController {
     
     @Override
     protected Navigation run() throws Exception {
+    	System.out.print("HEY");
         UserDto userDto = new UserDto();
         sessionScope("user", null);
         JSONObject json = null;
@@ -32,12 +33,12 @@ public class LoginController extends APIController {
                 if(user == null) {
                     error = new JSONObject();
                     error.put("message","Invalid Username and/or Password");
-                    error.put("code", "1001");
+                    error.put("code", "1002");
                 }
         } catch (Exception e) {
             error = new JSONObject();
             error.put("message","Invalid Username and/or Password");
-            error.put("code", "1001");
+            error.put("code", "1003");
             if(json == null) {
                 json = new JSONObject();
             }
