@@ -1,9 +1,6 @@
 package api.controller;
 
 
-import javax.servlet.http.HttpServletResponse;
-
-
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
