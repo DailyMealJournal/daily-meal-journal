@@ -93,6 +93,7 @@
         <jsp:include page="/meal_management/category.jsp"/>
   </div>
 
+	
     <div class="container">
         <div class="row">
             <table>

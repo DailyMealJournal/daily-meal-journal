@@ -49,16 +49,8 @@ public class LoginController extends APIController {
             response.getWriter().print(error);
         } else {
             response.getWriter().print(json);
-<<<<<<< HEAD
-<<<<<<< HEAD
-            sessionScope("user", "duh");
-            System.out.println("LoginController");
-=======
+
             sessionScope("user", setSession(json));
->>>>>>> 4aab2f354e80f792f32ac5dfeef6b18a7db51131
-=======
-            sessionScope("user", setSession(json));
->>>>>>> 4aab2f354e80f792f32ac5dfeef6b18a7db51131
         }
         
         return null;

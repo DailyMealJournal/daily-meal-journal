@@ -1,9 +1,7 @@
 package project.model;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Session implements Serializable{
