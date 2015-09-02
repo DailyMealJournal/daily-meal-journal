@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.dao.ProjectDao;
+import project.dto.JournalDto;
 import project.dto.MealDto;
 import project.dto.UserDto;
+import project.model.Journal;
 import project.model.Meal;
 import project.model.User;
 
@@ -29,7 +31,7 @@ public class ProjectService {
             
             if(!this.dao.createUser(user)){
                 input.setErrorList(new ArrayList<String>());
-                input.getErrorList().add("error!");
+                input.getErrorList().add("Username has already been taken.");
             }
         } 
         
@@ -116,5 +118,18 @@ public class ProjectService {
                 
         return mealList;   
     }
+
+	public void journal(JournalDto input, String action) {
+        Journal journal = new Journal();
+        
+        if(action.equals("create_meal")) {
+        	journal.setJournal_date(input.getJournal_date());
+            if(!this.dao.createJournal(journal)){
+                input.setErrorList(new ArrayList<String>());
+                input.getErrorList().add("An error occurred while creating a new Journal Entry.");
+            }
+        }
+		
+	}
     
 }

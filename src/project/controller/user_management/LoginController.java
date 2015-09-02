@@ -3,6 +3,8 @@ package project.controller.user_management;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.BeanUtil;
@@ -20,7 +22,6 @@ public class LoginController extends APIController {
     
     @Override
     protected Navigation run() throws Exception {
-    	System.out.print("HEY");
         UserDto userDto = new UserDto();
         sessionScope("user", null);
         JSONObject json = null;
@@ -33,12 +34,13 @@ public class LoginController extends APIController {
                 if(user == null) {
                     error = new JSONObject();
                     error.put("message","Invalid Username and/or Password");
-                    error.put("code", "1002");
+                    error.put("code", "1004");
                 }
         } catch (Exception e) {
+        	System.out.print(e);
             error = new JSONObject();
             error.put("message","Invalid Username and/or Password");
-            error.put("code", "1003");
+            error.put("code", "1002");
             if(json == null) {
                 json = new JSONObject();
             }
@@ -46,7 +48,7 @@ public class LoginController extends APIController {
         
         response.setContentType("application/json");
         if(error != null) {
-            response.setStatus(response.SC_NOT_ACCEPTABLE);
+            response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
             response.getWriter().print(error);
         } else {
             response.getWriter().print(json);

@@ -17,7 +17,7 @@
 			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1"><i class="material-icons">arrow_forward</i></a>
 		</div>
 	</div>
-	<div class = "row">
+	<div class="row">
 		<div class="col s7 offset-s2"  id="list_meals">
 	      <div class="section" ng-repeat="meal in journal.meals | filter: global.search">
 	        <div class="row">
@@ -37,6 +37,26 @@
 	      </div>
 	      <div class="center-align no-meals" ng-hide="(journal.meals | filter: global.search).length">No Meals Found</div>
 	    </div>
+
+		<div class="col s7 offset-s2 hidden" id="meal_option"> 
+	      <div class="section" ng-repeat="meal in meals | filter: global.search">
+	        <div class="row">
+	          <h3 class="title">{{ meal.MealName }}</h3>
+	          <a class="waves-effect waves-light btn btn-floating red right"><i class="material-icons left">add</i></a>
+	          <div class="col s12 m6 l4">   
+	            <img class="responsive-img materialboxed z-depth-2 list-meal" ng-src="{{ meal.Picture }}">
+	          </div>
+	          <div class="col s8">
+	            <p>Calorie Power: <br> {{ meal.CalorieCount }} <span class="unit">{{ meal.Unit }}</span></p>
+	            <div class="description">
+	              <p>{{ meal.Description }}</p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="divider"></div>
+	      </div>
+		</div>
+
 		<div class="fixed col s3">
 			<div class="input-field fixed-pos search-side">
 				<i class="material-icons prefix">search</i>
@@ -55,8 +75,15 @@
 		     		<h7>Out of {{ journal.calorie_limit }} </h7>
 		     	</p>
 		     	<div class="divider"></div>
-		     	<center><a class="waves-effect waves-teal btn-flat red-text text-accent-1">Daily View</a>
-		     	<a class="waves-effect waves-light btn">Add a Meal</a></center>
+		     	<div class="row">
+		     		<div class="col s12">
+		     			<center><a class="waves-effect waves-teal btn-flat red-text text-accent-1">Daily View</a></center>
+		     		</div>
+		     		<div class="col s12">
+		     			<div></div><center><a class="waves-effect waves-light btn" id="add_meal">Add a Meal</a></center>
+		     			<div></div><center><a class="waves-effect waves-light btn hidden" id="show_journals">Back to Journals</a></center>
+		     		</div>
+		     	</div>
 		     </div>
 		</div>
 	</div>

@@ -11,44 +11,65 @@ import java.util.Map;
 
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.EntityQuery;
+import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.BeanUtil;
 
 import project.dto.UserDto;
+import project.meta.JournalMeta;
 import project.meta.MealMeta;
 import project.meta.UserMeta;
+import project.model.Journal;
 import project.model.Meal;
 import project.model.User;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
+import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Transaction;
 
 public class ProjectDao {
-
+	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     public boolean createUser(User userModel){
         boolean result = true;
         try{
-            Transaction tx = Datastore.beginTransaction();
-            Key key = Datastore.allocateId(User.KIND_NAME);
-            userModel.setKey(key);
-            
-            Datastore.put(userModel);
-            tx.commit();
-            
+        	Query query = new Query(User.KIND_NAME);
+            Filter username =  new FilterPredicate("username", FilterOperator.EQUAL, userModel.getUsername());
+            query.setFilter(username);
+            if(datastore.prepare(query).asSingleEntity() == null)
+            {
+	            Transaction tx = Datastore.beginTransaction();
+	            Key key = Datastore.allocateId(User.KIND_NAME);
+	            userModel.setKey(key);
+	            
+	            Datastore.put(userModel);
+	            tx.commit();
+            }
+            else
+            {
+            	result = false;
+            }
         } catch(Exception e){
             result = false;
         }
+
         
         return result;
     }
 
     public Entity getUser(UserDto user){
-        EntityQuery query = Datastore.query(User.KIND_NAME);
-        query.filter("username",FilterOperator.EQUAL, user.getUsername());
-        query.filter("password",FilterOperator.EQUAL, user.getPassword());
-        System.out.print(user.getPassword());
-        return query.asSingleEntity();
+        Query query = new Query(User.KIND_NAME);
+        Filter username =  new FilterPredicate("username", FilterOperator.EQUAL, user.getUsername());
+        Filter password =  new FilterPredicate("password",FilterOperator.EQUAL, user.getPassword());
+        query.setFilter(CompositeFilterOperator.and(username, password));
+
+        return datastore.prepare(query).asSingleEntity();
     }
     
     public List<User> getAllUsers() {
@@ -169,5 +190,33 @@ public class ProjectDao {
         
         return result;
     }
+
+	public boolean createJournal(Journal journalModel) {
+        boolean result = true;
+        Journal temp = null;
+        JournalMeta m = new JournalMeta();
+        
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            temp = Datastore.query(m).filter(m.journal_date.equal(journalModel.getJournal_date())).asSingle();
+            
+            if(temp == null){
+                Key journalKey = Datastore.allocateId(Journal.KIND_NAME);
+                
+                journalModel.setKey(journalKey);
+                journalModel.setId(journalKey.getId());
+                
+                Datastore.put(journalModel);
+                
+                tx.commit();
+            } else{
+                result = false;
+            }
+        } catch(Exception e){
+            result = false;
+        }
+        
+        return result;
+	}
    
 }

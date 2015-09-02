@@ -36,17 +36,20 @@ public class RegisterController extends APIController {
             Map<String,Object> input = new RequestMap(this.request);
             UserDto userDto = new UserDto();
             BeanUtil.copy(input, userDto);
-            String firstName = service.user(userDto, "create").getFirstname();
-            json.put("name", firstName  );
-            response.getWriter().print(json);
+            UserDto userResult = service.user(userDto, "create");
+            if(userResult.getErrorList() != null)
+            {
+            	json.put("errors", userResult.getErrorList());
+            }
         } else {
             JSONObject errors = new JSONObject();
             for (int i = 0; i < v.getErrors().size(); i++) {
                 errors.put(v.getErrors().getKey(i), v.getErrors().get(i));
             }
             json.put("errors", errors);
-            response.getWriter().print(json);
         }
+        
+        response.getWriter().print(json);
         return null;
 
     }
