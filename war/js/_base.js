@@ -82,6 +82,7 @@ sidebar.controller('SidebarController', ['$scope', function($scope) {
         session_data['image_url'] = (typeof session_data['image_url'] != 'undefined') ? session_data['image_url']: 'img/team-1.jpg';
 
         $scope.sidebarProfile = {
+                                    id: session_data['id'],
                                     image: base_url + 'assets/' + session_data['image_url'],
                                     firstName: session_data['first_name'],
                                     lastName: session_data['last_name']

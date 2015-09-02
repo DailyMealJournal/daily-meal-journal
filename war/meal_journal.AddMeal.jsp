@@ -9,6 +9,6 @@
 <title>Meal_journal.AddMeal</title>
 </head>
 <body>
-<p>Hello Meal_journal.AddMeal !!!</p>
+	<p>Hello Meal_journal.AddMeal !!!</p>
 </body>
 </html>

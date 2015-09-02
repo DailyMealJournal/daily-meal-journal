@@ -9,6 +9,6 @@
 <title>Meal_journal.create</title>
 </head>
 <body>
-<p>Hello Meal_journal.create !!!</p>
+	<p>Hello Meal_journal.create !!!</p>
 </body>
 </html>

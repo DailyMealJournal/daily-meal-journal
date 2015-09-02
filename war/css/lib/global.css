@@ -1,4 +1,5 @@
 @CHARSET "utf-8";
+
 @import url(http://fonts.googleapis.com/css?family=Lato:300);
 
 body, h1, h2, h3, h4, h5, h6 {
@@ -9,21 +10,22 @@ body, h1, h2, h3, h4, h5, h6 {
 	padding-left: 11%;
 }
 
-.sidebar-profile > .card {
-  margin: 0;
+.sidebar-profile>.card {
+	margin: 0;
 }
 
-.side-nav > li > a > .material-icons {
-  margin-top: 18px;
+.side-nav>li>a>.material-icons {
+	margin-top: 18px;
 }
 
-.side-nav .card-reveal > li {
+.side-nav .card-reveal>li {
 	padding: 0;
 }
 
 .sidebar-btn {
 	font-size: 28px;
 }
+
 .hidden, .hide {
 	visibility: hidden;
 	display: none;
@@ -52,7 +54,6 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .page-title {
 	font-size: 20px;
-
 }
 
 .reveal-row {

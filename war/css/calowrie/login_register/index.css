@@ -1,4 +1,4 @@
-.register-error{
+.register-error {
 	display: block;
 	text-align: center;
 	color: white;
@@ -7,7 +7,7 @@
 	vertical-align: middle;
 }
 
-.login-success{
+.login-success {
 	display: block;
 	text-align: center;
 	color: white;

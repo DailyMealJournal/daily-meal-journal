@@ -119,16 +119,25 @@ public class ProjectService {
         return mealList;   
     }
 
-	public void journal(JournalDto input, String action) {
+	public JournalDto journal(JournalDto input, String action) {
         Journal journal = new Journal();
         
-        if(action.equals("create_meal")) {
+        if(action.equals("create_journal")) {
         	journal.setJournal_date(input.getJournal_date());
+        	journal.setUserKey(input.getUserKey());
             if(!this.dao.createJournal(journal)){
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("An error occurred while creating a new Journal Entry.");
             }
-        }
+        }else if(action.equals("delete_meal")){
+            journal.setId(input.getId());
+            
+            if(!this.dao.deleteJournal(journal)){
+                input.setErrorList(new ArrayList<String>());
+                input.getErrorList().add("Journal");
+            }
+        } 
+		return input;
 		
 	}
     

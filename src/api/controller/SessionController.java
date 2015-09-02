@@ -9,8 +9,8 @@ public abstract class SessionController extends Controller{
     
     @Override
     protected Navigation run() throws Exception {
-        if(sessionScope("user")) {  
-           response.getWriter().print(sessionScope("user"));
+        if(sessionScope("user") != null) {  
+           response.getWriter().print("ss");
         } else {
             JSONObject noSession = new JSONObject();
             noSession.put("2001", "Session Does Not Exist");

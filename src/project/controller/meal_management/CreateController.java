@@ -34,7 +34,7 @@ public class CreateController extends APIController {
         if (v.validate()) {
             this.requestScope("errors", "");
             Map<String,Object> input = new RequestMap(this.request);
-            System.out.println(input.keySet());
+
             MealDto mealDto = new MealDto();
             
             mealDto.setName(input.get("meal_name").toString());

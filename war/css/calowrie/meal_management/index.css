@@ -1,157 +1,182 @@
-.accordion-list{
-    padding-top:1rem;
-    padding-left:1rem;
-    padding-bottom:1rem;
+.accordion-list {
+	padding-top: 1rem;
+	padding-left: 1rem;
+	padding-bottom: 1rem;
 }
 
-.accordion-header-img{
-    width:25px;
-    height:25px;
-    vertical-align:middle;
+.accordion-header-img {
+	width: 25px;
+	height: 25px;
+	vertical-align: middle;
 }
 
 .description {
 	height: 100%;
-  max-height: 170px;
+	max-height: 170px;
 }
 
 .desc-fold {
-  padding-bottom: 5px;
+	padding-bottom: 5px;
 }
 
 .fixed-pos {
-  position: fixed !important;
-  width: 20%;
+	position: fixed !important;
+	width: 20%;
 }
 
 .list-meal {
-  margin: 10% 0 0 0;
+	margin: 10% 0 0 0;
 }
 
 .section {
-  padding: 0px;
+	padding: 0px;
 }
+
 .divider {
-  overflow: visible;
+	overflow: visible;
 }
 
 #loader {
-  margin: 15% 0 0 0;
+	margin: 15% 0 0 0;
 }
+
 .no-meals {
-  margin: 15% 0 0 0;
+	margin: 15% 0 0 0;
 }
 
 .filters {
-  margin-top: -4.5% !important;
+	margin-top: -4.5% !important;
 }
 
 .search-field {
-  margin-bottom: -5px;
+	margin-bottom: -5px;
 }
 
 .add-meal {
-  padding-top: 3% !important;
+	padding-top: 3% !important;
 }
+
 .text-size-16 {
-  font-size: 16px !important;
+	font-size: 16px !important;
 }
 
 .meal-management {
 	margin-right: 0;
-  margin-left: calc(15% + 10px);
+	margin-left: calc(15% + 10px);
 }
 
 .card .card-reveal {
 	overflow: hidden;
 }
+
 .category {
 	padding: 0px !important;
 }
 
 .category-sidebar .collection {
-  border: none;
+	border: none;
 }
 
 .category-sidebar .collection {
-  background: transparent;
-
+	background: transparent;
 }
 
 .category-sidebar .collapsible-header {
-    padding-left: 0px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-div[back-img]{
-    width: 100%;
-    height: 100px;
-    margin: 0 auto;
-    padding: 0;
-    color: #fff;
-	text-align: center;
-	height: 100px !important;
-	position: relative;
-	-webkit-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	-moz-filter:  blur(1px)  contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	filter: blur(1px)  contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
+	padding-left: 0px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
-div[back-img]:hover{
-    width: 100%;
-    height: 100px;
-    margin: 0 auto;
-    padding: 0;
-    color: #fff;
+div[back-img] {
+	width: 100%;
+	height: 100px;
+	margin: 0 auto;
+	padding: 0;
+	color: #fff;
 	text-align: center;
 	height: 100px !important;
 	position: relative;
-	-webkit-filter: blur(0px) contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	-moz-filter:  blur(0px)  contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
-	filter: blur(0px)  contrast(0.8) hue-rotate(120deg) saturate(1.5) sepia(0.4);
+	-webkit-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5)
+		sepia(0.4);
+	-moz-filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5)
+		sepia(0.4);
+	filter: blur(1px) contrast(0.8) hue-rotate(120deg) saturate(1.5)
+		sepia(0.4);
+}
+
+div[back-img]:hover {
+	width: 100%;
+	height: 100px;
+	margin: 0 auto;
+	padding: 0;
+	color: #fff;
+	text-align: center;
+	height: 100px !important;
+	position: relative;
+	-webkit-filter: blur(0px) contrast(0.8) hue-rotate(120deg) saturate(1.5)
+		sepia(0.4);
+	-moz-filter: blur(0px) contrast(0.8) hue-rotate(120deg) saturate(1.5)
+		sepia(0.4);
+	filter: blur(0px) contrast(0.8) hue-rotate(120deg) saturate(1.5)
+		sepia(0.4);
 }
 
 .item-text {
 	z-index: 2;
 	text-shadow: 2px 2px #000000;
 	font-size: 24px;
-    top: -10;
-    position: absolute;
+	top: -10;
+	position: absolute;
 }
 
 @media screen and (max-width: 1110px) {
-  .meal-management {
-    margin-left: calc(20% + 10px);
-  }
+	.meal-management {
+		margin-left: calc(20% + 10px);
+	}
 }
+
 @media screen and (max-width: 992px) {
-  .meal-management {
-    margin-right: 0;
-    margin-left: calc(15% + 45px);
-    width: 100%;
-  }
+	.meal-management {
+		margin-right: 0;
+		margin-left: calc(15% + 45px);
+		width: 100%;
+	}
 }
 /**************************************
        Animation CSS           
 ****************************************/
-
-@-webkit-keyframes floatRotate {
-    0% {
-      z-index: 2;
-     /* for firefox 31 */
-      transform: rotateY(0deg);
-    }
-    100% {
-      transform: rotateY(90deg);
-    }
+@
+-webkit-keyframes floatRotate { 0% {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
 }
-@keyframes floatRotate {
-    0% {
-      z-index: 2;
-     /* for firefox 31 */
-      transform: rotateY(0deg);
-    }
-    100% {
-     transform: rotateY(90deg);
-    }
+
+100%
+{
+transform
+:
+ 
+rotateY
+(90deg);
+
+    
+}
+}
+@
+keyframes floatRotate { 0% {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+100%
+{
+transform
+:
+ 
+rotateY
+(90deg);
+
+    
+}
 }

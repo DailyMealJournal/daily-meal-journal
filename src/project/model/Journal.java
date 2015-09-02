@@ -17,8 +17,7 @@ public class Journal implements Serializable {
     
     private long id;
     private String journal_date;
-    private long journal_meal_id;
-    private Key UserKey;
+    private String UserKey;
     
     @Attribute(primaryKey = true)
     private Key key;
@@ -110,19 +109,11 @@ public class Journal implements Serializable {
 		this.journal_date = journal_date;
 	}
 
-	public long getJournal_meal_id() {
-		return journal_meal_id;
-	}
-
-	public void setJournal_meal_id(long journal_meal_id) {
-		this.journal_meal_id = journal_meal_id;
-	}
-
-	public Key getUserKey() {
+	public String getUserKey() {
 		return UserKey;
 	}
 
-	public void setUserKey(Key userKey) {
+	public void setUserKey(String userKey) {
 		UserKey = userKey;
 	}
 }

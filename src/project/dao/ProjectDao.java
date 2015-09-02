@@ -191,15 +191,19 @@ public class ProjectDao {
         return result;
     }
 
+
 	public boolean createJournal(Journal journalModel) {
         boolean result = true;
-        Journal temp = null;
+        Entity temp = null;
         JournalMeta m = new JournalMeta();
         
         try{
             Transaction tx = Datastore.beginTransaction();
-            temp = Datastore.query(m).filter(m.journal_date.equal(journalModel.getJournal_date())).asSingle();
             
+            Filter journal_date =  new FilterPredicate(m.journal_date.toString(), FilterOperator.EQUAL, journalModel.getJournal_date());
+            Filter user_id =  new FilterPredicate(m.UserKey.toString() ,FilterOperator.EQUAL, journalModel.getUserKey());
+            temp = Datastore.query(Journal.KIND_NAME).filter(CompositeFilterOperator.and(journal_date, user_id)).asSingleEntity();
+
             if(temp == null){
                 Key journalKey = Datastore.allocateId(Journal.KIND_NAME);
                 
@@ -207,14 +211,30 @@ public class ProjectDao {
                 journalModel.setId(journalKey.getId());
                 
                 Datastore.put(journalModel);
-                
-                tx.commit();
-            } else{
-                result = false;
+               
             }
+            tx.commit();
         } catch(Exception e){
             result = false;
         }
+        
+        return result;
+	}
+	
+	public boolean deleteJournal(Journal journalModel) {
+        boolean result = true;
+
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            
+            Datastore.delete(Datastore.query(Journal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalModel.getId()).asSingleEntity().getKey());
+                        
+            tx.commit();
+            
+        } catch(Exception e){
+            result = false;
+        }
+        
         
         return result;
 	}
