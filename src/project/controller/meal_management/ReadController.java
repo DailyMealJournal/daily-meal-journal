@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
+import org.slim3.util.RequestMap;
 
 import project.dto.MealDto;
 import project.model.Meal;
@@ -17,16 +18,18 @@ public class ReadController extends APIController {
     private List<Meal> mealList = null;
     
     protected Navigation run() throws Exception {
-        JSONObject json = null;
+        JSONObject json = new JSONObject();
 
         try{
-            json = new JSONObject((String)this.requestScope("data"));
+            json = new JSONObject(new RequestMap(this.request));
+            System.out.println(json.toString());
             
             if(json.getString("selection").equals("all")){
                 mealList = service.readAllMeals();
+                System.out.println("mealList size: " + mealList.size());
+                
                 json.put("mealList", mealList);
-            }
-            else if(json.getString("selection").equals("single")){
+            } else if(json.getString("selection").equals("single")){
                 MealDto input = new MealDto();
                 input.setId(json.getLong("id"));
                 
@@ -51,7 +54,7 @@ public class ReadController extends APIController {
             }
             
         } catch(Exception e){
-            
+            e.printStackTrace();
         }
         
         response.setContentType("application/json");

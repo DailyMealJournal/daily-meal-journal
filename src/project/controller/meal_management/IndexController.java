@@ -23,6 +23,7 @@ public class IndexController extends APIController {
     	requestScope("base_url", getBaseUrl());
         
     	
+    	
         return proceedTo("index.jsp");
     }
 }

@@ -33,7 +33,6 @@ public class DeleteController extends APIController {
         
         this.requestScope("","");
         
-        return proceedTo("index.jsp");
+        return null;
     }
-
 }
