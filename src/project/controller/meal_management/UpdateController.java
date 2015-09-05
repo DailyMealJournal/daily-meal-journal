@@ -56,7 +56,7 @@ public class UpdateController extends APIController {
             this.requestScope("errors", errors.toString());
             
         }
-        return proceedTo("index.jsp");
+        return null;
     }
 
 }

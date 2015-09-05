@@ -1,4 +1,4 @@
-meal_management.controller('MealsController', ['$scope', function($scope) {
+meal_management.controller('MealsController', ['$scope', '$http', function($scope, $http) {
 	
 	$scope.addMeal = function(e) {
 		console.log(e)
@@ -9,9 +9,37 @@ meal_management.controller('MealsController', ['$scope', function($scope) {
 		    data: $('#add_meal').serialize()
 		});
 	}
+	
+	$scope.init = function(){
+		this.getAllMeals();
+	}
+	
+	$scope.getAllMeals = function(){
+		var jsonData = {
+                data: JSON.stringify({ selection: "all" })
+        };
+		
+		var mealsRequest = $http.get("read", jsonData);
+	    
+		mealsRequest.success(function(data, status, headers, config) {
+			$scope.meals = data.mealList;
+			/*if(data.errorList.length == 0) {
+				$scope.meals = data.mealList;
+			} else {
+				var msg = "";
+				for (var i = 0; i < data.errorList.length; i++)
+					msg += data.errorList[i] + "\n";
+				$scope.errorDisplay = msg;
+			}*/
+		});
+		mealsRequest.error(function(data, status, headers, config) {
 
-	$scope.meals = [
-					{
+		});
+		
+	}
+
+	$scope.meals = [];
+					/*{
 						Picture: base_url + 'assets/img/food/k8.jpg',
 						MealName: 'Sushi',
 						CalorieCount: 40,
@@ -43,8 +71,8 @@ meal_management.controller('MealsController', ['$scope', function($scope) {
 						Description: 'Cleanse your body with fruit diet. Perfectly sustainable nutrients for short term diet cleansing.'
 					},
 
-
-				  ];
+*/
+				  
 
 }]);
 

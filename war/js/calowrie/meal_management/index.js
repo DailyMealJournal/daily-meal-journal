@@ -1,5 +1,5 @@
 $(function() {
-    retrieveMealList();
+//    retrieveMealList();
     
 	$('select').material_select();
 	

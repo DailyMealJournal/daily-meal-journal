@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-        <div class="col s9"  id="grid_meals" ng-controller="MealsController">
+        <div class="col s9"  id="grid_meals" ng-controller="MealsController" ng-init="init()">
           <div class="row">
             <div class="col s12  l6" ng-repeat="meal in meals | filter: global.search">   
               <div class="card small hoverable">
