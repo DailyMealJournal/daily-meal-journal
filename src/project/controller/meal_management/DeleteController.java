@@ -5,9 +5,8 @@
  * --------------------------------------------------------------------------- */
 package project.controller.meal_management;
 
-import java.util.Map;
-
 import org.slim3.controller.Navigation;
+import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.RequestMap;
 
 import project.dto.MealDto;
@@ -23,15 +22,22 @@ public class DeleteController extends APIController {
 
     private ProjectService service = new ProjectService();
     
-    
     @Override
-    protected Navigation run() throws Exception {
-        Map<String,Object> input = new RequestMap(this.request);
-        MealDto mealDto = new MealDto();
-        mealDto.setId(Long.valueOf(input.get("meal_id").toString()));
-        service.meal(mealDto, "delete_meal");
+    protected Navigation run() throws Exception {                
+        JSONObject json = null;
         
-        this.requestScope("","");
+        try{
+            json = new JSONObject(new RequestMap(this.request));
+            
+            if(json.has("id")){
+                MealDto mealDto = new MealDto();
+                mealDto.setId(json.getLong("id"));
+                service.meal(mealDto, "delete_meal");
+            }               
+            
+        } catch(Exception e){
+            e.printStackTrace();
+        }
         
         return null;
     }
