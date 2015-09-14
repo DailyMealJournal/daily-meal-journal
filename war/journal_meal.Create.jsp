@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Meal_journal.AddMeal</title>
+<title>Journal_meal.Create</title>
 </head>
 <body>
-	<p>Hello Meal_journal.AddMeal !!!</p>
+<p>Hello Journal_meal.Create !!!</p>
 </body>
 </html>

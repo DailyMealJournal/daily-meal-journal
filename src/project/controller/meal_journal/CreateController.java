@@ -23,10 +23,12 @@ public class CreateController extends Controller {
         v.add("user_id", v.required("User Id required"));
         if (v.validate()) {
         	try {
-	            json = new JSONObject(new RequestMap(this.request));
-	            journalDto.setJournal_date(json.getString("journal_date"));
-	            journalDto.setUserKey(json.getString("user_id"));
+        		JSONObject jsonMap = new JSONObject(new RequestMap(this.request));
+	            journalDto.setJournal_date(jsonMap.getString("journal_date"));
+	            journalDto.setUserKey(jsonMap.getString("user_id"));
 	            journalDto = this.service.journal(journalDto, "create_journal");
+	            
+	            json.put("success", journalDto.getErrorList());
         	} catch(Exception e) {
         		System.out.print(e);
         	}

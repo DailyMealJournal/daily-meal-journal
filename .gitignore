@@ -220,3 +220,4 @@ pip-log.txt
 .mr.developer.cfg
 /bin/
 /bin/
+/.apt_generated/

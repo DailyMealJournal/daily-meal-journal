@@ -1,12 +1,14 @@
 package project.controller.journal_meal;
 
-import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 
-public class ScopeJournalControllerController extends Controller {
+import api.controller.APIController;
 
-    @Override
+public class ScopeJournalControllerController extends APIController {
+
     public Navigation run() throws Exception {
+    	
+    	
         return null;
     }
 }
