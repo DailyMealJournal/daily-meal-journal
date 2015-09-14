@@ -1,5 +1,6 @@
 meal_management.controller('MealsController', ['$scope', '$http', function($scope, $http) {
-	
+	$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
+    
 	$scope.addMeal = function(e) {
 		console.log(e)
 		var request = $http({
@@ -8,21 +9,46 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		    transformRequest: transformRequestAsFormPost,
 		    data: $('#add_meal').serialize()
 		});
+		
+		//this.getAllMeals();
 	}
 	
 	$scope.init = function(){
 		this.getAllMeals();
 	}
+    
+    $scope.delete = function(id){    	
+    	var jsonData = {
+    		id:id
+    	};
+    	
+    	var mealDelete = $http.post("delete", $.param(jsonData));
+        
+        mealDelete.success(function(data, status, headers, config) {
+        	$scope.getAllMeals();
+		});
+        
+        mealDelete.error(function(data, status, headers, config) {
+
+		});	
+    }
 	
 	$scope.getAllMeals = function(){
 		var jsonData = {
-                data: JSON.stringify({ selection: "all" })
+				selection: "all"
         };
 		
-		var mealsRequest = $http.get("read", jsonData);
+		var mealsRequest = $http.get("read", {params: {selection: "all"}});
 	    
 		mealsRequest.success(function(data, status, headers, config) {
-			$scope.meals = data.mealList;
+            var meal_list = data.mealList;
+            for(var i in meal_list){
+                if(meal_list[i].picture == ''){
+                    meal_list[i].picture = "/assets/img/food/pic10.jpg";
+                }
+            }
+            
+			$scope.meals = meal_list;
 			/*if(data.errorList.length == 0) {
 				$scope.meals = data.mealList;
 			} else {
@@ -34,8 +60,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		});
 		mealsRequest.error(function(data, status, headers, config) {
 
-		});
-		
+		});	
 	}
 
 	$scope.meals = [];

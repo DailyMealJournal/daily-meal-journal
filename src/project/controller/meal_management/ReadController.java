@@ -22,7 +22,7 @@ public class ReadController extends APIController {
 
         try{
             json = new JSONObject(new RequestMap(this.request));
-            System.out.println(json.toString());
+            System.out.println("json: " + json);
             
             if(json.getString("selection").equals("all")){
                 mealList = service.readAllMeals();
