@@ -16,15 +16,24 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 	$scope.init = function(){
 		this.getAllMeals();
 	}
+	
+	
+	$scope.id = null;
+	
+	$scope.preDelete = function(id){
+		$("#btn_delete_meal").attr("ng-click", "deleteMeal(" + id + ")");
+	}
     
-    $scope.delete = function(id){    	
+    $scope.deleteMeal = function(id){
+    	
     	var jsonData = {
-    		id:id
+    		id: $scope.deleteId
     	};
     	
     	var mealDelete = $http.post("delete", $.param(jsonData));
         
         mealDelete.success(function(data, status, headers, config) {
+        	$("#modal_delete_meal").closeModal();
         	$scope.getAllMeals();
 		});
         
@@ -104,6 +113,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 meal_management.controller('AllController', ['$scope', function($scope) {
 
 }]);
+
 meal_management.controller('MealCategoryController', ['$scope', function($scope) {
 	$scope.categories = [
 							{
