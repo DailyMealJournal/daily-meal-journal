@@ -19,7 +19,7 @@ local.properties
 .loadpath
 
 
-src/project/meta/
+
 # External tool builders
 .externalToolBuilders/
 
