@@ -80,18 +80,18 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 					journal_date: $filter('date')(this.date ,'yyyy-MM-dd'),
 					user_id: session_data['id']
 		};
-
-		journalMealEntry = $http.get(base_url + 'meal_journal/read', { params: jsonData });
-
-		journalMealEntry.success(function(data,status, headers, config) {
-			if(typeof data.success != 'undefined') {
-				$scope.hasEntry = 'hidden';
-			} else {
-				alert(data.errors);
-			}
-		});
+		getJournal(jsonData); 
 	}
 
+	$scope.scopeDay = function(value)
+	{
+		$scope.date.setDate($scope.date.getDate() + value);
+		var jsonData = {
+					journal_date: $filter('date')($scope.date ,'yyyy-MM-dd'),
+					user_id: session_data['id']
+		};
+		getJournal(jsonData);		
+	}
 	$scope.newEntry = function() {
 
 		var jsonData = {
@@ -106,7 +106,11 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		);
 
 		newJournalEntry.success(function(data, status, headers, config) {
-			console.log(data);
+			if(typeof data.success != 'undefined') {
+				$scope.hasEntry = 'hidden';
+			} else {
+				$scope.hasEntry = '';
+			}
 
 		});
 
@@ -115,6 +119,19 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		});
 	}
 
+
+	function getJournal(jsonData) {
+		journalMealEntry = $http.get(base_url + 'meal_journal/read', { params: jsonData });
+
+		journalMealEntry.success(function(data,status, headers, config) {
+			console.log(data);
+			if(typeof data.success != 'undefined') {
+				$scope.hasEntry = 'hidden';
+			} else {
+				$scope.hasEntry = '';
+			}
+		});
+	}
 	
 
 }]);

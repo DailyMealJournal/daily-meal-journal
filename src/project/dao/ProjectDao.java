@@ -248,10 +248,14 @@ public class ProjectDao {
             Filter journal_date =  new FilterPredicate(m.journal_date.toString(), FilterOperator.EQUAL, journalModel.getJournal_date());
             Filter user_id =  new FilterPredicate(m.UserKey.toString() ,FilterOperator.EQUAL, journalModel.getUserKey());
             temp = Datastore.query(Journal.KIND_NAME).filter(CompositeFilterOperator.and(journal_date, user_id)).asSingleEntity();
-            
+
             if(temp != null)
             {
             	result = true;
+            }
+            else
+            {
+            	result = false;
             }
         } catch(Exception e){
             result = false;

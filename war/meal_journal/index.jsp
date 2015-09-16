@@ -8,15 +8,13 @@
 <div ng-module="myJournal" ng-controller="MealJournalController" data-ng-init="init()">
 	<div class="row">
 		<div class="offset-s3 col s1 arrow-left">
-			<a
-				class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1"><i
-				class="material-icons">arrow_back</i></a>
+			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1" ng-click="scopeDay(-1)"><i class="material-icons">arrow_back</i></a>
 		</div>
 		<div class="col s4">
 			<h5 class="center-align" id="date">{{ date | date:'longDate'}}</h5>
 		</div>
 		<div class="col s1 arrow-right">
-			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1"><i class="material-icons">arrow_forward</i></a>
+			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1" ng-click="scopeDay(1)"><i class="material-icons">arrow_forward</i></a>
 		</div>
 	</div>
 	<div class="row">
