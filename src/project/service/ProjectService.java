@@ -147,7 +147,7 @@ public class ProjectService {
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("No Records Found.");
         	} else {
-        		input.setId((long) readJournal.getProperty("id"));
+        		input.setId((Long) readJournal.getProperty("id"));
         	}
         	
         	

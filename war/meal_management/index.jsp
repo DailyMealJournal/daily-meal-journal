@@ -7,7 +7,6 @@
 <styleurl url="calowrie/meal_management/index.css"></styleurl>
 
 <div class="meal-management section row"  ng-module="myMeals" ng-controller="MealsController">
-  <div>
         <div class="col s12">
           <div class="row">
             <div class=" col s3 center-aligned">
@@ -98,8 +97,7 @@
           <div class="center-align no-meals" ng-hide="(meals | filter: global.search).length">No Meals Found</div>
         </div>
       </div>
-		<jsp:include page="/meal_management/category.jsp" />
-	</div>
+	<jsp:include page="/meal_management/category.jsp" />
 
       
       	<!-- DELETE MEAL MODAL -->
@@ -119,8 +117,6 @@
 			    <button id="btn_delete_meal_close" data-target="modal_delete_meal" class="btn modal-trigger red lighten-2">Cancel</button>
 			</div>		
 		</div>
-	<jsp:include page="/meal_management/category.jsp"/>
-  </div>
 
 	<!--<script type="text/javascript" src="calowrie/meal_management/index.js"></script>-->
 	
@@ -132,7 +128,7 @@
 	        </div>
 			<div class="row">
 				<div class="col s12">
-					<form id="form_add_meal" action="create" class="form-meal" method="POST">
+					<form id="form_add_meal" xurl="${base_url}meal_management/create" action="create" class="form-meal" method="POST">
 						<div class="row">
 							<div class="input-field  col s12 m8">
 						    	<input id="meal_name" type="text" name="meal_name" class="validate" required="required">
@@ -197,6 +193,7 @@
 	        <div class="row teal" style="padding: 1% 0%">
 	            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Edit Meal</h3>
 	        </div>
+
 			<div class="row">
 				<div class="col s12">
 					<form id="form_edit_meal" action="update" class="form-meal" method="POST">
@@ -261,7 +258,6 @@
 	</div>
     
     <!--<script type="text/javascript" src="calowrie/meal_management/index.js"></script>-->
-    
 </div>
 
 <%--  Put JS Scripts ../js is not required --%>

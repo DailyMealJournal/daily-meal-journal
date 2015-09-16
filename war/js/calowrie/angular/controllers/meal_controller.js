@@ -4,13 +4,16 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 	$scope.addMeal = function(e) {
 		console.log(e)
 		var request = $http({
-		    method: $('#add_meal').attr('method'),
-		    url: $('#add_meal').attr('xurl'),
+		    method: $('#form_add_meal').attr('method'),
+		    url: $('#form_add_meal').attr('xurl'),
 		    transformRequest: transformRequestAsFormPost,
-		    data: $('#add_meal').serialize()
+		    data: $('#form_add_meal').serialize()
 		});
 		
 		//this.getAllMeals();
+		Request.success(function(data, status, headers, config) {
+			console.log(data);
+		});
 	}
 	
 	$scope.init = function(){
@@ -38,6 +41,8 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 			for(var i in data.meal){
 				$scope.editMeal = data.meal[i];
 			}
+
+			console.log($scope.editMeal);
 			
 			$(".label_edit").addClass("active");
 			$("#modal_edit_meal").openModal();

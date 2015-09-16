@@ -11,7 +11,6 @@ import org.slim3.datastore.Model;
 public class Journal implements Serializable {
 
     private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
     
     public static final String KIND_NAME= "JOURNAL";
     public static final String[] KIND_ATTRIBUTES = {"Key", "Journal_Date", "Journal_Meal_Id", "Unit", "UserKey"};
@@ -20,9 +19,6 @@ public class Journal implements Serializable {
     private String journal_date;
     private String UserKey;
     
-=======
-
->>>>>>> 4d94b5b51713a0d5a37b374835f16a0d52c8ee24
     @Attribute(primaryKey = true)
     private Key key;
 
@@ -96,8 +92,7 @@ public class Journal implements Serializable {
         }
         return true;
     }
-<<<<<<< HEAD
-
+    
 	public long getId() {
 		return id;
 	}
@@ -121,6 +116,4 @@ public class Journal implements Serializable {
 	public void setUserKey(String userKey) {
 		UserKey = userKey;
 	}
-=======
->>>>>>> 4d94b5b51713a0d5a37b374835f16a0d52c8ee24
 }
