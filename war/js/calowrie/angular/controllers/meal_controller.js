@@ -28,15 +28,18 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 	$scope.editMeal = [];
 	$scope.preEdit = function(id){
 		var jsonData = {
-				selection: "single",
+				selection : "single",
 				id: id
 		}
 		
-		var mealRequest = $http.get("read", $.param(jsonData));
+		var mealRequest = $http.get("read", {params:jsonData});
 	    
-		mealsRequest.success(function(data, status, headers, config) {
-			$scope.editMeal = data.meal;
+		mealRequest.success(function(data, status, headers, config) {
+			for(var i in data.meal){
+				$scope.editMeal = data.meal[i];
+			}
 			
+//			$(".label_edit").
 			$("#modal_edit_meal").openModal();
 			/*if(data.errorList.length == 0) {
 				$scope.meals = data.mealList;
@@ -47,7 +50,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 				$scope.errorDisplay = msg;
 			}*/
 		});
-		mealsRequest.error(function(data, status, headers, config) {
+		mealRequest.error(function(data, status, headers, config) {
 
 		});	
 	}

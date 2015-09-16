@@ -6,8 +6,8 @@
 <%--  Style URL ../css is not required --%>
 <styleurl url="calowrie/meal_management/index.css"></styleurl>
 
-<div class="meal-management section row"  ng-module="myMeals">
-  <div ng-controller="AllController">
+<div class="meal-management section row"  ng-module="myMeals" ng-controller="MealsController">
+  <div>
         <div class="col s12">
           <div class="row">
             <div class=" col s3 center-aligned">
@@ -40,7 +40,7 @@
           </div>
         </div>
       
-      <div ng-controller="MealsController" ng-init="init()">
+      <div  ng-init="init()">
         <div class="col s9"  id="grid_meals">
           <div class="row">
             <div class="col s12  l6" ng-repeat="meal in meals | filter: global.search">   
@@ -96,7 +96,7 @@
       </div>
       
       	<!-- DELETE MEAL MODAL -->
-		<div id="modal_delete_meal" class="modal modal-fixed-footer" ng-controller="MealsController">
+		<div id="modal_delete_meal" class="modal modal-fixed-footer" >
 			<div class="modal-content container">        
 		        <div class="row teal" style="padding: 1% 0%">
 		            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Delete Meal</h3>
@@ -117,7 +117,7 @@
 
 	
     <!-- ADD MEAL MODAL -->
-	<div id="modal_add_new_meal" class="modal modal-fixed-footer">
+	<div id="modal_add_new_meal" class="modal modal-fixed-footer" >
 		<div class="modal-content container">
 	        <div class="row teal" style="padding: 1% 0%">
 	            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Add New Meal</h3>
@@ -169,7 +169,7 @@
 								    <input type="file" accept=".jpg" name=""/>
 							    </div>
 							    <div class="file-path-wrapper">
-							    	<input class="file-path validate" type="text" name="meal_picture" placeholder="Optional"/>
+							    	<input class="file-path validate" type="text" name="meal_picture" placeholder="O"/>
 							    </div>
 					    	</div>
 					    </div>
@@ -184,23 +184,23 @@
 	</div>
     
     <!-- EDIT MEAL MODAL -->
-	<div id="modal_edit_meal" class="modal modal-fixed-footer" ng-controller="MealsController">
+	<div id="modal_edit_meal" class="modal modal-fixed-footer" >
 		<div class="modal-content container">        
 	        <div class="row teal" style="padding: 1% 0%">
 	            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Edit Meal</h3>
 	        </div>
 			<div class="row">
 				<div class="col s12">
-					<form id="form_edit_meal" action="update" class="form-meal" method="POST" ng-controller="MealsController">
+					<form id="form_edit_meal" action="update" class="form-meal" method="POST">
 	                    <input id="edit_meal_id" type="hidden" name="meal_id" value="{{editMeal.id}}">
 	                    
 						<div class="row">
 							<div class="input-field  col s12 m8">
 						    	<input id="edit_meal_name" type="text" name="meal_name" class="validate" required="required" value="{{editMeal.name}}">
-						    	<label for="meal_name">Meal Name</label>
+						    	<label class="label_edit" for="meal_name">Meal Name</label>
 						    </div>
 						    <div class="input-field col s12 m4">
-							    <select id="edit_meal_category" name="meal_category" required="required">
+							    <select id="edit_meal_category" name="meal_category" required="required" value="{{editMeal.category}}">
 							     	<option value="Poultry">Poultry</option>
 							      	<option value="Meat">Meat</option>
 							      	<option value="Seafood">Seafood</option>
@@ -216,15 +216,15 @@
 					    <div class="row">
 					    	<div class="input-field col s12 m4">
 	    				        <input id="edit_meal_defQuantity" type="number" min="1" name="meal_defQuantity" class="materialize-textarea" required="required" value="{{editMeal.def_quantity}}">
-	    				        <label for="meal_defQuantity">Default Quantity</label>
+	    				        <label class="label_edit" for="meal_defQuantity">Default Quantity</label>
 	    			        </div>
 	    			         <div class="input-field col s12 m4">
-	    				        <input id="edit_meal_unit" type="text" name="meal_unit" class="materialize-textarea" required="required" value="value="{{editMeal.unit}}"">
-	    				        <label for="meal_unit">Unit</label>
+	    				        <input id="edit_meal_unit" type="text" name="meal_unit" class="materialize-textarea" required="required" value="{{editMeal.unit}}">
+	    				        <label class="label_edit" for="meal_unit">Unit</label>
 	    			        </div>
 	    			         <div class="input-field col s12 m4">
 	    				        <input id="edit_meal_calories" type="number" min="0" name="meal_calories" class="materialize-textarea" required="required" value="{{editMeal.calories}}">
-	    				        <label for="meal_calories">Calories</label>
+	    				        <label class="label_edit" for="meal_calories">Calories</label>
 	    			        </div>
 					    </div>
 					    <div class="row">
@@ -238,7 +238,7 @@
 								    <input type="file" accept=".jpg" name=""/>
 							    </div>
 							    <div class="file-path-wrapper">
-							    	<input id="edit_meal_picture" class="file-path validate" type="text" name="meal_picture" placeholder="{{editMeal.name}}"/>
+							    	<input id="edit_meal_picture" class="file-path validate" type="text" name="meal_picture" placeholder="{{editMeal.picture}}"/>
 							    </div>
 					    	</div>
 					    </div>
@@ -255,6 +255,7 @@
     <!--<script type="text/javascript" src="calowrie/meal_management/index.js"></script>-->
     
 </div>
+
 <%--  Put JS Scripts ../js is not required --%>
 <jsscript src="calowrie/meal_management/index.js"></jsscript>
 <jsscript src="calowrie/angular/controllers/meal_controller.js"></jsscript>
