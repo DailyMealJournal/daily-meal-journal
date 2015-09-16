@@ -15,8 +15,8 @@ tmp/*
 *.swp
 *~.nib
 local.properties
-#.classpath
-#.settings/*
+.classpath
+.settings/*
 .loadpath
 
 war/WEB-INF/classes/
