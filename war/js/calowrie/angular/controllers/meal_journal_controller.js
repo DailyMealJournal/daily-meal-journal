@@ -46,8 +46,11 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 
 	$scope.date = new Date();
 
+
+
 	$scope.init = function() {
 		this.getAllMeals();
+		this.getJournalEntry();
 	}
 
 
@@ -71,11 +74,30 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 
 	}
 
-	$scope.newEntry = function() {
+	$scope.getJournalEntry = function()
+	{
 		var jsonData = {
-						journal_date: $filter('date')($scope.date ,'yyyy-MM-dd'),
-						user_id: $('[name="user_id"]').val()
-					};
+					journal_date: $filter('date')(this.date ,'yyyy-MM-dd'),
+					user_id: session_data['id']
+		};
+
+		journalMealEntry = $http.get(base_url + 'meal_journal/read', { params: jsonData });
+
+		journalMealEntry.success(function(data,status, headers, config) {
+			if(typeof data.success != 'undefined') {
+				$scope.hasEntry = 'hidden';
+			} else {
+				alert(data.errors);
+			}
+		});
+	}
+
+	$scope.newEntry = function() {
+
+		var jsonData = {
+			journal_date: $filter('date')(this.date ,'yyyy-MM-dd'),
+			user_id: session_data['id']
+		};
 		newJournalEntry = $http.post(base_url + 'meal_journal/create', $httpParamSerializer(jsonData),
 
 			{
@@ -96,7 +118,6 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 	
 
 }]);
-
 
 
 meal_journal.directive('backImg', function(){

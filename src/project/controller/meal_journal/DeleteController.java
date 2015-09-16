@@ -17,7 +17,7 @@ public class DeleteController extends Controller {
     	JSONObject input = new JSONObject(new RequestMap(this.request));
         JournalDto journalDto = new JournalDto();
         journalDto.setId(Long.valueOf(input.getString("journal_id")));
-        service.journal(journalDto, "delete_meal");
+        service.journal(journalDto, "delete_journal");
         return null;
     }
 }

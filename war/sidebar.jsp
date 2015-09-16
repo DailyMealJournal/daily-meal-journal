@@ -2,7 +2,7 @@
 	ng-module="sidebar">
 	<div class="sidebar-profile" ng-controller="SidebarController">
 		<div class="card">
-			<input type="hidden" name="user_id" value="{{ sidebarProfile.id }}">
+			<input type="hidden" name="user_id" ng-model="sidebarId" value="{{ sidebarProfile.id }}">
 			<div class="card-image waves-effect waves-block waves-light">
 				<img class="activator" ng-src="{{ sidebarProfile.image }}">
 			</div>

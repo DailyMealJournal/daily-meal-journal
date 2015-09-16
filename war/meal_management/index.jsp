@@ -139,9 +139,6 @@
 	</div>
 
 	<!--<script type="text/javascript" src="calowrie/meal_management/index.js"></script>-->
-
-<<<<<<< HEAD
-=======
 	
     <!--<div class="container">
         <div class="row">
@@ -180,7 +177,6 @@
     
     <!--<script type="text/javascript" src="calowrie/meal_management/index.js"></script>-->
     
->>>>>>> 69c0c25dac44dd0ded387e9810d728b2f699babf
 </div>
 <%--  Put JS Scripts ../js is not required --%>
 <jsscript src="calowrie/meal_management/index.js"></jsscript>

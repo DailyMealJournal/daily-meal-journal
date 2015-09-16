@@ -129,13 +129,23 @@ public class ProjectService {
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("An error occurred while creating a new Journal Entry.");
             }
-        }else if(action.equals("delete_meal")){
+        }else if(action.equals("delete_journal")){
             journal.setId(input.getId());
             
             if(!this.dao.deleteJournal(journal)){
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("Journal");
             }
+        }else if(action.equals("read_journal")) {
+        	journal.setJournal_date(input.getJournal_date());
+        	journal.setUserKey(input.getUserKey());
+        	
+        	if(!this.dao.readJournal(journal)) {
+                input.setErrorList(new ArrayList<String>());
+                input.getErrorList().add("No Records Found.");
+        	}
+        	
+        	
         } 
 		return input;
 		

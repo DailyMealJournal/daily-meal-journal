@@ -16,9 +16,7 @@
 			<h5 class="center-align" id="date">{{ date | date:'longDate'}}</h5>
 		</div>
 		<div class="col s1 arrow-right">
-			<a
-				class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1"><i
-				class="material-icons">arrow_forward</i></a>
+			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1"><i class="material-icons">arrow_forward</i></a>
 		</div>
 	</div>
 	<div class="row">
@@ -46,7 +44,11 @@
 				<div class="divider"></div>
 			</div>
 			<div class="center-align no-meals" ng-hide="(journal.meals | filter: global.search).length">
-				<a class="btn waves-effect waves-light" create-url="${base_url}meal_journal/create" ng-click="newEntry()">New Entry</a>
+				<input type="hidden" ng-model="hasEntry">
+				<a class="btn waves-effect waves-light" ng-class="hasEntry"	 create-url="${base_url}meal_journal/create" ng-model="btn_newEntry" ng-click="newEntry()">New Entry</a>
+				<p ng-show="hasEntry == 'hidden'">
+				No Records Found
+				</p>
 			</div>
 		</div>
 

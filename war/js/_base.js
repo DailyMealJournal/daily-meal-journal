@@ -78,6 +78,8 @@ $('jsscript').each(function(){
 
  var sidebar = angular.module("sidebar", []);
 
+ var global_user_id = session_data['id'];
+
 sidebar.controller('SidebarController', ['$scope', function($scope) {
         session_data['image_url'] = (typeof session_data['image_url'] != 'undefined') ? session_data['image_url']: 'img/team-1.jpg';
 
