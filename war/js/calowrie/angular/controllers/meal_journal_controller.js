@@ -92,6 +92,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		};
 		getJournal(jsonData);		
 	}
+
 	$scope.newEntry = function() {
 
 		var jsonData = {
@@ -108,6 +109,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		newJournalEntry.success(function(data, status, headers, config) {
 			if(typeof data.success != 'undefined') {
 				$scope.hasEntry = 'hidden';
+				$scope.journalId = data.journal_id;
 			} else {
 				$scope.hasEntry = '';
 			}
@@ -119,16 +121,47 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		});
 	}
 
+	$scope.deleteEntry = function() {
+
+		var jsonData = {
+			journal_id: $scope.journalId
+		};	
+
+		deleteJournalEntry = $http.post(base_url + 'meal_journal/delete', $httpParamSerializer(jsonData),
+
+			{
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}
+		);
+
+		deleteJournalEntry.success(function(data, status, headers, config) {
+			if(typeof data.success != 'undefined') {
+				$scope.hasEntry = '';
+				$scope.journalId = '';
+			} else {
+				$scope.hasEntry = 'hidden';
+			}
+
+		});
+
+		deleteJournalEntry.error(function(data, status, headers, config) {
+
+		});
+
+	}
 
 	function getJournal(jsonData) {
 		journalMealEntry = $http.get(base_url + 'meal_journal/read', { params: jsonData });
 
 		journalMealEntry.success(function(data,status, headers, config) {
-			console.log(data);
 			if(typeof data.success != 'undefined') {
 				$scope.hasEntry = 'hidden';
+				$scope.journalId = data.journal_id;
+				$scope.isDelJournalDisabled = '';
 			} else {
 				$scope.hasEntry = '';
+				$scope.journalId = '';
+				$scope.isDelJournalDisabled = 'disabled';
 			}
 		});
 	}

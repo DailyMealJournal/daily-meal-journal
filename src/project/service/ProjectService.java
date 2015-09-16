@@ -125,9 +125,12 @@ public class ProjectService {
         if(action.equals("create_journal")) {
         	journal.setJournal_date(input.getJournal_date());
         	journal.setUserKey(input.getUserKey());
-            if(!this.dao.createJournal(journal)){
+        	Journal createJournal = this.dao.createJournal(journal); 
+            if(createJournal == null){
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("An error occurred while creating a new Journal Entry.");
+            } else {
+            	input.setId((long) createJournal.getId());
             }
         }else if(action.equals("delete_journal")){
             journal.setId(input.getId());
@@ -139,10 +142,12 @@ public class ProjectService {
         }else if(action.equals("read_journal")) {
         	journal.setJournal_date(input.getJournal_date());
         	journal.setUserKey(input.getUserKey());
-        	
-        	if(!this.dao.readJournal(journal)) {
+        	Entity readJournal = this.dao.readJournal(journal); 
+        	if(readJournal == null) {
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("No Records Found.");
+        	} else {
+        		input.setId((long) readJournal.getProperty("id"));
         	}
         	
         	

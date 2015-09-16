@@ -29,6 +29,7 @@ public class CreateController extends Controller {
 	            journalDto = this.service.journal(journalDto, "create_journal");
 	            
 	            json.put("success", journalDto.getErrorList());
+	            json.put("journal_id", journalDto.getId());
         	} catch(Exception e) {
         		System.out.print(e);
         	}

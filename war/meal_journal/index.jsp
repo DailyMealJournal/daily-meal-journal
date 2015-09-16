@@ -43,7 +43,7 @@
 			</div>
 			<div class="center-align no-meals" ng-hide="(journal.meals | filter: global.search).length">
 				<input type="hidden" ng-model="hasEntry">
-				<a class="btn waves-effect waves-light" ng-class="hasEntry"	 create-url="${base_url}meal_journal/create" ng-model="btn_newEntry" ng-click="newEntry()">New Entry</a>
+				<a class="btn waves-effect waves-light teal lighten-1" ng-class="hasEntry"	 create-url="${base_url}meal_journal/create" ng-click="newEntry()">New Entry</a>
 				<p ng-show="hasEntry == 'hidden'">
 				No Records Found
 				</p>
@@ -99,12 +99,19 @@
 					<div class="col s12">
 						<div></div>
 						<center>
-							<a class="waves-effect waves-light btn" id="add_meal">Add a
-								Meal</a>
+							<a class="waves-effect waves-light btn" id="add_meal">Add a Meal</a>
 						</center>
 						<div></div>
 						<center>
 							<a class="waves-effect waves-light btn hidden" id="show_journals">Back to Journals</a>
+						</center>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<center>
+							<input type="hidden" ng-model="journalId">
+							<button class="waves-effect waves-light btn red" id="delete_journal" ng-click="deleteEntry()" ng-disabled="journalId == ''">Delete Entry</button>
 						</center>
 					</div>
 				</div>

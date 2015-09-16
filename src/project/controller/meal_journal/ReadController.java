@@ -30,6 +30,7 @@ public class ReadController extends Controller {
             if(journalVal.getErrorList().isEmpty())
             {
             	json.put("success", "true");
+            	json.put("journal_id", journalVal.getId());
             }
             else
             {
@@ -38,7 +39,7 @@ public class ReadController extends Controller {
         } catch(Exception e){
             e.printStackTrace();
         }
-        
+        	
         response.setContentType("application/json");
         response.getWriter().write(json.toString());
         return null;

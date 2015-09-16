@@ -192,8 +192,8 @@ public class ProjectDao {
     }
 
 
-	public boolean createJournal(Journal journalModel) {
-        boolean result = true;
+	public Journal createJournal(Journal journalModel) {
+        Journal result = null;
         Entity temp = null;
         JournalMeta m = new JournalMeta();
         
@@ -209,13 +209,13 @@ public class ProjectDao {
                 
                 journalModel.setKey(journalKey);
                 journalModel.setId(journalKey.getId());
-                
+                result = journalModel;
                 Datastore.put(journalModel);
                
             }
             tx.commit();
         } catch(Exception e){
-            result = false;
+            result = null;
         }
         
         return result;
@@ -239,8 +239,8 @@ public class ProjectDao {
         return result;
 	}
 	
-	public boolean readJournal(Journal journalModel) {
-        boolean result = true;
+	public Entity readJournal(Journal journalModel) {
+        Entity result = null;
         Entity temp = null;
         JournalMeta m = new JournalMeta();
         
@@ -248,17 +248,9 @@ public class ProjectDao {
             Filter journal_date =  new FilterPredicate(m.journal_date.toString(), FilterOperator.EQUAL, journalModel.getJournal_date());
             Filter user_id =  new FilterPredicate(m.UserKey.toString() ,FilterOperator.EQUAL, journalModel.getUserKey());
             temp = Datastore.query(Journal.KIND_NAME).filter(CompositeFilterOperator.and(journal_date, user_id)).asSingleEntity();
-
-            if(temp != null)
-            {
-            	result = true;
-            }
-            else
-            {
-            	result = false;
-            }
+            result = temp;
         } catch(Exception e){
-            result = false;
+
         }
         
         return result;
