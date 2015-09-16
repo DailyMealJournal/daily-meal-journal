@@ -39,7 +39,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 				$scope.editMeal = data.meal[i];
 			}
 			
-//			$(".label_edit").
+			$(".label_edit").addClass("active");
 			$("#modal_edit_meal").openModal();
 			/*if(data.errorList.length == 0) {
 				$scope.meals = data.mealList;

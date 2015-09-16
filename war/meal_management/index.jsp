@@ -53,8 +53,11 @@
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
                    <p>Calorie Power: {{ meal.calories }} per <span class="unit">{{ meal.unit }}</span></p>
                    <p class="truncate">{{ meal.description }} </p>
-                   <button class="" ng-click="preEdit(meal.id)">edit</button>
-                   <button class="" ng-click="deleteMeal(meal.id)">delete</button>
+                   <div class="right">
+                   	<a class="btn btn-floating" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
+                   	<a class="btn btn-floating" ng-click="deleteMeal(meal.id)"><i class="material-icons small">delete</i></a>
+                   </div>
+                   
                 </div>
                 <div class="card-reveal">
                   <div class="row reveal-row">
@@ -169,7 +172,7 @@
 								    <input type="file" accept=".jpg" name=""/>
 							    </div>
 							    <div class="file-path-wrapper">
-							    	<input class="file-path validate" type="text" name="meal_picture" placeholder="O"/>
+							    	<input class="file-path validate" type="text" name="meal_picture" placeholder="Optional"/>
 							    </div>
 					    	</div>
 					    </div>
@@ -238,7 +241,7 @@
 								    <input type="file" accept=".jpg" name=""/>
 							    </div>
 							    <div class="file-path-wrapper">
-							    	<input id="edit_meal_picture" class="file-path validate" type="text" name="meal_picture" placeholder="{{editMeal.picture}}"/>
+							    	<input id="edit_meal_picture" class="file-path validate" type="text" name="meal_picture" placeholder="Optional" value="{{editMeal.picture}}"/>
 							    </div>
 					    	</div>
 					    </div>
