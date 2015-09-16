@@ -20,14 +20,42 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 	
 	$scope.id = null;
 	
-	$scope.preDelete = function(id){
+	/*$scope.preDelete = function(id){
 		$("#btn_delete_meal").attr("ng-click", "deleteMeal(" + id + ")");
-	}
+	}*/
     
+	
+	$scope.editMeal = [];
+	$scope.preEdit = function(id){
+		var jsonData = {
+				selection: "single",
+				id: id
+		}
+		
+		var mealRequest = $http.get("read", $.param(jsonData));
+	    
+		mealsRequest.success(function(data, status, headers, config) {
+			$scope.editMeal = data.meal;
+			
+			$("#modal_edit_meal").openModal();
+			/*if(data.errorList.length == 0) {
+				$scope.meals = data.mealList;
+			} else {
+				var msg = "";
+				for (var i = 0; i < data.errorList.length; i++)
+					msg += data.errorList[i] + "\n";
+				$scope.errorDisplay = msg;
+			}*/
+		});
+		mealsRequest.error(function(data, status, headers, config) {
+
+		});	
+	}
+	
     $scope.deleteMeal = function(id){
     	
     	var jsonData = {
-    		id: $scope.deleteId
+    		id:id
     	};
     	
     	var mealDelete = $http.post("delete", $.param(jsonData));
@@ -42,6 +70,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		});	
     }
 	
+    $scope.meals = [];
 	$scope.getAllMeals = function(){
 		var jsonData = {
 				selection: "all"
@@ -72,7 +101,6 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		});	
 	}
 
-	$scope.meals = [];
 					/*{
 						Picture: base_url + 'assets/img/food/k8.jpg',
 						MealName: 'Sushi',
