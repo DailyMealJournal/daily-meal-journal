@@ -6,8 +6,8 @@
 <%--  Style URL ../css is not required --%>
 <styleurl url="calowrie/meal_management/index.css"></styleurl>
 
-<div class="meal-management section row"  ng-module="myMeals">
-  <div ng-controller="AllController">
+<div class="meal-management section row"  ng-module="myMeals" ng-controller="MealsController">
+  <div>
         <div class="col s12">
           <div class="row">
             <div class=" col s3 center-aligned">
@@ -40,7 +40,7 @@
           </div>
         </div>
       
-      <div ng-controller="MealsController" ng-init="init()">
+      <div  ng-init="init()">
         <div class="col s9"  id="grid_meals">
           <div class="row">
             <div class="col s12  l6" ng-repeat="meal in meals | filter: global.search">   
@@ -53,7 +53,11 @@
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
                    <p>Calorie Power: {{ meal.calories }} per <span class="unit">{{ meal.unit }}</span></p>
                    <p class="truncate">{{ meal.description }} </p>
-                    <button ng-click="delete(meal.id)">delete</button>
+                   <div class="right">
+                   	<a class="btn btn-floating" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
+                   	<a class="btn btn-floating" ng-click="deleteMeal(meal.id)"><i class="material-icons small">delete</i></a>
+                   </div>
+                   
                 </div>
                 <div class="card-reveal">
                   <div class="row reveal-row">
@@ -72,7 +76,9 @@
             <div class="center-align no-meals" ng-hide="(meals | filter: global.search).length">No Meals Found</div>
           </div>
         </div>
-        <div class="col s9"  id="list_meals">
+
+        <div class="col s9" id="list_meals">
+
           <div class="section" ng-repeat="meal in meals | filter: global.search">
             <div class="row">
               <h3 class="title">{{ meal.name }}</h3>
@@ -92,92 +98,172 @@
           <div class="center-align no-meals" ng-hide="(meals | filter: global.search).length">No Meals Found</div>
         </div>
       </div>
-
 		<jsp:include page="/meal_management/category.jsp" />
 	</div>
 
-
-	<div class="container">
-		<div class="row">
-			<table>
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Category</th>
-						<th>Default Quantity</th>
-						<th>Unit</th>
-						<th>Calories</th>
-						<th>Description</th>
-						<th>Picture</th>
-						<th>&nbsp;</th>
-					</tr>
-				</thead>
-				<tbody id="testBody">
-					<tr>
-						<td>1</td>
-						<td>Chicken</td>
-						<td>Poultry</td>
-						<td>1</td>
-						<td>Piece</td>
-						<td>200</td>
-						<td>A scrumptious chicken piece</td>
-						<td>No picture</td>
-						<td><button class="btn">
-								<i class="small material-icons">reorder</i>
-							</button>&nbsp;
-							<button class="btn"
-								style="display: inline; vertical-align: middle">
-								<i class="small material-icons">delete</i>
-							</button></td>
-					</tr>
-					<!-- loop here -->
-
-				</tbody>
-			</table>
+      
+      	<!-- DELETE MEAL MODAL -->
+		<div id="modal_delete_meal" class="modal modal-fixed-footer" >
+			<div class="modal-content container">        
+		        <div class="row teal" style="padding: 1% 0%">
+		            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Delete Meal</h3>
+		        </div>
+				<div class="row">
+		            <div>
+		                <p class="flow-text">Are you sure you want to delete this meal?</p>
+		            </div>
+				</div>	
+			</div>
+			<div class="modal-footer">
+			    <button id="btn_delete_meal" style="margin-left: 8px; margin-right: 8px" class="btn">Delete Meal</button>        
+			    <button id="btn_delete_meal_close" data-target="modal_delete_meal" class="btn modal-trigger red lighten-2">Cancel</button>
+			</div>		
 		</div>
-	</div>
+	<jsp:include page="/meal_management/category.jsp"/>
+  </div>
 
 	<!--<script type="text/javascript" src="calowrie/meal_management/index.js"></script>-->
 	
-    <!--<div class="container">
-        <div class="row">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Default Quantity</th>
-                        <th>Unit</th>
-                        <th>Calories</th>
-                        <th>Description</th>
-                        <th>Picture</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody id="testBody">
-                    <tr>
-                        <td>1</td>
-                        <td>Chicken</td>
-                        <td>Poultry</td>
-                        <td>1</td>
-                        <td>Piece</td>
-                        <td>200</td>
-                        <td>A scrumptious chicken piece</td>
-                        <td>No picture</td>
-                        <td><button class="btn"><i class="small material-icons">reorder</i></button>&nbsp;<button class="btn" style="display: inline; vertical-align:middle"><i class="small material-icons">delete</i></button></td>
-                    </tr>
-                     loop here 
-                    
-                </tbody>
-            </table>
-        </div>
-    </div>-->
+    <!-- ADD MEAL MODAL -->
+	<div id="modal_add_new_meal" class="modal modal-fixed-footer" >
+		<div class="modal-content container">
+	        <div class="row teal" style="padding: 1% 0%">
+	            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Add New Meal</h3>
+	        </div>
+			<div class="row">
+				<div class="col s12">
+					<form id="form_add_meal" action="create" class="form-meal" method="POST">
+						<div class="row">
+							<div class="input-field  col s12 m8">
+						    	<input id="meal_name" type="text" name="meal_name" class="validate" required="required">
+						    	<label for="meal_name">Meal Name</label>
+						    </div>
+						    <div class="input-field col s12 m4">
+							    <select id="meal_category" name="meal_category" required="required">
+							     	<option value="Poultry">Poultry</option>
+							      	<option value="Meat">Meat</option>
+							      	<option value="Seafood">Seafood</option>
+							      	<option value="Fruits & Vegetables">Fruits & Vegetables</option>
+							      	<option value="Dairy">Dairy</option>
+							      	<option value="Dessert">Dessert</option>
+							      	<option value="Beverage">Beverage</option>
+							      	<option value="Snacks">Snacks</option>
+							    </select>				    	
+							    <label>Category</label>
+						  	</div>
+						</div>
+					    <div class="row">
+					    	<div class="input-field col s12 m4">
+	    				        <input id="meal_defQuantity" type="number" min="1" name="meal_defQuantity" class="materialize-textarea" required="required">
+	    				        <label for="meal_defQuantity">Default Quantity</label>
+	    			        </div>
+	    			         <div class="input-field col s12 m4">
+	    				        <input id="meal_unit" type="text" name="meal_unit" class="materialize-textarea" required="required">
+	    				        <label for="meal_unit">Unit</label>
+	    			        </div>
+	    			         <div class="input-field col s12 m4">
+	    				        <input id="meal_calories" type="number" min="0" name="meal_calories" class="materialize-textarea" required="required">
+	    				        <label for="meal_calories">Calories</label>
+	    			        </div>
+					    </div>
+					    <div class="row">
+					    	<div class="input-field col s12">
+						        <textarea id="meal_description" name="meal_description" class="materialize-textarea" maxlength="300" placeholder="300 characters"></textarea>
+						        <label for="meal_description">Meal Description</label>
+					        </div>
+			      			<div class="file-field input-field col s12">
+							    <div class="btn">
+								    <span>Picture</span>
+								    <input type="file" accept=".jpg" name=""/>
+							    </div>
+							    <div class="file-path-wrapper">
+							    	<input class="file-path validate" type="text" name="meal_picture" placeholder="Optional"/>
+							    </div>
+					    	</div>
+					    </div>
+			    	</form>
+				</div>
+			</div>	
+		</div>
+		<div class="modal-footer">
+		    <button id="btn_add_meal" style="margin-left: 8px; margin-right: 8px" class="btn">Add Meal</button>        
+		    <button id="btn_add_new_meal_close" data-target="modal_add_new_meal" class="btn modal-trigger red lighten-2">Cancel</button>
+		</div>		
+	</div>
+    
+    <!-- EDIT MEAL MODAL -->
+	<div id="modal_edit_meal" class="modal modal-fixed-footer" >
+		<div class="modal-content container">        
+	        <div class="row teal" style="padding: 1% 0%">
+	            <h3 style="padding: 1% 0%; padding-left:0.75rem; color: white">Edit Meal</h3>
+	        </div>
+			<div class="row">
+				<div class="col s12">
+					<form id="form_edit_meal" action="update" class="form-meal" method="POST">
+	                    <input id="edit_meal_id" type="hidden" name="meal_id" value="{{editMeal.id}}">
+	                    
+						<div class="row">
+							<div class="input-field  col s12 m8">
+						    	<input id="edit_meal_name" type="text" name="meal_name" class="validate" required="required" value="{{editMeal.name}}">
+						    	<label class="label_edit" for="meal_name">Meal Name</label>
+						    </div>
+						    <div class="input-field col s12 m4">
+							    <select id="edit_meal_category" name="meal_category" required="required" value="{{editMeal.category}}">
+							     	<option value="Poultry">Poultry</option>
+							      	<option value="Meat">Meat</option>
+							      	<option value="Seafood">Seafood</option>
+							      	<option value="Fruits & Vegetables">Fruits & Vegetables</option>
+							      	<option value="Dairy">Dairy</option>
+							      	<option value="Dessert">Dessert</option>
+							      	<option value="Beverage">Beverage</option>
+							      	<option value="Snacks">Snacks</option>
+							    </select>				    	
+	                            <label>Category</label>
+						  	</div>
+						</div>
+					    <div class="row">
+					    	<div class="input-field col s12 m4">
+	    				        <input id="edit_meal_defQuantity" type="number" min="1" name="meal_defQuantity" class="materialize-textarea" required="required" value="{{editMeal.def_quantity}}">
+	    				        <label class="label_edit" for="meal_defQuantity">Default Quantity</label>
+	    			        </div>
+	    			         <div class="input-field col s12 m4">
+	    				        <input id="edit_meal_unit" type="text" name="meal_unit" class="materialize-textarea" required="required" value="{{editMeal.unit}}">
+	    				        <label class="label_edit" for="meal_unit">Unit</label>
+	    			        </div>
+	    			         <div class="input-field col s12 m4">
+	    				        <input id="edit_meal_calories" type="number" min="0" name="meal_calories" class="materialize-textarea" required="required" value="{{editMeal.calories}}">
+	    				        <label class="label_edit" for="meal_calories">Calories</label>
+	    			        </div>
+					    </div>
+					    <div class="row">
+					    	<div class="input-field col s12">
+						        <textarea id="edit_meal_description" name="meal_description" class="materialize-textarea" maxlength="300" placeholder="300 characters">{{editMeal.description}}</textarea>
+						        <label for="meal_description">Meal Description</label>
+					        </div>
+			      			<div class="file-field input-field col s12">
+							    <div class="btn">
+								    <span>Picture</span>
+								    <input type="file" accept=".jpg" name=""/>
+							    </div>
+							    <div class="file-path-wrapper">
+							    	<input id="edit_meal_picture" class="file-path validate" type="text" name="meal_picture" placeholder="Optional" value="{{editMeal.picture}}"/>
+							    </div>
+					    	</div>
+					    </div>
+			    	</form>
+				</div>
+			</div>	
+		</div>
+		<div class="modal-footer">
+		    <button id="btn_edit_meal" style="margin-left: 8px; margin-right: 8px" class="btn">Edit Meal</button>        
+		    <button id="btn_edit_meal_close" data-target="modal_edit_meal" class="btn modal-trigger red lighten-2">Cancel</button>
+		</div>		
+	</div>
     
     <!--<script type="text/javascript" src="calowrie/meal_management/index.js"></script>-->
     
 </div>
+
 <%--  Put JS Scripts ../js is not required --%>
 <jsscript src="calowrie/meal_management/index.js"></jsscript>
 <jsscript src="calowrie/angular/controllers/meal_controller.js"></jsscript>

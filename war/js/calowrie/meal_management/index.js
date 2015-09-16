@@ -23,8 +23,8 @@ $(function() {
         $("#form_edit_meal_id").val(meal_id);
         
         jsonData = {
-                    data: JSON.stringify({ selection: "single", id: meal_id })
-               };
+            data: JSON.stringify({ selection: "single", id: meal_id })
+        };
         
         $.ajax({
             url: 'read',
@@ -66,15 +66,18 @@ $(function() {
     
     //DELETE Meal
     $(document).on("click", ".btn_delete_meal_open", function(){
-        $("#delete_meal_id").val($(this).data("id"));
+//        $("#delete_meal_id").val($(this).data("id"));
         
 		$("#modal_delete_meal").openModal();
+	});
+    
+    $(document).on("click", "#btn_delete_meal_close", function(){
+		$("#modal_delete_meal").closeModal();
 	});
     
     $('#btn_delete_meal').click(function(){
 		$('#form_delete_meal').submit();
 	});
-    
 	
 	$('.add_meal_filter_food').click(function(){
 		var name = $(this).attr('id');

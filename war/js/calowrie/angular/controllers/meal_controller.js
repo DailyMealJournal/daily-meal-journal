@@ -16,8 +16,47 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 	$scope.init = function(){
 		this.getAllMeals();
 	}
+	
+	
+	$scope.id = null;
+	
+	/*$scope.preDelete = function(id){
+		$("#btn_delete_meal").attr("ng-click", "deleteMeal(" + id + ")");
+	}*/
     
-    $scope.delete = function(id){    	
+	
+	$scope.editMeal = [];
+	$scope.preEdit = function(id){
+		var jsonData = {
+				selection : "single",
+				id: id
+		}
+		
+		var mealRequest = $http.get("read", {params:jsonData});
+	    
+		mealRequest.success(function(data, status, headers, config) {
+			for(var i in data.meal){
+				$scope.editMeal = data.meal[i];
+			}
+			
+			$(".label_edit").addClass("active");
+			$("#modal_edit_meal").openModal();
+			/*if(data.errorList.length == 0) {
+				$scope.meals = data.mealList;
+			} else {
+				var msg = "";
+				for (var i = 0; i < data.errorList.length; i++)
+					msg += data.errorList[i] + "\n";
+				$scope.errorDisplay = msg;
+			}*/
+		});
+		mealRequest.error(function(data, status, headers, config) {
+
+		});	
+	}
+	
+    $scope.deleteMeal = function(id){
+    	
     	var jsonData = {
     		id:id
     	};
@@ -25,6 +64,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
     	var mealDelete = $http.post("delete", $.param(jsonData));
         
         mealDelete.success(function(data, status, headers, config) {
+        	$("#modal_delete_meal").closeModal();
         	$scope.getAllMeals();
 		});
         
@@ -33,6 +73,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		});	
     }
 	
+    $scope.meals = [];
 	$scope.getAllMeals = function(){
 		var jsonData = {
 				selection: "all"
@@ -63,7 +104,6 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		});	
 	}
 
-	$scope.meals = [];
 					/*{
 						Picture: base_url + 'assets/img/food/k8.jpg',
 						MealName: 'Sushi',
@@ -104,6 +144,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 meal_management.controller('AllController', ['$scope', function($scope) {
 
 }]);
+
 meal_management.controller('MealCategoryController', ['$scope', function($scope) {
 	$scope.categories = [
 							{
