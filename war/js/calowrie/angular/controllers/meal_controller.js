@@ -1,22 +1,57 @@
 meal_management.controller('MealsController', ['$scope', '$http', function($scope, $http) {
 	$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
     
-	$scope.addMeal = function(e) {
-		console.log(e)
-		var request = $http({
-		    method: $('#add_meal').attr('method'),
-		    url: $('#add_meal').attr('xurl'),
-		    transformRequest: transformRequestAsFormPost,
-		    data: $('#add_meal').serialize()
+	$scope.addMealModel = {name:"", category:"", def_quantity:"",
+					 	   unit:"", calories:"", description:"", picture:"",
+					 	   error:""};
+	
+	
+	$scope.displayAddMealModel = function(){
+		$scope.addMealModel.picture = $("#meal_picture").val();
+		
+		alert($scope.addMealModel.picture);
+	}
+	
+	
+	$scope.addMeal = function(){
+		$scope.addMealModel.picture = $("#meal_picture").val();
+		
+		var addMealRequest = $http.post("create", $.param($scope.addMealModel));
+		
+		addMealRequest.success(function(data, status, headers, config){
+			if(data.errors.length == 0){
+				$(".add-field").attr("value","");
+				
+				$scope.getAllMeals();
+				$("#modal_add_new_meal").closeModal();
+			} else{
+				$scope.addMealModel.error = data.errors;
+			}
 		});
 		
-		//this.getAllMeals();
+		addMealRequest.error(function(data, status, headers, config){
+
+		});
 	}
 	
 	$scope.init = function(){
 		this.getAllMeals();
 	}
 	
+	$scope.displayEditMealModel = function(){
+//		$scope.addMealModel.picture = $("#meal_picture").val();
+		
+		var text = $scope.editMealModel.id + 
+			$scope.editMealModel.name +
+			$scope.editMealModel.category + 
+			$scope.editMealModel.def_quantity + 
+			$scope.editMealModel.unit +
+			$scope.editMealModel.calories +
+			$scope.editMealModel.description + 
+			$scope.editMealModel.picture;
+		
+		alert(text);
+	}
 	
 	$scope.id = null;
 	
@@ -25,7 +60,10 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 	}*/
     
 	
-	$scope.editMeal = [];
+	$scope.editMealModel = {id:"", name:"", category:"", def_quantity:"",
+						    unit:"", calories:"", description:"", picture:"",
+		 					errors:""};
+
 	$scope.preEdit = function(id){
 		var jsonData = {
 				selection : "single",
@@ -35,12 +73,13 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		var mealRequest = $http.get("read", {params:jsonData});
 	    
 		mealRequest.success(function(data, status, headers, config) {
-			for(var i in data.meal){
-				$scope.editMeal = data.meal[i];
+			if(data.meal[0] != null){
+				$scope.editMealModel = data.meal[0];
 			}
 			
 			$(".label_edit").addClass("active");
 			$("#modal_edit_meal").openModal();
+			
 			/*if(data.errorList.length == 0) {
 				$scope.meals = data.mealList;
 			} else {
@@ -55,8 +94,30 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		});	
 	}
 	
+	$scope.clearPhoto = function(){
+		alert("clearPhoto()");
+//		$scope.editMealModel.picture = "";
+	}
+	
+	$scope.editMeal = function(){				
+		var editMealRequest = $http.post("update", $.param($scope.editMealModel));
+		
+		editMealRequest.success(function(data, status, headers, config){
+			if(data.errors.length == 0){
+				$scope.getAllMeals();
+				$("#modal_edit_meal").closeModal();
+				$scope.editMealModel = [];
+			} else{
+				$scope.editMealModel.error = data.errors;
+			}
+		});
+		
+		editMealRequest.error(function(data, status, headers, config){
+			
+		});
+	}
+	
     $scope.deleteMeal = function(id){
-    	
     	var jsonData = {
     		id:id
     	};
@@ -64,8 +125,9 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
     	var mealDelete = $http.post("delete", $.param(jsonData));
         
         mealDelete.success(function(data, status, headers, config) {
-        	$("#modal_delete_meal").closeModal();
         	$scope.getAllMeals();
+        	$("#modal_delete_meal").closeModal();        	
+        	
 		});
         
         mealDelete.error(function(data, status, headers, config) {

@@ -3,6 +3,8 @@ $(function() {
     
 	$('select').material_select();
 	
+	
+	//ADD Meal
 	$("#btn_add_new_meal").click(function(){
 		$("#modal_add_new_meal").openModal();
 	});
@@ -11,9 +13,9 @@ $(function() {
 		$("#modal_add_new_meal").closeModal();
 	});
     
-    $('#btn_add_meal').click(function(){
+    /*$('#btn_add_meal').click(function(){
 		$('#form_add_meal').submit();
-	});
+	});*/
     
     
     //EDIT Meal
@@ -54,9 +56,9 @@ $(function() {
         });
     });
     
-    $('#btn_edit_meal').click(function(){
-		$('#form_edit_meal').submit();
-	});
+//    $('#btn_edit_meal').click(function(){
+//		$('#form_edit_meal').submit();
+//	});
     
     $("#btn_edit_meal_close").click(function(){
 		$("#modal_edit_meal").closeModal();
@@ -78,7 +80,7 @@ $(function() {
     $('#btn_delete_meal').click(function(){
 		$('#form_delete_meal').submit();
 	});
-	
+    
 	$('.add_meal_filter_food').click(function(){
 		var name = $(this).attr('id');
 		name = substring(6);
