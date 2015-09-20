@@ -39,7 +39,7 @@
           </div>
         </div>
       
-      <div  ng-init="init()">
+      <div ng-init="init()">
         <div class="col s9"  id="grid_meals">
           <div class="row">
             <div class="col s12  l6" ng-repeat="meal in meals | filter: global.search">   
@@ -52,9 +52,9 @@
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
                    <p>Calorie Power: {{ meal.calories }} per <span class="unit">{{ meal.unit }}</span></p>
                    <p class="truncate">{{ meal.description }} </p>
-                   <div class="right">
-                   	<a class="btn btn-floating" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
-                   	<a class="btn btn-floating" ng-click="deleteMeal(meal.id)"><i class="material-icons small">delete</i></a>
+                   <div class="right card-modify-buttons">
+                   	<a class="btn btn-floating waves-effect waves-light" title="Edit" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
+                   	<a class="btn btn-floating waves-effect waves-light" title="Delete" ng-click="deleteMeal(meal.id)"><i class="material-icons small">delete</i></a>
                    </div>
                    
                 </div>
@@ -68,7 +68,11 @@
                         <p>{{ meal.description }} </p>
                     </div>
                   </div>
-                  <a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>
+                  <div class="left">
+                   	<a class="btn btn-floating waves-effect waves-light" title="Edit" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
+                   	<a class="btn btn-floating waves-effect waves-light" title="Delete" ng-click="deleteMeal(meal.id)"><i class="material-icons small">delete</i></a>
+                   	<a class="btn btn-floating waves-effect waves-light" title="Add to today's Journal"><i class="material-icons left">add</i></a>
+                   </div>
                 </div>
               </div>
             </div>
@@ -131,11 +135,12 @@
 					<form id="form_add_meal" xurl="${base_url}meal_management/create" action="create" class="form-meal" method="POST">
 						<div class="row">
 							<div class="input-field  col s12 m8">
-						    	<input id="meal_name" type="text" name="meal_name" class="validate" required="required">
+						    	<input id="meal_name" type="text" name="meal_name" class="validate add-field" required="required" ng-model="addMealModel.name">
 						    	<label for="meal_name">Meal Name</label>
 						    </div>
 						    <div class="input-field col s12 m4">
-							    <select id="meal_category" name="meal_category" required="required">
+							    <select id="meal_category" class="browser-default add-field" name="meal_category" required="required" ng-model="addMealModel.category">
+							    	<option value="" disabled selected>Category</option>
 							     	<option value="Poultry">Poultry</option>
 							      	<option value="Meat">Meat</option>
 							      	<option value="Seafood">Seafood</option>
@@ -145,26 +150,25 @@
 							      	<option value="Beverage">Beverage</option>
 							      	<option value="Snacks">Snacks</option>
 							    </select>				    	
-							    <label>Category</label>
 						  	</div>
 						</div>
 					    <div class="row">
 					    	<div class="input-field col s12 m4">
-	    				        <input id="meal_defQuantity" type="number" min="1" name="meal_defQuantity" class="materialize-textarea" required="required">
+	    				        <input id="meal_defQuantity" type="number" min="1" name="meal_defQuantity" ng-model="addMealModel.def_quantity" class="materialize-textarea add-field" required="required">
 	    				        <label for="meal_defQuantity">Default Quantity</label>
 	    			        </div>
 	    			         <div class="input-field col s12 m4">
-	    				        <input id="meal_unit" type="text" name="meal_unit" class="materialize-textarea" required="required">
+	    				        <input id="meal_unit" type="text" name="meal_unit" ng-model="addMealModel.unit" class="materialize-textarea add-field" required="required">
 	    				        <label for="meal_unit">Unit</label>
 	    			        </div>
 	    			         <div class="input-field col s12 m4">
-	    				        <input id="meal_calories" type="number" min="0" name="meal_calories" class="materialize-textarea" required="required">
+	    				        <input id="meal_calories" type="number" min="0" name="meal_calories" ng-model="addMealModel.calories" class="materialize-textarea add-field" required="required">
 	    				        <label for="meal_calories">Calories</label>
 	    			        </div>
 					    </div>
 					    <div class="row">
 					    	<div class="input-field col s12">
-						        <textarea id="meal_description" name="meal_description" class="materialize-textarea" maxlength="300" placeholder="300 characters"></textarea>
+						        <textarea id="meal_description" name="meal_description" ng-model="addMealModel.description" class="materialize-textarea add-field" maxlength="300" placeholder="300 characters"></textarea>
 						        <label for="meal_description">Meal Description</label>
 					        </div>
 			      			<div class="file-field input-field col s12">
@@ -173,16 +177,21 @@
 								    <input type="file" accept=".jpg" name=""/>
 							    </div>
 							    <div class="file-path-wrapper">
-							    	<input class="file-path validate" type="text" name="meal_picture" placeholder="Optional"/>
+							    	<input id="meal_picture" class="file-path validate add-field" type="text" name="meal_picture" ng-model="addMealModel.picture" placeholder="Optional"/>
 							    </div>
 					    	</div>
 					    </div>
 			    	</form>
 				</div>
 			</div>	
+			<div class="row">
+				<div class="col s12">
+					<p>{{addMealModel.error}}</p>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
-		    <button id="btn_add_meal" style="margin-left: 8px; margin-right: 8px" class="btn">Add Meal</button>        
+		    <button id="btn_add_meal" style="margin-left: 8px; margin-right: 8px" class="btn" ng-click="addMeal()">Add Meal</button>        
 		    <button id="btn_add_new_meal_close" data-target="modal_add_new_meal" class="btn modal-trigger red lighten-2">Cancel</button>
 		</div>		
 	</div>
@@ -197,15 +206,14 @@
 			<div class="row">
 				<div class="col s12">
 					<form id="form_edit_meal" action="update" class="form-meal" method="POST">
-	                    <input id="edit_meal_id" type="hidden" name="meal_id" value="{{editMeal.id}}">
-	                    
+	                    <input id="edit_meal_id" type="hidden" name="meal_id" ng-model="editMealModel.id" value="{{editMealModel.id}}">
 						<div class="row">
 							<div class="input-field  col s12 m8">
-						    	<input id="edit_meal_name" type="text" name="meal_name" class="validate" required="required" value="{{editMeal.name}}">
+						    	<input id="edit_meal_name" type="text" name="meal_name" class="validate" required="required" ng-model="editMealModel.name" value="{{editMealModel.name}}">
 						    	<label class="label_edit" for="meal_name">Meal Name</label>
 						    </div>
 						    <div class="input-field col s12 m4">
-							    <select id="edit_meal_category" name="meal_category" required="required" value="{{editMeal.category}}">
+							    <select id="edit_meal_category" name="meal_category" required="required" ng-model="editMealModel.category" value="{{editMealModel.category}}">
 							     	<option value="Poultry">Poultry</option>
 							      	<option value="Meat">Meat</option>
 							      	<option value="Seafood">Seafood</option>
@@ -220,21 +228,21 @@
 						</div>
 					    <div class="row">
 					    	<div class="input-field col s12 m4">
-	    				        <input id="edit_meal_defQuantity" type="number" min="1" name="meal_defQuantity" class="materialize-textarea" required="required" value="{{editMeal.def_quantity}}">
+	    				        <input id="edit_meal_defQuantity" type="number" min="1" name="meal_defQuantity" class="materialize-textarea" required="required" ng-model="editMealModel.def_quantity" value="{{editMealModel.def_quantity}}">
 	    				        <label class="label_edit" for="meal_defQuantity">Default Quantity</label>
 	    			        </div>
 	    			         <div class="input-field col s12 m4">
-	    				        <input id="edit_meal_unit" type="text" name="meal_unit" class="materialize-textarea" required="required" value="{{editMeal.unit}}">
+	    				        <input id="edit_meal_unit" type="text" name="meal_unit" class="materialize-textarea" required="required" ng-model="editMealModel.unit" value="{{editMealModel.unit}}">
 	    				        <label class="label_edit" for="meal_unit">Unit</label>
 	    			        </div>
 	    			         <div class="input-field col s12 m4">
-	    				        <input id="edit_meal_calories" type="number" min="0" name="meal_calories" class="materialize-textarea" required="required" value="{{editMeal.calories}}">
+	    				        <input id="edit_meal_calories" type="number" min="0" name="meal_calories" class="materialize-textarea" required="required" ng-model="editMealModel.calories" value="{{editMealModel.calories}}">
 	    				        <label class="label_edit" for="meal_calories">Calories</label>
 	    			        </div>
 					    </div>
 					    <div class="row">
 					    	<div class="input-field col s12">
-						        <textarea id="edit_meal_description" name="meal_description" class="materialize-textarea" maxlength="300" placeholder="300 characters">{{editMeal.description}}</textarea>
+						        <textarea id="edit_meal_description" name="meal_description" class="materialize-textarea" maxlength="300" placeholder="300 characters" ng-model="editMealModel.description">{{editMealModel.description}}</textarea>
 						        <label for="meal_description">Meal Description</label>
 					        </div>
 			      			<div class="file-field input-field col s12">
@@ -243,16 +251,26 @@
 								    <input type="file" accept=".jpg" name=""/>
 							    </div>
 							    <div class="file-path-wrapper">
-							    	<input id="edit_meal_picture" class="file-path validate" type="text" name="meal_picture" placeholder="Optional" value="{{editMeal.picture}}"/>
+							    	<input id="edit_meal_picture" class="file-path validate" type="text" name="meal_picture" placeholder="Optional" ng-model="editMealModel.picture" value="{{editMealModel.picture}}"/>
 							    </div>
+					    	</div>
+					    </div>
+					    <div class="row">
+					    	<div class="input-field col s12">
+					    		<button class="btn" ng-click="clearPhoto()">Clear Photo</button>
 					    	</div>
 					    </div>
 			    	</form>
 				</div>
 			</div>	
+			<div class="row">
+				<div class="col s12">
+					<p>{{editMealModel.error}}</p>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
-		    <button id="btn_edit_meal" style="margin-left: 8px; margin-right: 8px" class="btn">Edit Meal</button>        
+		    <button id="btn_edit_meal" style="margin-left: 8px; margin-right: 8px" class="btn" ng-click="editMeal()">Edit Meal</button>        
 		    <button id="btn_edit_meal_close" data-target="modal_edit_meal" class="btn modal-trigger red lighten-2">Cancel</button>
 		</div>		
 	</div>
