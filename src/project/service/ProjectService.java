@@ -10,9 +10,11 @@ import java.util.List;
 
 import project.dao.ProjectDao;
 import project.dto.JournalDto;
+import project.dto.JournalMealDto;
 import project.dto.MealDto;
 import project.dto.UserDto;
 import project.model.Journal;
+import project.model.JournalMeal;
 import project.model.Meal;
 import project.model.User;
 
@@ -155,5 +157,25 @@ public class ProjectService {
 		return input;
 		
 	}
+	
+
+	   public JournalMealDto journalMeal(JournalMealDto input, String action) {
+	        JournalMeal journalMeal = new JournalMeal();
+	        
+	        if(action.equals("create_journal_meal")) {
+	            journalMeal.setJournal_id(input.getJournal_id());
+	            journalMeal.setMeal_id(input.getMeal_id());
+	            JournalMeal createJournalMeal = this.dao.createJournalMeal(journalMeal); 
+	            if(createJournalMeal == null){
+	                input.setErrorList(new ArrayList<String>());
+	                input.getErrorList().add("An error occurred while adding a new meal to journal.");
+	            } else {
+	                input.setId((long) createJournalMeal.getId());
+	            }
+	        }
+	        return input;
+	        
+	    }
+	
     
 }

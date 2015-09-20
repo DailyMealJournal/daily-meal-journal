@@ -15,10 +15,12 @@ import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.BeanUtil;
 
 import project.dto.UserDto;
+import project.meta.JournalMealMeta;
 import project.meta.JournalMeta;
 import project.meta.MealMeta;
 import project.meta.UserMeta;
 import project.model.Journal;
+import project.model.JournalMeal;
 import project.model.Meal;
 import project.model.User;
 
@@ -256,5 +258,35 @@ public class ProjectDao {
         return result;
             
 	}
+
+    public JournalMeal createJournalMeal(JournalMeal journalMeal) {
+        JournalMeal result = null;
+        Entity temp = null;
+        JournalMealMeta m = new JournalMealMeta();
+        
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            
+
+            Entity meal = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getMeal_id()).asSingleEntity();
+            Entity journal = Datastore.query(Journal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getJournal_id()).asSingleEntity();
+
+            if(journal != null && meal != null){
+                Key journalKey = Datastore.allocateId(JournalMeal.KIND_NAME);
+                
+                journalMeal.setKey(journalKey);
+                journalMeal.setId(journalKey.getId());
+                result = journalMeal;
+                Datastore.put(journalMeal);
+               
+            }
+            tx.commit();
+        } catch(Exception e){
+            result = null;
+        }
+        
+        return result;
+        
+    }
    
 }
