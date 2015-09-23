@@ -12,6 +12,8 @@ public class JournalMealDto {
     
     private Long journal_id;
     private Long meal_id;
+    private int quantity;
+    private int total_calories;
     
     public List<String> getErrorList() {
         return errorList;
@@ -43,6 +45,22 @@ public class JournalMealDto {
 
     public void setMeal_id(Long meal_id) {
         this.meal_id = meal_id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getTotal_calories() {
+        return total_calories;
+    }
+
+    public void setTotal_calories(int total_calories) {
+        this.total_calories = total_calories;
     }
 
     

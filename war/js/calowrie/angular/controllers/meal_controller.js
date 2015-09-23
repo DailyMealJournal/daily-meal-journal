@@ -1,23 +1,6 @@
 meal_management.controller('MealsController', ['$scope', '$http', function($scope, $http) {
 	$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
     
-	$scope.addMeal = function(e) {
-		console.log(e)
-		var request = $http({
-		    method: $('#form_add_meal').attr('method'),
-		    url: $('#form_add_meal').attr('xurl'),
-		    transformRequest: transformRequestAsFormPost,
-		    data: $('#form_add_meal').serialize()
-		});
-		
-		//this.getAllMeals();
-		request.success(function(data, status, headers, config) {
-
-			$scope.addMealModel = {name:"", category:"", def_quantity:"",
-							 	   unit:"", calories:"", description:"", picture:"",
-							 	   error:""};
-		});
-	
 	$scope.displayAddMealModel = function(){
 		$scope.addMealModel.picture = $("#meal_picture").val();
 		
@@ -214,10 +197,6 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 
 */
 				  
-
-}]);
-
-meal_management.controller('AllController', ['$scope', function($scope) {
 
 }]);
 

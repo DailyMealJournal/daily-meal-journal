@@ -43,7 +43,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 						calorie_limit: 2000
 				    };
 	**/
-
+	$scope.journal = {meals: []};
 	$scope.date = new Date();
 
 
@@ -150,6 +150,68 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 
 	}
 
+	$scope.addMealToJournal = function ( meal_id ) {
+
+		var jsonData = {
+			meal_id: meal_id,
+			journal_id: $scope.journalId
+		}
+
+		addJournalMeal = $http.post(base_url + 'journal_meal/create', $httpParamSerializer(jsonData),
+
+			{
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}
+		);
+
+		addJournalMeal .success(function(data, status, headers, config) {
+			if(typeof data.success != 'undefined') {
+				console.log("HEY")
+			} else {
+				console.log(data);
+			}
+
+		});
+	}
+
+	$scope.getJournalMeals = function () {
+		var jsonData = {
+			journal_id: $scope.journalId
+		}
+		getJournalMeal = $http.get(base_url + 'journal_meal/scopeJournal', { params: jsonData });
+
+		getJournalMeal.success(function(data,status, headers, config) {	
+			if(typeof data.success != 'undefined') {
+				var ndx = 0;
+				var index = 0;
+				var journalMealList = data.journalMealList;
+				var mealsScope = [];
+				for(var i in journalMealList) {
+					ndx = 0;
+					mealsScope[index] = {meals: '', main: ''}
+					for(var j in journalMealList[i]) {
+						if(ndx == 0) {
+							if(journalMealList[i][j].picture == '') {
+								journalMealList[i][j].picture = "/assets/img/food/pic10.jpg";
+							}
+							mealsScope[index].meals =  journalMealList[i][j];
+						} else  if( ndx == 1){
+							mealsScope[index].main = journalMealList[i][j];
+						}
+						ndx++;
+					}
+					index++;
+				}
+				console.log(mealsScope[0]);
+				$scope.journal.meals = mealsScope;
+			}
+		});
+	}
+
+	$scope.deleteJournalMeal = function( journal_meal_id ) {
+		console.log(journal_meal_id);
+	}
+
 	function getJournal(jsonData) {
 		journalMealEntry = $http.get(base_url + 'meal_journal/read', { params: jsonData });
 
@@ -158,6 +220,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 				$scope.hasEntry = 'hidden';
 				$scope.journalId = data.journal_id;
 				$scope.isDelJournalDisabled = '';
+				$scope.getJournalMeals();
 			} else {
 				$scope.hasEntry = '';
 				$scope.journalId = '';
@@ -165,6 +228,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 			}
 		});
 	}
+
 	
 
 }]);

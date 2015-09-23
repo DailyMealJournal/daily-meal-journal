@@ -270,14 +270,30 @@ public class ProjectDao {
 
             Entity meal = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getMeal_id()).asSingleEntity();
             Entity journal = Datastore.query(Journal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getJournal_id()).asSingleEntity();
-
             if(journal != null && meal != null){
-                Key journalKey = Datastore.allocateId(JournalMeal.KIND_NAME);
-                
-                journalMeal.setKey(journalKey);
-                journalMeal.setId(journalKey.getId());
-                result = journalMeal;
-                Datastore.put(journalMeal);
+                Filter journal_id =  new FilterPredicate(m.journal_id.toString(), FilterOperator.EQUAL, journalMeal.getJournal_id());
+                Filter meal_id =  new FilterPredicate(m.meal_id.toString() ,FilterOperator.EQUAL, journalMeal.getMeal_id());
+                temp = Datastore.query(JournalMeal.KIND_NAME).filter(CompositeFilterOperator.and(journal_id, meal_id)).asSingleEntity();
+                int calories = Integer.parseInt(meal.getProperty("calories").toString());
+                if(temp == null) {
+                    Key journalKey = Datastore.allocateId(JournalMeal.KIND_NAME);
+                    
+                    journalMeal.setKey(journalKey);
+                    journalMeal.setId(journalKey.getId());
+                    journalMeal.setQuantity(1);
+                    journalMeal.setTotal_calories(calories);
+                    result = journalMeal;
+                    Datastore.put(journalMeal);
+                } else {
+                   
+                    int i_quantity = Integer.parseInt(temp.getProperty("quantity").toString()) + 1;
+                    temp.setProperty("quantity", i_quantity);
+                    temp.setProperty("total_calories", calories * i_quantity);
+                    journalMeal.setId(Long.parseLong(temp.getProperty("id").toString()));
+                    journalMeal.setQuantity(i_quantity);
+                    result = journalMeal;
+                    Datastore.put(temp);
+                }
                
             }
             tx.commit();
@@ -289,4 +305,21 @@ public class ProjectDao {
         
     }
    
+    public List<Object> scopeJournalMeal(JournalMeal journalMeal) {
+        List<Object> journalMealList = new ArrayList<Object>();
+        List<Object> joinedTable = new ArrayList<Object>();
+        Map<String, Object> MealResult;
+        List<Entity> list = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id", FilterOperator.EQUAL, journalMeal.getJournal_id()).asList();
+        int meal_id;
+        for(Entity e : list){
+            meal_id = Integer.parseInt(e.getProperties().get("meal_id").toString());
+
+            MealResult = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, meal_id).asSingleEntity().getProperties();
+            joinedTable.add(MealResult);
+            joinedTable.add(e.getProperties());
+            journalMealList.add(joinedTable);
+        } 
+        
+        return journalMealList;
+    }
 }

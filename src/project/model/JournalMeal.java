@@ -12,14 +12,17 @@ public class JournalMeal implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String KIND_NAME = "JournalMeal";
-    public static final String[] KIND_ATTRIBUTES = {"Key", "journal_id", "meal_id"};
+    public static final String KIND_NAME = "JOURNAL_MEAL";
+    public static final String[] KIND_ATTRIBUTES = {"Key", "journal_id", "meal_id", "quantity", "calories"};
     
     private Long id;
     
     private Long journal_id;
     private Long meal_id;
-
+    private int quantity;
+    private int total_calories;
+    
+    
     @Attribute(primaryKey = true)
     private Key key;
 
@@ -117,6 +120,22 @@ public class JournalMeal implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getTotal_calories() {
+        return total_calories;
+    }
+
+    public void setTotal_calories(int total_calories) {
+        this.total_calories = total_calories;
     }
 
 }

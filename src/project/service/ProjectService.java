@@ -173,9 +173,17 @@ public class ProjectService {
 	                input.setId((long) createJournalMeal.getId());
 	            }
 	        }
+	        
 	        return input;
 	        
 	    }
+	   
+	   public List<Object> scopeJournalMeals(JournalMealDto input) 
+	   {   
+	       JournalMeal journalMeal = new JournalMeal();
+	       journalMeal.setJournal_id(input.getJournal_id());
+	       return this.dao.scopeJournalMeal(journalMeal);
+	   }
 	
     
 }
