@@ -172,6 +172,13 @@ public class ProjectService {
 	            } else {
 	                input.setId((long) createJournalMeal.getId());
 	            }
+	        } else if(action.equals("delete_journal_meal")){
+	            journalMeal.setId(input.getId());
+	            
+	            if(!this.dao.deleteJournalMeal(journalMeal)){
+	                input.setErrorList(new ArrayList<String>());
+	                input.getErrorList().add("Journal Meal cannot be deleted");
+	            }
 	        }
 	        
 	        return input;

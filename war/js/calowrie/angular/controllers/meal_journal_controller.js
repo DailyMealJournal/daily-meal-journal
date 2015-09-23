@@ -166,9 +166,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 
 		addJournalMeal .success(function(data, status, headers, config) {
 			if(typeof data.success != 'undefined') {
-				console.log("HEY")
-			} else {
-				console.log(data);
+				$scope.getJournalMeals();
 			}
 
 		});
@@ -181,11 +179,11 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		getJournalMeal = $http.get(base_url + 'journal_meal/scopeJournal', { params: jsonData });
 
 		getJournalMeal.success(function(data,status, headers, config) {	
+			var mealsScope = [];
 			if(typeof data.success != 'undefined') {
 				var ndx = 0;
 				var index = 0;
 				var journalMealList = data.journalMealList;
-				var mealsScope = [];
 				for(var i in journalMealList) {
 					ndx = 0;
 					mealsScope[index] = {meals: '', main: ''}
@@ -202,14 +200,26 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 					}
 					index++;
 				}
-				console.log(mealsScope[0]);
-				$scope.journal.meals = mealsScope;
 			}
+			$scope.journal.meals = mealsScope;
 		});
 	}
 
 	$scope.deleteJournalMeal = function( journal_meal_id ) {
-		console.log(journal_meal_id);
+		var jsonData = {
+			id: journal_meal_id
+		}
+
+		deleteJournalMeal = $http.post(base_url + 'journal_meal/delete', $httpParamSerializer(jsonData),
+
+			{
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}
+		);
+
+		deleteJournalMeal.success(function(data,status, headers, config) {
+			$scope.getJournalMeals();
+		});
 	}
 
 	function getJournal(jsonData) {

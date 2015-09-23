@@ -319,4 +319,22 @@ public class ProjectDao {
         
         return journalMealList;
     }
+    
+    public boolean deleteJournalMeal(JournalMeal journalMeal) {
+        boolean result = true;
+        System.out.print(journalMeal);
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            System.out.print(journalMeal);
+            Datastore.delete(Datastore.query(JournalMeal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getId()).asSingleEntity().getKey());
+                        
+            tx.commit();
+            
+        } catch(Exception e){
+            result = false;
+        }
+        
+        
+        return result;
+    }
 }
