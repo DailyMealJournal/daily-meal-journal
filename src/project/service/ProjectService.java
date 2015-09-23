@@ -57,7 +57,7 @@ public class ProjectService {
                 
                 if(!this.dao.createMeal(meal)){
                     input.setErrorList(new ArrayList<String>());
-                    input.getErrorList().add("An error occurred while adding the meal to Datastore");
+                    input.getErrorList().add("This meal name already exists.");
                 }
                 
             } else if(action.equals("read_meal_single")){                

@@ -58,14 +58,12 @@ public class ProjectDao {
     
     public boolean createMeal(Meal mealModel){
         boolean result = true;
-        Meal temp = null;
-        MealMeta m = new MealMeta();
         
         try{
             Transaction tx = Datastore.beginTransaction();
-            temp = Datastore.query(m).filter(m.name.equal(mealModel.getName())).asSingle();
+            Entity meal = Datastore.query(Meal.KIND_NAME).filter("name", FilterOperator.EQUAL, mealModel.getName()).asSingleEntity();
             
-            if(temp == null){
+            if(meal == null){
                 Key mealKey = Datastore.allocateId(Meal.KIND_NAME);
                 
                 mealModel.setKey(mealKey);
@@ -118,8 +116,7 @@ public class ProjectDao {
             }
             
         } catch(Exception e){
-            
-            
+
         }
         
         return mealList;

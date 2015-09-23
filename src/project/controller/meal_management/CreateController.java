@@ -1,5 +1,7 @@
 package project.controller.meal_management;
 
+import java.util.List;
+
 import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
 import org.slim3.repackaged.org.json.JSONObject;
@@ -49,7 +51,15 @@ public class CreateController extends APIController {
                 
                 service.meal(mealDto, "create_meal");
                 
-                json.put("errors", "");
+                StringBuilder sb = new StringBuilder("");
+                List<String> errorList = mealDto.getErrorList();
+                if(!errorList.isEmpty()){
+                    for(int i = 0; i < errorList.size(); i++){
+                        sb.append(errorList.get(i) + " ");
+                    }
+                }
+                
+                json.put("errors", sb.toString());
                 
             } catch(Exception e){
                 e.printStackTrace();
