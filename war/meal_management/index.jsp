@@ -54,7 +54,7 @@
                    <p class="truncate">{{ meal.description }} </p>
                    <div class="right card-modify-buttons">
                    	<a class="btn btn-floating waves-effect waves-light" title="Edit" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
-                   	<a class="btn btn-floating waves-effect waves-light" title="Delete" ng-click="deleteMeal(meal.id)"><i class="material-icons small">delete</i></a>
+                   	<a class="btn btn-floating waves-effect waves-light" title="Delete" ng-click="preDelete(meal.id)"><i class="material-icons small">delete</i></a>
                    </div>
                    
                 </div>
@@ -70,7 +70,7 @@
                   </div>
                   <div class="left">
                    	<a class="btn btn-floating waves-effect waves-light" title="Edit" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
-                   	<a class="btn btn-floating waves-effect waves-light" title="Delete" ng-click="deleteMeal(meal.id)"><i class="material-icons small">delete</i></a>
+                   	<a class="btn btn-floating waves-effect waves-light" title="Delete" ng-click="preDelete(meal.id)"><i class="material-icons small">delete</i></a>
                    	<a class="btn btn-floating waves-effect waves-light" title="Add to today's Journal"><i class="material-icons left">add</i></a>
                    </div>
                 </div>
@@ -94,6 +94,10 @@
                 <div class="description">
                   <p>{{ meal.description }}</p>
                 </div>
+                <div class="left card-modify-buttons">
+					<a class="btn btn-floating waves-effect waves-light" title="Edit" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
+					<a class="btn btn-floating waves-effect waves-light" title="Delete" ng-click="preDelete(meal.id)"><i class="material-icons small">delete</i></a>
+				</div>
               </div>
             </div>
             <div class="divider"></div>
@@ -117,7 +121,7 @@
 				</div>	
 			</div>
 			<div class="modal-footer">
-			    <button id="btn_delete_meal" style="margin-left: 8px; margin-right: 8px" class="btn">Delete Meal</button>        
+			    <button id="btn_delete_meal" style="margin-left: 8px; margin-right: 8px" class="btn" ng-click="deleteMeal()">Delete Meal</button>        
 			    <button id="btn_delete_meal_close" data-target="modal_delete_meal" class="btn modal-trigger red lighten-2">Cancel</button>
 			</div>		
 		</div>
@@ -214,14 +218,14 @@
 						    </div>
 						    <div class="input-field col s12 m4">
 							    <select id="edit_meal_category" name="meal_category" required="required" ng-model="editMealModel.category" value="{{editMealModel.category}}">
-							     	<option value="Poultry">Poultry</option>
-							      	<option value="Meat">Meat</option>
-							      	<option value="Seafood">Seafood</option>
-							      	<option value="Fruits & Vegetables">Fruits & Vegetables</option>
-							      	<option value="Dairy">Dairy</option>
-							      	<option value="Dessert">Dessert</option>
-							      	<option value="Beverage">Beverage</option>
-							      	<option value="Snacks">Snacks</option>
+							     	<option class="editSelectOption" value="Poultry">Poultry</option>
+							      	<option class="editSelectOption" value="Meat">Meat</option>
+							      	<option class="editSelectOption" value="Seafood">Seafood</option>
+							      	<option class="editSelectOption" value="Fruits & Vegetables">Fruits & Vegetables</option>
+							      	<option class="editSelectOption" value="Dairy">Dairy</option>
+							      	<option class="editSelectOption" value="Dessert">Dessert</option>
+							      	<option class="editSelectOption" value="Beverage">Beverage</option>
+							      	<option class="editSelectOption" value="Snacks">Snacks</option>
 							    </select>				    	
 	                            <label>Category</label>
 						  	</div>

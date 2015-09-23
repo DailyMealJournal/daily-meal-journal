@@ -7,7 +7,6 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		alert($scope.addMealModel.picture);
 	}
 	
-	
 	$scope.addMeal = function(){
 		$scope.addMealModel.picture = $("#meal_picture").val();
 		
@@ -75,7 +74,25 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 			console.log($scope.editMeal);
 			
 			$(".label_edit").addClass("active");
-			$("#modal_edit_meal").openModal();
+			var selectOptions = document.getElementsByClassName("editSelectOption");
+			var no = 0;
+			var yes = 0;
+			
+			for(option in selectOptions){
+				alert(option.nodeType);
+				
+				if(option.value != $scope.editMealModel.category){
+					no++;
+//					option.attr("selected", false);
+				} else{
+					yes++;
+//					option.attr("selected", true);
+				}
+			}
+			
+//			alert("No: " + no + " Yes: " + yes);
+			
+//			$("#modal_edit_meal").openModal();
 			
 			/*if(data.errorList.length == 0) {
 				$scope.meals = data.mealList;
@@ -114,9 +131,16 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		});
 	}
 	
-    $scope.deleteMeal = function(id){
+	$scope.deleteMealModel = {id:""}
+	
+	$scope.preDelete = function(id){
+		$scope.deleteMealModel.id = id;
+		$("#modal_delete_meal").openModal();
+	}
+	
+    $scope.deleteMeal = function(){
     	var jsonData = {
-    		id:id
+    		id:$scope.deleteMealModel.id
     	};
     	
     	var mealDelete = $http.post("delete", $.param(jsonData));
@@ -143,7 +167,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		mealsRequest.success(function(data, status, headers, config) {
             var meal_list = data.mealList;
             for(var i in meal_list){
-                if(meal_list[i].picture == ''){
+                if(meal_list[i].picture == ""){
                     meal_list[i].picture = "/assets/img/food/pic10.jpg";
                 }
             }
