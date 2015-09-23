@@ -6,5 +6,5 @@
 package project.dto;
 
 public class ProjectDto {
-
+    
 }

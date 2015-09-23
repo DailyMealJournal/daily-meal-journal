@@ -5,8 +5,13 @@
  * --------------------------------------------------------------------------- */
 package project.controller.meal_management;
 
-import api.controller.*;
 import org.slim3.controller.Navigation;
+import org.slim3.repackaged.org.json.JSONObject;
+import org.slim3.util.RequestMap;
+
+import project.dto.MealDto;
+import project.service.ProjectService;
+import api.controller.APIController;
 
 /**
  * Main Screen Delete controller.
@@ -15,10 +20,27 @@ import org.slim3.controller.Navigation;
  */
 public class DeleteController extends APIController {
 
+    private ProjectService service = new ProjectService();
+    
     @Override
-    protected Navigation run() throws Exception {
-        // TODO Auto-generated method stub
+    protected Navigation run() throws Exception {                
+        JSONObject json = null;
+        
+        try{
+            json = new JSONObject(new RequestMap(this.request));
+            
+            System.out.println("DeleteController");
+            
+            if(json.has("id")){
+                MealDto mealDto = new MealDto();
+                mealDto.setId(json.getLong("id"));
+                service.meal(mealDto, "delete_meal");
+            }               
+            
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        
         return null;
     }
-
 }

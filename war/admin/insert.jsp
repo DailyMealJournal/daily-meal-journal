@@ -6,6 +6,6 @@
 <title>admin Insert</title>
 </head>
 <body>
-<p>Hello admin Insert !!!</p>
+	<p>Hello admin Insert !!!</p>
 </body>
 </html>

@@ -1,4 +1,4 @@
-appengine-java-sdk-1.8.1/*
+war/WEB-INF/appengine-generated/*
 
 #################
 ## Eclipse
@@ -7,16 +7,18 @@ appengine-java-sdk-1.8.1/*
 *.pydevproject
 .project
 .metadata
-bin/
-tmp/
+bin/*
+tmp/*
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
 .classpath
-.settings/
+.settings/*
 .loadpath
+
+war/WEB-INF/classes/*
 
 # External tool builders
 .externalToolBuilders/
@@ -216,3 +218,6 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/bin/
+/bin/
+/.apt_generated/
