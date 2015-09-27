@@ -10,7 +10,7 @@ public class Account_managementControllerTest extends ControllerTestCase {
     @Test
     public void run() throws Exception {
         tester.start("/account_management");
-        Account_managementController controller = tester.getController();
+        IndexController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is("/account_management.jsp"));

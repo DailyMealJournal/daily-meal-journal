@@ -29,8 +29,6 @@ public class DeleteController extends APIController {
         try{
             json = new JSONObject(new RequestMap(this.request));
             
-            System.out.println("DeleteController");
-            
             if(json.has("id")){
                 MealDto mealDto = new MealDto();
                 mealDto.setId(json.getLong("id"));

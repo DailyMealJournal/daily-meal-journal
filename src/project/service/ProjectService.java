@@ -10,11 +10,9 @@ import java.util.List;
 
 import project.dao.ProjectDao;
 import project.dto.JournalDto;
-import project.dto.JournalMealDto;
 import project.dto.MealDto;
 import project.dto.UserDto;
 import project.model.Journal;
-import project.model.JournalMeal;
 import project.model.Meal;
 import project.model.User;
 
@@ -26,6 +24,7 @@ public class ProjectService {
     public UserDto user(UserDto input, String action){
         User user = new User();
         if(action.equals("create")){
+//        	user.setId(input.getId());
             user.setUsername(input.getUsername());
             user.setPassword(input.getPassword());
             user.setFirstName(input.getFirstname());
@@ -34,8 +33,31 @@ public class ProjectService {
             if(!this.dao.createUser(user)){
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("Username has already been taken.");
+            } 
+        } else if(action.equals("update_user")){        	
+        	user.setId(input.getId());
+            user.setUsername(input.getUsername());
+            user.setPassword(input.getPassword());
+            user.setFirstName(input.getFirstname());
+            user.setLastName(input.getLastname());
+            
+            System.out.println("\n\nProjectService, updateUser " + user.getId());
+            
+            if(!this.dao.updateUser(user)){
+                input.setErrorList(new ArrayList<String>());
+                input.getErrorList().add("An occurred while updating the meal in Datastore");
             }
-        } 
+            
+        }else if(action.equals("read_user")){        	
+        	user.setId(input.getId());
+            
+            User userResult = this.dao.readUser(user);            
+            input.setFirstname(userResult.getFirstName());
+            input.setLastname(userResult.getLastName());
+            input.setPassword(userResult.getPassword());
+            input.setUsername(userResult.getUsername());
+            
+        }
         
         return input;
     }
@@ -61,7 +83,7 @@ public class ProjectService {
                 
                 if(!this.dao.createMeal(meal)){
                     input.setErrorList(new ArrayList<String>());
-                    input.getErrorList().add("This meal name already exists.");
+                    input.getErrorList().add("An error occurred while adding the meal to Datastore");
                 }
                 
             } else if(action.equals("read_meal_single")){                
@@ -127,70 +149,20 @@ public class ProjectService {
         if(action.equals("create_journal")) {
         	journal.setJournal_date(input.getJournal_date());
         	journal.setUserKey(input.getUserKey());
-        	Journal createJournal = this.dao.createJournal(journal); 
-            if(createJournal == null){
+            if(!this.dao.createJournal(journal)){
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("An error occurred while creating a new Journal Entry.");
-            } else {
-            	input.setId((long) createJournal.getId());
             }
-        }else if(action.equals("delete_journal")){
+        }else if(action.equals("delete_meal")){
             journal.setId(input.getId());
             
             if(!this.dao.deleteJournal(journal)){
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("Journal");
             }
-        }else if(action.equals("read_journal")) {
-        	journal.setJournal_date(input.getJournal_date());
-        	journal.setUserKey(input.getUserKey());
-        	Entity readJournal = this.dao.readJournal(journal); 
-        	if(readJournal == null) {
-                input.setErrorList(new ArrayList<String>());
-                input.getErrorList().add("No Records Found.");
-        	} else {
-        		input.setId((Long) readJournal.getProperty("id"));
-        	}
-        	
-        	
         } 
 		return input;
 		
 	}
-	
-
-	   public JournalMealDto journalMeal(JournalMealDto input, String action) {
-	        JournalMeal journalMeal = new JournalMeal();
-	        
-	        if(action.equals("create_journal_meal")) {
-	            journalMeal.setJournal_id(input.getJournal_id());
-	            journalMeal.setMeal_id(input.getMeal_id());
-	            JournalMeal createJournalMeal = this.dao.createJournalMeal(journalMeal); 
-	            if(createJournalMeal == null){
-	                input.setErrorList(new ArrayList<String>());
-	                input.getErrorList().add("An error occurred while adding a new meal to journal.");
-	            } else {
-	                input.setId((long) createJournalMeal.getId());
-	            }
-	        } else if(action.equals("delete_journal_meal")){
-	            journalMeal.setId(input.getId());
-	            
-	            if(!this.dao.deleteJournalMeal(journalMeal)){
-	                input.setErrorList(new ArrayList<String>());
-	                input.getErrorList().add("Journal Meal cannot be deleted");
-	            }
-	        }
-	        
-	        return input;
-	        
-	    }
-	   
-	   public List<Object> scopeJournalMeals(JournalMealDto input) 
-	   {   
-	       JournalMeal journalMeal = new JournalMeal();
-	       journalMeal.setJournal_id(input.getJournal_id());
-	       return this.dao.scopeJournalMeal(journalMeal);
-	   }
-	
     
 }

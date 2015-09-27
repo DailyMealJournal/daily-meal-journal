@@ -92,7 +92,7 @@ public class Journal implements Serializable {
         }
         return true;
     }
-    
+
 	public long getId() {
 		return id;
 	}

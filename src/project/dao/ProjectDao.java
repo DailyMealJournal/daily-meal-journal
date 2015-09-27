@@ -15,12 +15,10 @@ import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.BeanUtil;
 
 import project.dto.UserDto;
-import project.meta.JournalMealMeta;
 import project.meta.JournalMeta;
 import project.meta.MealMeta;
 import project.meta.UserMeta;
 import project.model.Journal;
-import project.model.JournalMeal;
 import project.model.Meal;
 import project.model.User;
 
@@ -49,7 +47,7 @@ public class ProjectDao {
 	            Transaction tx = Datastore.beginTransaction();
 	            Key key = Datastore.allocateId(User.KIND_NAME);
 	            userModel.setKey(key);
-	            
+	            userModel.setId(key.getId());
 	            Datastore.put(userModel);
 	            tx.commit();
             }
@@ -63,6 +61,55 @@ public class ProjectDao {
 
         
         return result;
+    }
+    public boolean updateUser(User userModel){
+        boolean result = true;
+        
+        System.out.println("UpdateUser enter, user id: " + userModel.getId());
+        
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            Entity e = Datastore.query(User.KIND_NAME).filter("id", FilterOperator.EQUAL, userModel.getId()).asSingleEntity();
+
+            if(e != null){ 
+            	System.out.println("e != null enter");
+                e.setProperty("username", userModel.getUsername());
+                e.setProperty("firstName", userModel.getFirstName());
+                e.setProperty("lastName", userModel.getLastName());
+                e.setProperty("password", userModel.getPassword());
+                
+                Datastore.put(e);
+                tx.commit();
+                
+            }
+            
+        } catch(Exception e){
+            result = false;
+        }
+       
+        return result;
+    }
+
+    public User readUser(User userModel){
+        boolean result = true;
+        User user = null;
+        System.out.println("ReadUser enter, user id: " + userModel.getId());
+        
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            Entity e = Datastore.query(User.KIND_NAME).filter("id", FilterOperator.EQUAL, userModel.getId()).asSingleEntity();
+
+            if(e != null){ 
+                Map<String,Object> properties;
+                properties = e.getProperties();
+                user = new User();
+                BeanUtil.copy(properties, user);            }
+            
+        } catch(Exception e){
+            result = false;
+        }
+       
+        return user;
     }
 
     public Entity getUser(UserDto user){
@@ -81,12 +128,14 @@ public class ProjectDao {
     
     public boolean createMeal(Meal mealModel){
         boolean result = true;
+        Meal temp = null;
+        MealMeta m = new MealMeta();
         
         try{
             Transaction tx = Datastore.beginTransaction();
-            Entity meal = Datastore.query(Meal.KIND_NAME).filter("name", FilterOperator.EQUAL, mealModel.getName()).asSingleEntity();
+            temp = Datastore.query(m).filter(m.name.equal(mealModel.getName())).asSingle();
             
-            if(meal == null){
+            if(temp == null){
                 Key mealKey = Datastore.allocateId(Meal.KIND_NAME);
                 
                 mealModel.setKey(mealKey);
@@ -139,7 +188,8 @@ public class ProjectDao {
             }
             
         } catch(Exception e){
-
+            
+            
         }
         
         return mealList;
@@ -191,8 +241,8 @@ public class ProjectDao {
     }
 
 
-	public Journal createJournal(Journal journalModel) {
-        Journal result = null;
+	public boolean createJournal(Journal journalModel) {
+        boolean result = true;
         Entity temp = null;
         JournalMeta m = new JournalMeta();
         
@@ -208,13 +258,13 @@ public class ProjectDao {
                 
                 journalModel.setKey(journalKey);
                 journalModel.setId(journalKey.getId());
-                result = journalModel;
+                
                 Datastore.put(journalModel);
                
             }
             tx.commit();
         } catch(Exception e){
-            result = null;
+            result = false;
         }
         
         return result;
@@ -237,104 +287,5 @@ public class ProjectDao {
         
         return result;
 	}
-	
-	public Entity readJournal(Journal journalModel) {
-        Entity result = null;
-        Entity temp = null;
-        JournalMeta m = new JournalMeta();
-        
-        try{
-            Filter journal_date =  new FilterPredicate(m.journal_date.toString(), FilterOperator.EQUAL, journalModel.getJournal_date());
-            Filter user_id =  new FilterPredicate(m.UserKey.toString() ,FilterOperator.EQUAL, journalModel.getUserKey());
-            temp = Datastore.query(Journal.KIND_NAME).filter(CompositeFilterOperator.and(journal_date, user_id)).asSingleEntity();
-            result = temp;
-        } catch(Exception e){
-
-        }
-        
-        return result;
-            
-	}
-
-    public JournalMeal createJournalMeal(JournalMeal journalMeal) {
-        JournalMeal result = null;
-        Entity temp = null;
-        JournalMealMeta m = new JournalMealMeta();
-        
-        try{
-            Transaction tx = Datastore.beginTransaction();
-            
-
-            Entity meal = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getMeal_id()).asSingleEntity();
-            Entity journal = Datastore.query(Journal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getJournal_id()).asSingleEntity();
-            if(journal != null && meal != null){
-                Filter journal_id =  new FilterPredicate(m.journal_id.toString(), FilterOperator.EQUAL, journalMeal.getJournal_id());
-                Filter meal_id =  new FilterPredicate(m.meal_id.toString() ,FilterOperator.EQUAL, journalMeal.getMeal_id());
-                temp = Datastore.query(JournalMeal.KIND_NAME).filter(CompositeFilterOperator.and(journal_id, meal_id)).asSingleEntity();
-                int calories = Integer.parseInt(meal.getProperty("calories").toString());
-                if(temp == null) {
-                    Key journalKey = Datastore.allocateId(JournalMeal.KIND_NAME);
-                    
-                    journalMeal.setKey(journalKey);
-                    journalMeal.setId(journalKey.getId());
-                    journalMeal.setQuantity(1);
-                    journalMeal.setTotal_calories(calories);
-                    result = journalMeal;
-                    Datastore.put(journalMeal);
-                } else {
-                   
-                    int i_quantity = Integer.parseInt(temp.getProperty("quantity").toString()) + 1;
-                    temp.setProperty("quantity", i_quantity);
-                    temp.setProperty("total_calories", calories * i_quantity);
-                    journalMeal.setId(Long.parseLong(temp.getProperty("id").toString()));
-                    journalMeal.setQuantity(i_quantity);
-                    result = journalMeal;
-                    Datastore.put(temp);
-                }
-               
-            }
-            tx.commit();
-        } catch(Exception e){
-            result = null;
-        }
-        
-        return result;
-        
-    }
    
-    public List<Object> scopeJournalMeal(JournalMeal journalMeal) {
-        List<Object> journalMealList = new ArrayList<Object>();
-        List<Object> joinedTable = new ArrayList<Object>();
-        Map<String, Object> MealResult;
-        List<Entity> list = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id", FilterOperator.EQUAL, journalMeal.getJournal_id()).asList();
-        int meal_id;
-        for(Entity e : list){
-            meal_id = Integer.parseInt(e.getProperties().get("meal_id").toString());
-
-            MealResult = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, meal_id).asSingleEntity().getProperties();
-            joinedTable.add(MealResult);
-            joinedTable.add(e.getProperties());
-            journalMealList.add(joinedTable);
-        } 
-        
-        return journalMealList;
-    }
-    
-    public boolean deleteJournalMeal(JournalMeal journalMeal) {
-        boolean result = true;
-        System.out.print(journalMeal);
-        try{
-            Transaction tx = Datastore.beginTransaction();
-            System.out.print(journalMeal);
-            Datastore.delete(Datastore.query(JournalMeal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getId()).asSingleEntity().getKey());
-                        
-            tx.commit();
-            
-        } catch(Exception e){
-            result = false;
-        }
-        
-        
-        return result;
-    }
 }

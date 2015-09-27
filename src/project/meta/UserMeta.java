@@ -1,6 +1,6 @@
 package project.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-09-23 08:28:50")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-09-02 08:40:02")
 /** */
 public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.User> {
 
@@ -41,6 +41,7 @@ public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.
         project.model.User model = new project.model.User();
         model.setFirstName((java.lang.String) entity.getProperty("firstName"));
         model.setKey(entity.getKey());
+        model.setId(longToPrimitiveLong((java.lang.Long) entity.getProperty("id")));
         model.setLastName((java.lang.String) entity.getProperty("lastName"));
         model.setPassword((java.lang.String) entity.getProperty("password"));
         model.setUsername((java.lang.String) entity.getProperty("username"));
@@ -57,6 +58,7 @@ public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.
         } else {
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
+        entity.setProperty("id", m.getId());
         entity.setProperty("firstName", m.getFirstName());
         entity.setProperty("lastName", m.getLastName());
         entity.setProperty("password", m.getPassword());
@@ -128,6 +130,8 @@ public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.
             writer.setNextPropertyName("firstName");
             encoder0.encode(writer, m.getFirstName());
         }
+        writer.setNextPropertyName("id");
+        encoder0.encode(writer, m.getId());
         if(m.getKey() != null){
             writer.setNextPropertyName("key");
             encoder0.encode(writer, m.getKey());
@@ -160,6 +164,8 @@ public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.
         m.setFirstName(decoder0.decode(reader, m.getFirstName()));
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
+        reader = rootReader.newObjectReader("id");
+        m.setId(decoder0.decode(reader, m.getId()));
         reader = rootReader.newObjectReader("lastName");
         m.setLastName(decoder0.decode(reader, m.getLastName()));
         reader = rootReader.newObjectReader("password");

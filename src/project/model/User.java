@@ -13,13 +13,14 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     
     public static final String KIND_NAME= "USER";
-    public static final String[] KIND_ATTRIBUTES = {"Username","Password","FirstName","LastName"};
+    public static final String[] KIND_ATTRIBUTES = {"Id", "Username","Password","FirstName","LastName"};
     
     private String username;
     private String password;
     private String firstName;
     private String lastName;
-
+    private long id;
+    
     @Attribute(primaryKey = true)
     private Key key;
 
@@ -100,6 +101,12 @@ public class User implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getPassword() {

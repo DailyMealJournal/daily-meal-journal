@@ -1,11 +1,15 @@
 package project.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-09-23 08:28:50")
+import org.slim3.datastore.StringAttributeMeta;
+
+import project.model.Journal;
+
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-09-02 11:26:09")
 /** */
 public final class JournalMeta extends org.slim3.datastore.ModelMeta<project.model.Journal> {
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<project.model.Journal> UserKey = new org.slim3.datastore.StringAttributeMeta<project.model.Journal>(this, "UserKey", "UserKey");
+    public final StringAttributeMeta<Journal> UserKey = new org.slim3.datastore.StringAttributeMeta<project.model.Journal>(this, "UserKey", "UserKey");
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<project.model.Journal, java.lang.Long> id = new org.slim3.datastore.CoreAttributeMeta<project.model.Journal, java.lang.Long>(this, "id", "id", long.class);
