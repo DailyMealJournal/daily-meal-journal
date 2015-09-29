@@ -180,14 +180,15 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 			}
 		);
 
+		$scope.meal_quantity = {};
 		addJournalMeal.success(function(data, status, headers, config) {
-			$scope.getJournalMeals();
-			if(typeof data.errors != 'undefined') {
+			if(typeof(data.success) != 'undefined') {
+				$scope.getJournalMeals();
+			} else {
 				$scope.errors = data.errors;
 			}
 		});
 
-		$scope.meal_quantity = {};
 		
 	}
 
@@ -269,7 +270,6 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		);
 
 		editJournalMeal.success(function(data,status, headers, config) {
-			console.log(data);
 			if(typeof(data.success) != 'undefined') {
 				$scope.getJournalMeals();
 			} else {
@@ -306,18 +306,19 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		});
 	}
 
-	$scope.isNumeric = function(n) {
-  		return $.isNumeric(n);
+	$scope.isNumericAndGreaterThanZero = function(n) {
+  		return $.isNumeric(n) && n > 0;
 	}
 
 	$scope.isQuantityValid = function() {
 		var journal_meals = $scope.journal.meals;
 		var quantity = 0;
 		for(var i in journal_meals ) {
+
 			quantity += Number(journal_meals[i].main.quantity);
 		}
 
-		return (quantity > 0 && quantity <= 10);
+		return (quantity > 1 && quantity <= 10);
 	}
 
 }]);

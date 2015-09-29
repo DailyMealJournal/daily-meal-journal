@@ -14,6 +14,7 @@ import org.slim3.datastore.EntityQuery;
 import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.BeanUtil;
 
+import project.dto.JournalMealDto;
 import project.dto.UserDto;
 import project.meta.JournalMealMeta;
 import project.meta.JournalMeta;
@@ -183,8 +184,27 @@ public class ProjectDao {
         try{
             Transaction tx = Datastore.beginTransaction();
             Entity e = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingleEntity();
-
-            if(e != null){                
+            int total_calories = 0;
+            if(e != null){
+                List<Entity> journalMeal = Datastore.query(JournalMeal.KIND_NAME).filter("meal_id",  FilterOperator.EQUAL, mealModel.getId()).asList();
+                
+                
+                for(Entity item: journalMeal ) {
+                    item.setProperty("total_calories", (int) Integer.parseInt(item.getProperty("quantity").toString()) * mealModel.getCalories());
+                    Datastore.put(item);
+                }
+                
+                for(Entity item: journalMeal ) {
+                    List<Entity> journalMealQuery = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id",  FilterOperator.EQUAL, Long.parseLong(item.getProperty("journal_id").toString())).asList();
+                    if(total_calories < 2000 && total_calories != -1) {
+                        total_calories = 0;
+                        for(Entity item2 : journalMealQuery) {
+                            total_calories += Integer.parseInt(item2.getProperty("total_calories").toString());
+                        }
+                    } else {
+                        total_calories = -1;
+                    }
+                }
                 e.setProperty("name", mealModel.getName());
                 e.setProperty("category", mealModel.getCategory());
                 e.setProperty("def_quantity", mealModel.getDef_quantity());
@@ -195,7 +215,12 @@ public class ProjectDao {
                 
                 Datastore.put(e);
             }
-            tx.commit();
+            if(total_calories != -1) {
+                tx.commit();
+            } else {
+                tx.rollback();
+                result = false;
+            }
         } catch(Exception e){
             result = false;
         }
@@ -361,13 +386,23 @@ public class ProjectDao {
         return journalMealList;
     }
     
-    public int checkJournalTotalCalories(Long journalId) {
-        List<Entity> list = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id", FilterOperator.EQUAL, journalId).asList();
+    public int checkJournalTotalCalories(JournalMealDto journalMealDto) {
+        List<Entity> list = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id", FilterOperator.EQUAL, journalMealDto.getJournal_id()).asList();
         int total_calories = 0;
+        int originalQuantity = 0;
         for(Entity e: list) {
-           total_calories += Integer.parseInt(e.getProperties().get("total_calories").toString());
+           if( Long.parseLong(e.getProperty("meal_id").toString()) != journalMealDto.getMeal_id()) {
+               total_calories += Integer.parseInt(e.getProperty("total_calories").toString());
+           } else {
+               originalQuantity = Integer.parseInt(e.getProperty("quantity").toString());
+           }
         }
-        return (total_calories < 2000) ? total_calories: -1;
+        Entity meal =  Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMealDto.getMeal_id()).asSingleEntity();
+        if(meal != null) 
+        {
+            total_calories += Integer.parseInt(meal.getProperty("calories").toString()) * (journalMealDto.getQuantity() + originalQuantity);
+        }
+        return (total_calories <= 2000) ? total_calories: -1;
     }
     
     public boolean checkJournalMealLimit(Long journalId, int addedQuantity) {
@@ -430,5 +465,22 @@ public class ProjectDao {
              }
         }
         return (total_quantity > 0 && total_quantity <= 10);
-    }  
+    }
+    
+    public int checkUpdateJournalTotalCalories(JournalMealDto journalMealDto) {
+        Entity journalMeal = Datastore.query(JournalMeal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMealDto.getId()).asSingleEntity();
+        List<Entity> list = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id", FilterOperator.EQUAL, Long.parseLong(journalMeal.getProperty("journal_id").toString())).asList();
+        int total_calories = 0;
+        for(Entity e: list) {
+           if( Long.parseLong(e.getProperty("meal_id").toString()) != Long.parseLong(journalMeal.getProperty("meal_id").toString())) {
+               total_calories += Integer.parseInt(e.getProperty("total_calories").toString());
+           }
+        }
+        Entity meal =  Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, Long.parseLong(journalMeal.getProperty("meal_id").toString())).asSingleEntity();
+        if(meal != null) 
+        {
+            total_calories += Integer.parseInt(meal.getProperty("calories").toString()) * journalMealDto.getQuantity();
+        }
+        return (total_calories <= 2000) ? total_calories: -1;
+    }
 }
