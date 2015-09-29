@@ -56,7 +56,6 @@
                    	<a class="btn btn-floating waves-effect waves-light" title="Edit" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
                    	<a class="btn btn-floating waves-effect waves-light" title="Delete" ng-click="preDelete(meal.id)"><i class="material-icons small">delete</i></a>
                    </div>
-                   
                 </div>
                 <div class="card-reveal">
                   <div class="row reveal-row">
@@ -71,7 +70,7 @@
                   <div class="left">
                    	<a class="btn btn-floating waves-effect waves-light" title="Edit" ng-click="preEdit(meal.id)"><i class="material-icons small">reorder</i></a>
                    	<a class="btn btn-floating waves-effect waves-light" title="Delete" ng-click="preDelete(meal.id)"><i class="material-icons small">delete</i></a>
-                   	<a class="btn btn-floating waves-effect waves-light" title="Add to today's Journal"><i class="material-icons left">add</i></a>
+                   	<!--<a class="btn btn-floating waves-effect waves-light" title="Add to today's Journal"><i class="material-icons left">add</i></a>-->
                    </div>
                 </div>
               </div>
@@ -85,7 +84,7 @@
           <div class="section" ng-repeat="meal in meals | filter: global.search">
             <div class="row">
               <h3 class="title">{{ meal.name }}</h3>
-              <a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>
+              <!--<a class="waves-effect waves-light btn btn-floating right"><i class="material-icons left">add</i></a>-->
               <div class="col s12 m6 l4">   
                 <img class="responsive-img materialboxed z-depth-2 list-meal" ng-src="{{ meal.picture }}">
               </div>
