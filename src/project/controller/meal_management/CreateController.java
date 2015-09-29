@@ -66,7 +66,7 @@ public class CreateController extends APIController {
         } else{
             System.out.println("Create invalid");
             
-            StringBuffer errors = new StringBuffer("Errors: ");
+            StringBuffer errors = new StringBuffer("");
             for (int i = 0; i < v.getErrors().size(); i++) {
                 if(i > 0) {
                     errors.append(", ");  
