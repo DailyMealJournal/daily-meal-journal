@@ -1,6 +1,10 @@
 meal_management.controller('MealsController', ['$scope', '$http', function($scope, $http) {
 	$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
     
+	$scope.addMealModel = {name:"", category:"", def_quantity:"", 
+					 	   unit:"", calories:"", description:"", picture:"", 
+					 	   error:""}; 
+		
 	$scope.displayAddMealModel = function(){
 		$scope.addMealModel.picture = $("#meal_picture").val();
 		
@@ -74,7 +78,7 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 			console.log($scope.editMeal);
 			
 			$(".label_edit").addClass("active");
-			var selectOptions = $(".editSelectOption");
+			var selectOptions = $("#form_edit_meal .editSelectOption");
 			var no = 0;
 			var yes = 0;
 			

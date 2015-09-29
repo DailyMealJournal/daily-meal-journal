@@ -116,7 +116,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 			} else {
 				$scope.hasEntry = '';
 			}
-
+			console.log(data)
 		});
 
 		newJournalEntry.error(function(data, status, headers, config) {
