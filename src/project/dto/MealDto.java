@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.appengine.api.datastore.Key;
 
 public class MealDto {
-    private List<String> errorList;
+    private List<String> errorList = null;
     
     private long id;
     private Key key;

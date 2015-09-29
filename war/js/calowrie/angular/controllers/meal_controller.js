@@ -1,6 +1,10 @@
 meal_management.controller('MealsController', ['$scope', '$http', function($scope, $http) {
 	$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
     
+	$scope.addMealModel = {name:"", category:"", def_quantity:"", 
+					 	   unit:"", calories:"", description:"", picture:"", 
+					 	   error:""}; 
+		
 	$scope.displayAddMealModel = function(){
 		$scope.addMealModel.picture = $("#meal_picture").val();
 		
@@ -74,21 +78,25 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 			console.log($scope.editMeal);
 			
 			$(".label_edit").addClass("active");
-			var selectOptions = document.getElementsByClassName("editSelectOption");
+			var selectOptions = $("#form_edit_meal .editSelectOption");
 			var no = 0;
 			var yes = 0;
 			
-			for(option in selectOptions){
-				alert(option.nodeType);
-				
-				if(option.value != $scope.editMealModel.category){
-					no++;
-//					option.attr("selected", false);
-				} else{
-					yes++;
-//					option.attr("selected", true);
-				}
+			for(var i = 0; i < selectOptions.length; i++){
+				alert(selectOptions[i].value);
 			}
+			
+//			for(option in selectOptions){
+//				alert(option.value);
+//				
+//				if(option.value != $scope.editMealModel.category){
+//					no++;
+////					option.attr("selected", false);
+//				} else{
+//					yes++;
+////					option.attr("selected", true);
+//				}
+//			}
 			
 //			alert("No: " + no + " Yes: " + yes);
 			

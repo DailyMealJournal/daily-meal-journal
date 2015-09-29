@@ -35,11 +35,8 @@ public class CreateController extends APIController {
         MealDto mealDto = new MealDto();
         
         if(v.validate()){
-            
             try{
                 json = new JSONObject(new RequestMap(this.request));
-                
-                
                 
                 mealDto.setName(json.getString("name"));
                 mealDto.setCategory(json.getString("category"));
@@ -53,11 +50,13 @@ public class CreateController extends APIController {
                 
                 StringBuilder sb = new StringBuilder("");
                 List<String> errorList = mealDto.getErrorList();
-                if(!errorList.isEmpty()){
+                if(errorList != null && !errorList.isEmpty()){
                     for(int i = 0; i < errorList.size(); i++){
                         sb.append(errorList.get(i) + " ");
                     }
                 }
+                
+                System.out.println(sb.toString().length());
                 
                 json.put("errors", sb.toString());
                 

@@ -177,9 +177,16 @@ public class ProjectDao {
         boolean result = true;
         
         try{
+            System.out.println("deleteMeal try enter");
             Transaction tx = Datastore.beginTransaction();
             
+            Datastore.delete(Datastore.query(JournalMeal.KIND_NAME).filter("meal_id", FilterOperator.EQUAL, mealModel.getId()).asKeyList());
+            System.out.println("delete from journal meal");
+            
+            tx.commit();
+            
             Datastore.delete(Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingleEntity().getKey());
+            System.out.println("delete from meal");
                         
             tx.commit();
             
