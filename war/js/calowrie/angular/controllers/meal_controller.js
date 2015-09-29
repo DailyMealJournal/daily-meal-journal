@@ -88,24 +88,10 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 			}
 			
 			$("#modal_edit_meal").openModal();
-			
-			/*if(data.errorList.length == 0) {
-				$scope.meals = data.mealList;
-			} else {
-				var msg = "";
-				for (var i = 0; i < data.errorList.length; i++)
-					msg += data.errorList[i] + "\n";
-				$scope.errorDisplay = msg;
-			}*/
 		});
 		mealRequest.error(function(data, status, headers, config) {
 
 		});	
-	}
-	
-	$scope.clearPhoto = function(){
-		alert("clearPhoto()");
-//		$scope.editMealModel.picture = "";
 	}
 	
 	$scope.editMeal = function(){				

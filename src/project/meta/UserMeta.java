@@ -1,11 +1,14 @@
 package project.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-09-29 20:52:08")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-09-29 21:39:04")
 /** */
 public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.User> {
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<project.model.User> firstName = new org.slim3.datastore.StringAttributeMeta<project.model.User>(this, "firstName", "firstName");
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<project.model.User, java.lang.Long> id = new org.slim3.datastore.CoreAttributeMeta<project.model.User, java.lang.Long>(this, "id", "id", long.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<project.model.User, com.google.appengine.api.datastore.Key> key = new org.slim3.datastore.CoreAttributeMeta<project.model.User, com.google.appengine.api.datastore.Key>(this, "__key__", "key", com.google.appengine.api.datastore.Key.class);
@@ -40,6 +43,7 @@ public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.
     public project.model.User entityToModel(com.google.appengine.api.datastore.Entity entity) {
         project.model.User model = new project.model.User();
         model.setFirstName((java.lang.String) entity.getProperty("firstName"));
+        model.setId(longToPrimitiveLong((java.lang.Long) entity.getProperty("id")));
         model.setKey(entity.getKey());
         model.setLastName((java.lang.String) entity.getProperty("lastName"));
         model.setPassword((java.lang.String) entity.getProperty("password"));
@@ -58,6 +62,7 @@ public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
         entity.setProperty("firstName", m.getFirstName());
+        entity.setProperty("id", m.getId());
         entity.setProperty("lastName", m.getLastName());
         entity.setProperty("password", m.getPassword());
         entity.setProperty("username", m.getUsername());
@@ -128,6 +133,8 @@ public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.
             writer.setNextPropertyName("firstName");
             encoder0.encode(writer, m.getFirstName());
         }
+        writer.setNextPropertyName("id");
+        encoder0.encode(writer, m.getId());
         if(m.getKey() != null){
             writer.setNextPropertyName("key");
             encoder0.encode(writer, m.getKey());
@@ -158,6 +165,8 @@ public final class UserMeta extends org.slim3.datastore.ModelMeta<project.model.
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
         reader = rootReader.newObjectReader("firstName");
         m.setFirstName(decoder0.decode(reader, m.getFirstName()));
+        reader = rootReader.newObjectReader("id");
+        m.setId(decoder0.decode(reader, m.getId()));
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
         reader = rootReader.newObjectReader("lastName");
