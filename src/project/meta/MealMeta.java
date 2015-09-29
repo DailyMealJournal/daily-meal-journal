@@ -1,7 +1,12 @@
 package project.meta;
 
+<<<<<<< Updated upstream
 //@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-09-23 08:28:50")
 
+=======
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2015-09-29 00:05:47")
+/** */
+>>>>>>> Stashed changes
 public final class MealMeta extends org.slim3.datastore.ModelMeta<project.model.Meal> {
 
     /** */
