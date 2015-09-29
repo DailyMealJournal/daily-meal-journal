@@ -74,33 +74,20 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 			if(data.meal[0] != null){
 				$scope.editMealModel = data.meal[0];
 			}
-
-			console.log($scope.editMeal);
 			
 			$(".label_edit").addClass("active");
 			var selectOptions = $("#form_edit_meal .editSelectOption");
-			var no = 0;
-			var yes = 0;
 			
-			for(var i = 0; i < selectOptions.length; i++){
-				alert(selectOptions[i].value);
+			for(var i = 0; i < 8; i++){
+				console.log(selectOptions[i]);
+				if(selectOptions[i].value != $scope.editMealModel.category){
+					selectOptions[i].selected = "false";
+				} else{
+					selectOptions[i].selected = "selected";
+				}
 			}
 			
-//			for(option in selectOptions){
-//				alert(option.value);
-//				
-//				if(option.value != $scope.editMealModel.category){
-//					no++;
-////					option.attr("selected", false);
-//				} else{
-//					yes++;
-////					option.attr("selected", true);
-//				}
-//			}
-			
-//			alert("No: " + no + " Yes: " + yes);
-			
-//			$("#modal_edit_meal").openModal();
+			$("#modal_edit_meal").openModal();
 			
 			/*if(data.errorList.length == 0) {
 				$scope.meals = data.mealList;

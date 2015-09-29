@@ -190,7 +190,7 @@
 			</div>	
 			<div class="row">
 				<div class="col s12">
-					<p>{{addMealModel.error}}</p>
+					<p class="red-text">{{addMealModel.error}}</p>
 				</div>
 			</div>
 		</div>
@@ -217,7 +217,7 @@
 						    	<label class="label_edit" for="meal_name">Meal Name</label>
 						    </div>
 						    <div class="input-field col s12 m4">
-							    <select id="edit_meal_category" name="meal_category" required="required" ng-model="editMealModel.category" value="{{editMealModel.category}}">
+							    <select id="edit_meal_category" name="meal_category" class="browser-default" required="required" ng-model="editMealModel.category" value="{{editMealModel.category}}">
 							     	<option class="editSelectOption" value="Poultry">Poultry</option>
 							      	<option class="editSelectOption" value="Meat">Meat</option>
 							      	<option class="editSelectOption" value="Seafood">Seafood</option>
@@ -227,7 +227,6 @@
 							      	<option class="editSelectOption" value="Beverage">Beverage</option>
 							      	<option class="editSelectOption" value="Snacks">Snacks</option>
 							    </select>				    	
-	                            <label>Category</label>
 						  	</div>
 						</div>
 					    <div class="row">
@@ -259,17 +258,12 @@
 							    </div>
 					    	</div>
 					    </div>
-					    <div class="row">
-					    	<div class="input-field col s12">
-					    		<button class="btn" ng-click="clearPhoto()">Clear Photo</button>
-					    	</div>
-					    </div>
 			    	</form>
 				</div>
 			</div>	
 			<div class="row">
 				<div class="col s12">
-					<p>{{editMealModel.error}}</p>
+					<p class="red-text">{{editMealModel.error}}</p>
 				</div>
 			</div>
 		</div>
