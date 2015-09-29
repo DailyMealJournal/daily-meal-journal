@@ -48,6 +48,7 @@ public class ProjectDao {
             {
 	            Transaction tx = Datastore.beginTransaction();
 	            Key key = Datastore.allocateId(User.KIND_NAME);
+	            userModel.setId(key.getId());
 	            userModel.setKey(key);
 	            
 	            Datastore.put(userModel);
@@ -77,6 +78,37 @@ public class ProjectDao {
     public List<User> getAllUsers() {
         UserMeta m = new UserMeta();
         return Datastore.query(m).asList();
+    }
+    
+    public boolean updateUser(User userModel){
+        boolean result = true;
+        
+        System.out.println("UpdateUser enter, user id: " + userModel.getId());
+        
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            Entity e = Datastore.query(User.KIND_NAME).filter("id", FilterOperator.EQUAL, userModel.getId()).asSingleEntity();
+            System.out.println(e);
+            if(e != null){ 
+                e.setProperty("username", userModel.getUsername());
+                e.setProperty("firstName", userModel.getFirstName());
+                e.setProperty("lastName", userModel.getLastName());
+                e.setProperty("password", userModel.getPassword());
+                
+                Datastore.put(e);
+                tx.commit();
+                
+            }
+            
+        } catch(Exception e){
+            result = false;
+        }
+       
+        return result;
+    }
+
+    public Entity readUser(UserDto user){
+        return Datastore.query(User.KIND_NAME).filter("id", FilterOperator.EQUAL, user.getId()).asSingleEntity();
     }
     
     public boolean createMeal(Meal mealModel){
@@ -162,9 +194,8 @@ public class ProjectDao {
                 e.setProperty("picture", mealModel.getPicture());
                 
                 Datastore.put(e);
-                tx.commit();
             }
-            
+            tx.commit();
         } catch(Exception e){
             result = false;
         }
@@ -286,7 +317,7 @@ public class ProjectDao {
                     journalMeal.setKey(journalKey);
                     journalMeal.setId(journalKey.getId());
                     journalMeal.setQuantity(quantity);
-                    journalMeal.setTotal_calories(calories);
+                    journalMeal.setTotal_calories(calories * quantity);
                     result = journalMeal;
                     Datastore.put(journalMeal);
                 } else {
@@ -363,4 +394,41 @@ public class ProjectDao {
         
         return result;
     }
+    
+    public boolean updateJournalMeal(JournalMeal journalMeal) {
+        boolean result = false;
+        try{
+            Transaction tx = Datastore.beginTransaction();
+            Entity temp = Datastore.query(JournalMeal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getId()).asSingleEntity();
+            if(temp != null)
+            {
+                Entity temp_meal = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, Long.parseLong(temp.getProperty("meal_id").toString())).asSingleEntity();
+                temp.setProperty("quantity", journalMeal.getQuantity());
+                temp.setProperty("total_calories", journalMeal.getQuantity() * Integer.parseInt(temp_meal.getProperty("calories").toString()));
+                Datastore.put(temp);
+                result = true;
+            }
+                        
+            tx.commit();
+            
+        } catch(Exception e){
+
+        } 
+        
+        return result;
+    }
+
+    public boolean checkUpdateJournalMealLimit(Long id, int addedQuantity) {
+        Entity journalMeal = Datastore.query(JournalMeal.KIND_NAME).filter("id", FilterOperator.EQUAL, id).asSingleEntity();
+        int total_quantity = addedQuantity;
+        if(total_quantity > 0 && journalMeal != null) {
+            List<Entity> list = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id", FilterOperator.EQUAL, Long.parseLong(journalMeal.getProperty("journal_id").toString())).asList();
+            for(Entity e: list) {
+                if(Long.parseLong(journalMeal.getProperty("id").toString()) != id) {
+                    total_quantity += Integer.parseInt(e.getProperties().get("quantity").toString());
+                }
+             }
+        }
+        return (total_quantity > 0 && total_quantity <= 10);
+    }  
 }

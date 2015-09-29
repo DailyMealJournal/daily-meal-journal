@@ -29,6 +29,7 @@
 				<div class="row">
 					<h3 class="title">{{ journal_meal.meals.name }}</h3>
 					<a class="waves-effect waves-light btn btn-floating red right" ng-click="deleteJournalMeal(journal_meal.main.id)"><i class="material-icons left">delete</i></a>
+					<button class="waves-effect waves-light btn btn-floating green right" ng-click="enableEdit(journal_meal.main.id)"><i class="material-icons">edit</i></button>
 					<div class="col s12 m6 l4">
 						<img class="responsive-img materialboxed z-depth-2 list-meal"
 							ng-src="{{ journal_meal.meals.picture }}">
@@ -38,8 +39,12 @@
 							Calorie Power: <br> {{ journal_meal.meals.calories}} per <span
 								class="unit">{{ journal_meal.meals.unit  }}</span>
 						</p>
-						<p>
-							Quantity: <br> {{ journal_meal.main.quantity }}
+						<p ng-show="mode[journal_meal.main.id] != 'edit'">
+							Quantity:<br> {{ journal_meal.main.quantity }}
+						</p>
+						<p ng-show="mode[journal_meal.main.id] == 'edit' ">
+							Quantity:<br> <input class="edit-input" type="text" ng-model="journal_meal.main.quantity"> 
+							<button class="waves-effect waves-light btn  green right" ng-disabled="!isNumeric(journal_meal.main.quantity) || journal_meal.main.quantity == '' || journal_meal.main.quantity > 10 || journal_meal.main.quantity < 1" ng-click="updateJournalMeal(journal_meal.main.id, journal_meal.main.journal_id, journal_meal.main.quantity)"><i class="material-icons">edit</i></button>
 						</p>
 						<div class="description">
 							Description: 
@@ -62,10 +67,10 @@
 			<div class="section" ng-repeat="meal in meals | filter: global.search">
 				<div class="row">
 					<h3 class="title">{{ meal.name }}</h3>
-					<button class="waves-effect waves-light btn btn-floating red right" ng-disabled="meal_quantity == '' || meal_quantity > 10 || meal_quantity < 1" ng-click="addMealToJournal(meal.id, meal_quantity)"><i class="material-icons left">add</i></button>
-					<div class="quantity-meal right"> 
+					<button class="waves-effect waves-light btn btn-floating red right" ng-disabled="!isNumeric(meal_quantity[meal.id]) || meal_quantity[meal.id] == '' || meal_quantity[meal.id] > 10 || meal_quantity[meal.id] < 1" ng-click="addMealToJournal(meal.id)"><i class="material-icons left">add</i></button>
+					<div class="quantity-meal input-field right"> 
+						<input id="quantity_{{meal.id}}" type="text" ng-model="meal_quantity[meal.id]"  class="validate" ng-class="(meal_quantity[meal.id] == '') ? '' : (!isNumeric(meal_quantity[meal.id]) || meal_quantity[meal.id] > 10 || meal_quantity[meal.id] < 1)  ? 'invalid' : 'valid' ">
 						<label for="quantity_{{meal.id}}">Enter Quantity</label>
-						<input id="quantity_{{meal.id}}" type="text" ng-model="meal_quantity">
 					</div>
 					<div class="col s12 m6 l4">
 						<img class="responsive-img materialboxed z-depth-2 list-meal"

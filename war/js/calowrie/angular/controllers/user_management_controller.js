@@ -41,7 +41,6 @@ user_management.controller('editAccount', ['$scope','$http', function($scope, $h
 				   firstname: $scope.userProfile.firstName, lastname:$scope.userProfile.lastName}
 
 	    $scope.updateClick = function() {
-	    	alert($scope.editAccountModel.id);
 	
 	//    	alert(document.getElementById(username+id).value);
 	//    	$httpParamSerializer
@@ -58,7 +57,11 @@ user_management.controller('editAccount', ['$scope','$http', function($scope, $h
 	//    	alert("after");
 	//    	
 	    	updateAccount.success(function(data, status, headers, config) {
-	    		alert(data.errors);
+	    		if(typeof(data.errors) != 'undefined') {
+	    			$scope.errors = [data.errors];
+	    		} else {
+	    			location.reload();
+	    		}
 	    		
 	//    		alert("lalal inside");
 	//    		if(data.errorList.length == 0) {

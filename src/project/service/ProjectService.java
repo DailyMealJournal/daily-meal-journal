@@ -29,8 +29,8 @@ public class ProjectService {
 //          user.setId(input.getId());
             user.setUsername(input.getUsername());
             user.setPassword(input.getPassword());
-            user.setFirstName(input.getFirstname());
-            user.setLastName(input.getLastname());
+            user.setFirstName(input.getFirstName());
+            user.setLastName(input.getFirstName());
             
             if(!this.dao.createUser(user)){
                 input.setErrorList(new ArrayList<String>());
@@ -40,10 +40,11 @@ public class ProjectService {
             user.setId(input.getId());
             user.setUsername(input.getUsername());
             user.setPassword(input.getPassword());
-            user.setFirstName(input.getFirstname());
-            user.setLastName(input.getLastname());
+            user.setFirstName(input.getFirstName());
+            user.setLastName(input.getLastName());
             
-            System.out.println("\n\nProjectService, updateUser " + user.getId());
+            
+            System.out.println("\n\nProjectService, updateUser " + user.getLastName());
             
             if(!this.dao.updateUser(user)){
                 input.setErrorList(new ArrayList<String>());
@@ -179,8 +180,8 @@ public class ProjectService {
 	   public JournalMealDto journalMeal(JournalMealDto input, String action) {
 	        JournalMeal journalMeal = new JournalMeal();
 	        int checkResult = this.dao.checkJournalTotalCalories(input.getJournal_id());
-	        boolean checkQuantity = this.dao.checkJournalMealLimit(input.getJournal_id(), input.getQuantity());
 	        if(action.equals("create_journal_meal")) {
+	            boolean checkQuantity = this.dao.checkJournalMealLimit(input.getJournal_id(), input.getQuantity());
 	            journalMeal.setJournal_id(input.getJournal_id());
 	            journalMeal.setMeal_id(input.getMeal_id());
 	            journalMeal.setQuantity(input.getQuantity());
@@ -196,12 +197,12 @@ public class ProjectService {
 	              ArrayList<String> errorList = new ArrayList<String>();
 	              if(checkResult <= 0)
 	              {
-	                  errorList.add("If you add this meal. You have reached the daily limit of 2000 calories per day.");
+	                  errorList.add("Meal cannot be added. You have reached the daily intake limit of 2000 calories per day.");
 	              }
 	              
 	              if(!checkQuantity)
 	              {
-	                  errorList.add("Daily Meal Limit has been reached. You cannot add anymore meals for today.");
+	                  errorList.add("You have reached the daily limit of 10 meals, you cannot add anymore meals for today.");
 	              }
 	              input.setErrorList(errorList);
 	            }
@@ -213,8 +214,27 @@ public class ProjectService {
 	                input.getErrorList().add("Journal Meal cannot be deleted");
 	            }
            } else if(action.equals("update_journal_meal")){
-                journalMeal.setId(input.getId());
-                
+               boolean checkQuantity = this.dao.checkUpdateJournalMealLimit(input.getJournal_id(), input.getQuantity());
+               if(checkResult >= 0 && checkQuantity) {
+                    journalMeal.setId(input.getId());
+                    journalMeal.setQuantity(input.getQuantity());
+                    if(!this.dao.updateJournalMeal(journalMeal)){
+                        input.setErrorList(new ArrayList<String>());
+                        input.getErrorList().add("Journal Meal cannot be update");
+                    }
+               } else {
+                   ArrayList<String> errorList = new ArrayList<String>();
+                   if(checkResult <= 0)
+                   {
+                       errorList.add("Meal cannot be added. You have reached the daily intake limit of 2000 calories per day.");
+                   }
+                   
+                   if(!checkQuantity)
+                   {
+                       errorList.add("You have reached the daily limit of 10 meals, you cannot add anymore meals for today.");
+                   }
+                   input.setErrorList(errorList);
+                 }
             }
 	        
 	        return input;

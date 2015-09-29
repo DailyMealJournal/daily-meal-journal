@@ -58,7 +58,6 @@ public abstract class APIController extends Controller{
             e.printStackTrace();
             sess = null;
         }
-        System.out.print(sess.getMap());
         return sess.getMap();
     }
 }
