@@ -1,6 +1,6 @@
 var meal_journal = angular.module("myJournal", []);
 
-meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', '$httpParamSerializer', '$parse', function($scope, $http, $filter, $httpParamSerializer,$parse) {
+meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', '$httpParamSerializer', function($scope, $http, $filter, $httpParamSerializer) {
 
 
 
@@ -51,7 +51,9 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		this.getJournalEntry();
 		this.journal.meals = '';
 		this.total_calories = '-';
-		this.meal_quantity = '';
+		this.meal_quantity = {};
+		this.edit_clicked = {};
+		this.mode = {};
 		this.show_text = [];
 
 	}
@@ -165,9 +167,11 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		var jsonData = {
 			meal_id: meal_id,
 			journal_id: $scope.journalId,
-			quantity: meal_quantity,
+			quantity: $scope.meal_quantity[meal_id],
 			total_calories: $scope.total_calories
 		}
+
+
 
 		addJournalMeal = $http.post(base_url + 'journal_meal/create', $httpParamSerializer(jsonData),
 
@@ -176,14 +180,15 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 			}
 		);
 
-		addJournalMeal .success(function(data, status, headers, config) {
-			if(typeof data.success != 'undefined') {
-				$scope.getJournalMeals();
-			} else if(typeof data.errors != 'undefined') {
+		addJournalMeal.success(function(data, status, headers, config) {
+			$scope.getJournalMeals();
+			if(typeof data.errors != 'undefined') {
 				$scope.errors = data.errors;
 			}
-
 		});
+
+		$scope.meal_quantity = {};
+		
 	}
 
 	$scope.getJournalMeals = function () {
@@ -239,10 +244,48 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		);
 
 		deleteJournalMeal.success(function(data,status, headers, config) {
-			$scope.getJournalMeals();
+			if(typeof(data.success) != 'undefined') {
+				$scope.getJournalMeals();
+			} else {
+				$scope.errors = data.errors;
+			}
 		});
 	}
 
+	$scope.updateJournalMeal = function(journal_meal_id, journal_id, journal_meal_quantity) {
+		$scope.errors = '';
+		var jsonData = {
+			id: journal_meal_id,
+			journal_id: journal_id,
+			quantity: journal_meal_quantity
+		}
+
+
+		editJournalMeal = $http.post(base_url + 'journal_meal/update', $httpParamSerializer(jsonData),
+
+			{
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}
+		);
+
+		editJournalMeal.success(function(data,status, headers, config) {
+			console.log(data);
+			if(typeof(data.success) != 'undefined') {
+				$scope.getJournalMeals();
+			} else {
+				$scope.errors = data.errors;
+			}
+		});
+	}
+
+	$scope.enableEdit = function(journal_meal_id) {
+
+		if(typeof($scope.mode[journal_meal_id]) != 'undefined' && $scope.mode[journal_meal_id] == 'edit') {
+			$scope.mode[journal_meal_id] = '';
+		} else {
+			$scope.mode[journal_meal_id] = 'edit';
+		}
+	}
 
 	function getJournal(jsonData) {
 		journalMealEntry = $http.get(base_url + 'meal_journal/read', { params: jsonData });
@@ -261,6 +304,10 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 				$scope.total_calories = '-';
 			}
 		});
+	}
+
+	$scope.isNumeric = function(n) {
+  		return $.isNumeric(n);
 	}
 
 	

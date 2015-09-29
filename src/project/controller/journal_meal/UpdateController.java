@@ -21,8 +21,11 @@ public class UpdateController extends Controller {
         Validators v = new Validators(this.request);
         v.add("id", v.required("Journal Meal id Required"));
         v.add("quantity", v.required("Quantity is required"), v.maxlength(10), v.minlength(1));
+        v.add("journal_id", v.required("Journal Id Required"));
         if (v.validate()) {
-            journalMealDto.setId(Long.valueOf(input.getString(" id")));
+            journalMealDto.setId(Long.valueOf(input.getString("id")));
+            journalMealDto.setJournal_id(Long.valueOf(input.getString("journal_id")));
+            journalMealDto.setQuantity(Integer.parseInt(input.getString("quantity")));
             journalVal = service.journalMeal(journalMealDto, "update_journal_meal");
 
             if(journalVal.getErrorList().isEmpty())

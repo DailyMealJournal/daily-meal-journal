@@ -27,6 +27,9 @@
 
 <div ng-module="myProfile">
 <div class="content" ng-controller="editAccount" data-ng-init="init()">
+	<div class="errors row" ng-repeat="error in errors">
+		<p class="red-text offset-s2 col s9"> {{ error }}</p>
+	</div>
 	<div class="row">
 		<div class="offset-s2 col s9">
 			<div class="col s2">

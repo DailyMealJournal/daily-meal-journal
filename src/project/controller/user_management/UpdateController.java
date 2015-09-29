@@ -35,13 +35,14 @@ public class UpdateController extends APIController {
             Map<String,Object> input = new RequestMap(this.request);
             
             UserDto userDto = new UserDto();
-            
+
             userDto.setId(Long.valueOf(input.get("id").toString()));
             userDto.setUsername(input.get("username").toString());
-            userDto.setFirstname(input.get("firstname").toString());
-            userDto.setLastname(input.get("lastname").toString());
+            userDto.setFirstName(input.get("firstname").toString());
+            userDto.setLastName(input.get("lastname").toString());
             userDto.setPassword(input.get("password").toString());
             
+
             service.user(userDto, "update_user");
             
         } else {
@@ -51,9 +52,9 @@ public class UpdateController extends APIController {
                     errors.append(", ");
                 }
                 errors.append(v.getErrors().get(i));
-            }            
+            }
+            json.put("errors", errors.toString());
         }
-        json.put("errors", errors.toString());
         
         response.setContentType("application/json");
         response.getWriter().write(json.toString());

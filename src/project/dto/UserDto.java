@@ -7,8 +7,8 @@ public class UserDto {
     private List<String> errorList;
     private String username;
     private String password;
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     
     public List<String> getErrorList() {
         return errorList;
@@ -35,16 +35,16 @@ public class UserDto {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
