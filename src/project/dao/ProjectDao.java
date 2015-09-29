@@ -182,45 +182,60 @@ public class ProjectDao {
         boolean result = true;
         
         try{
-            Transaction tx = Datastore.beginTransaction();
             Entity e = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, mealModel.getId()).asSingleEntity();
             int total_calories = 0;
+            boolean can_add = true;
             if(e != null){
                 List<Entity> journalMeal = Datastore.query(JournalMeal.KIND_NAME).filter("meal_id",  FilterOperator.EQUAL, mealModel.getId()).asList();
                 
-                
-                for(Entity item: journalMeal ) {
-                    item.setProperty("total_calories", (int) Integer.parseInt(item.getProperty("quantity").toString()) * mealModel.getCalories());
-                    Datastore.put(item);
-                }
-                
                 for(Entity item: journalMeal ) {
                     List<Entity> journalMealQuery = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id",  FilterOperator.EQUAL, Long.parseLong(item.getProperty("journal_id").toString())).asList();
-                    if(total_calories < 2000 && total_calories != -1) {
-                        total_calories = 0;
+                    if(total_calories <= 2000) {
                         for(Entity item2 : journalMealQuery) {
-                            total_calories += Integer.parseInt(item2.getProperty("total_calories").toString());
+                            if(Long.parseLong(item2.getProperty("meal_id").toString()) != mealModel.getId()) {
+                                total_calories += Integer.parseInt(item2.getProperty("total_calories").toString());
+                            } else {
+                                total_calories += Integer.parseInt(item2.getProperty("quantity").toString()) * mealModel.getCalories();
+                            }
                         }
+                    }
+                    
+                    if(total_calories > 2000) {
+                        can_add = false;
                     } else {
-                        total_calories = -1;
+                        total_calories = 0;
                     }
                 }
-                e.setProperty("name", mealModel.getName());
-                e.setProperty("category", mealModel.getCategory());
-                e.setProperty("def_quantity", mealModel.getDef_quantity());
-                e.setProperty("unit", mealModel.getUnit());
-                e.setProperty("description", mealModel.getDescription());
-                e.setProperty("calories", mealModel.getCalories());
-                e.setProperty("picture", mealModel.getPicture());
                 
-                Datastore.put(e);
+                if(can_add)
+                {
+                    for(Entity item: journalMeal ) {
+                        Transaction tz = Datastore.beginTransaction();
+                        item.setProperty("total_calories", (int) Integer.parseInt(item.getProperty("quantity").toString()) * mealModel.getCalories());
+                        Datastore.put(item);
+                        tz.commit();
+                    }
+                    Transaction tx = Datastore.beginTransaction();
+                    e.setProperty("name", mealModel.getName());
+                    e.setProperty("category", mealModel.getCategory());
+                    e.setProperty("def_quantity", mealModel.getDef_quantity());
+                    e.setProperty("unit", mealModel.getUnit());
+                    e.setProperty("description", mealModel.getDescription());
+                    e.setProperty("calories", mealModel.getCalories());
+                    e.setProperty("picture", mealModel.getPicture());
+                    
+                    Datastore.put(e);
+                    tx.commit();
+                }
+                else
+                {
+                    result = false;
+                }
+
+                
             }
-            if(total_calories != -1) {
-                tx.commit();
-            } else {
-                tx.rollback();
-                result = false;
-            }
+            
+
         } catch(Exception e){
             result = false;
         }

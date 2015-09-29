@@ -98,12 +98,17 @@ meal_management.controller('MealsController', ['$scope', '$http', function($scop
 		var editMealRequest = $http.post("update", $.param($scope.editMealModel));
 		
 		editMealRequest.success(function(data, status, headers, config){
-			if(data.errors.length == 0){
+			if($.isEmptyObject(data.errors) || data.errors.length == 0){
 				$scope.getAllMeals();
 				$("#modal_edit_meal").closeModal();
 				$scope.editMealModel = [];
 			} else{
-				$scope.editMealModel.error = data.errors;
+				$scope.editMealModel.errors = {};
+				if(typeof(data.errors) == 'string') {
+					$scope.editMealModel.errors = data.errors;
+				} else {
+					$scope.editMealModel.errors = data.errors[0];
+				}
 			}
 		});
 		

@@ -114,10 +114,8 @@ public class ProjectService {
                 meal.setDescription(input.getDescription());
                 meal.setPicture(input.getPicture());
                 
-                System.out.println("\n\nProjectService, updateMeal" + meal.toString());
-                
+                input.setErrorList(new ArrayList<String>());
                 if(!this.dao.updateMeal(meal)){
-                    input.setErrorList(new ArrayList<String>());
                     input.getErrorList().add("An occurred while updating the meal in Datastore");
                 }
                 

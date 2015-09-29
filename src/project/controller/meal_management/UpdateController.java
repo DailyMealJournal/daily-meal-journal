@@ -53,9 +53,13 @@ public class UpdateController extends APIController {
                 mealDto.setDescription(json.getString("description"));
                 mealDto.setPicture(json.getString("picture"));
                 
-                service.meal(mealDto, "update_meal");
+                mealDto = service.meal(mealDto, "update_meal");
                 
-                json.put("errors","");
+                if(!mealDto.getErrorList().isEmpty()) {
+                    json.put("errors",mealDto.getErrorList());
+                } else {
+                    json.put("success", "true");
+                }
 
             } catch(Exception e){
                 e.printStackTrace();
