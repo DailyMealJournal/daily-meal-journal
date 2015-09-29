@@ -3,6 +3,7 @@ package project.dto;
 import java.util.List;
 
 public class UserDto {
+	private long id;
     private List<String> errorList;
     private String username;
     private String password;
@@ -15,6 +16,13 @@ public class UserDto {
     public void setErrorList(List<String> errorList) {
         this.errorList = errorList;
     }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }

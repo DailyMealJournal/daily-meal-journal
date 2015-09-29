@@ -22,7 +22,8 @@ public class Meal implements Serializable {
     private int calories;
     private String description;
     private String picture;
-        
+    
+
     @Attribute(primaryKey = true)
     private Key key;
 

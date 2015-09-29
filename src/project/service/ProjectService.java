@@ -26,6 +26,7 @@ public class ProjectService {
     public UserDto user(UserDto input, String action){
         User user = new User();
         if(action.equals("create")){
+//          user.setId(input.getId());
             user.setUsername(input.getUsername());
             user.setPassword(input.getPassword());
             user.setFirstName(input.getFirstname());
@@ -34,11 +35,27 @@ public class ProjectService {
             if(!this.dao.createUser(user)){
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("Username has already been taken.");
+            } 
+        } else if(action.equals("update_user")){            
+            user.setId(input.getId());
+            user.setUsername(input.getUsername());
+            user.setPassword(input.getPassword());
+            user.setFirstName(input.getFirstname());
+            user.setLastName(input.getLastname());
+            
+            System.out.println("\n\nProjectService, updateUser " + user.getId());
+            
+            if(!this.dao.updateUser(user)){
+                input.setErrorList(new ArrayList<String>());
+                input.getErrorList().add("An occurred while updating the meal in Datastore");
             }
-        } 
-        
+            
+        }        
         return input;
     }
+    public Entity readEntity(UserDto input) {
+        return this.dao.readUser(input);
+    } 
     
     public Entity getEntity(UserDto input) {
         return this.dao.getUser(input);
