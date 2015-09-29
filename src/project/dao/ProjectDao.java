@@ -90,26 +90,13 @@ public class ProjectDao {
         return result;
     }
 
-    public User readUser(User userModel){
-        boolean result = true;
-        User user = null;
-        System.out.println("ReadUser enter, user id: " + userModel.getId());
+    public Entity readUser(UserDto user){
+        Query query = new Query(User.KIND_NAME);
         
-        try{
-            Transaction tx = Datastore.beginTransaction();
-            Entity e = Datastore.query(User.KIND_NAME).filter("id", FilterOperator.EQUAL, userModel.getId()).asSingleEntity();
+        Filter id =new FilterPredicate("id", FilterOperator.EQUAL, user.getId());
+        query.setFilter(id);
 
-            if(e != null){ 
-                Map<String,Object> properties;
-                properties = e.getProperties();
-                user = new User();
-                BeanUtil.copy(properties, user);            }
-            
-        } catch(Exception e){
-            result = false;
-        }
-       
-        return user;
+        return datastore.prepare(query).asSingleEntity();
     }
 
     public Entity getUser(UserDto user){

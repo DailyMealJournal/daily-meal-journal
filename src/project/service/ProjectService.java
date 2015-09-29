@@ -48,20 +48,12 @@ public class ProjectService {
                 input.getErrorList().add("An occurred while updating the meal in Datastore");
             }
             
-        }else if(action.equals("read_user")){        	
-        	user.setId(input.getId());
-            
-            User userResult = this.dao.readUser(user);            
-            input.setFirstname(userResult.getFirstName());
-            input.setLastname(userResult.getLastName());
-            input.setPassword(userResult.getPassword());
-            input.setUsername(userResult.getUsername());
-            
-        }
-        
+        }        
         return input;
     }
-    
+    public Entity readEntity(UserDto input) {
+        return this.dao.readUser(input);
+    }    
     public Entity getEntity(UserDto input) {
         return this.dao.getUser(input);
     }

@@ -26,7 +26,7 @@
 <styleurl url="calowrie/meal_journal/index.css"></styleurl>
 
 <div ng-module="myProfile">
-<div class="content" ng-controller="editAccount">
+<div class="content" ng-controller="editAccount" data-ng-init="init()">
 	<div class="row">
 		<div class="offset-s2 col s9">
 			<div class="col s2">
@@ -75,7 +75,7 @@
 				<p class="field" ng-show="field">{{ userProfile.lastName }}</p>
 			</div>
 			<div class="col s7" ng-show="editField">
-				<input ng-model="editAccountModel.lastname" type="text" value="{{editAccountModelm.lastName }}"/>
+				<input ng-model="editAccountModel.lastname" type="text" value="{{editAccountModel.lastName}}"/>
 			</div>
 		</div>
 	</div>
@@ -97,6 +97,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="offset-s2 col s9">
 			<a ng-show="editButton" ng-click="toggleFields()" class="waves-effect waves-light btn"><i class="material-icons right">edit</i>EDIT ACCOUNT</a>
@@ -108,5 +109,4 @@
 </div>
 <%-- Put JS Scripts ../css is not required --%>
 <jsscript src="calowrie/angular/controllers/user_management_controller.js"></jsscript>
-<jsscript src="calowrie/meal_journal/index.js"></jsscript>
 <jsp:include page="/layout-footer.jsp" />
