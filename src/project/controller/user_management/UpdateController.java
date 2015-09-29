@@ -43,7 +43,10 @@ public class UpdateController extends APIController {
             userDto.setPassword(input.get("password").toString());
             
 
-            service.user(userDto, "update_user");
+            if(service.user(userDto, "update_user") != null) {
+                json = new JSONObject(service.getEntity(userDto));
+                sessionScope("user", setSession(json));
+            }
             
         } else {
             errors.append("Errors: ");

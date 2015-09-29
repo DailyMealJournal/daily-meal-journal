@@ -37,7 +37,6 @@ public class LoginController extends APIController {
                     error.put("code", "1004");
                 }
         } catch (Exception e) {
-        	System.out.print(e);
             error = new JSONObject();
             error.put("message","Invalid Username and/or Password");
             error.put("code", "1002");
