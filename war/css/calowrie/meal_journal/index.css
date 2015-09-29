@@ -87,3 +87,8 @@
 .no-meals {
 	margin-top: 45%;
 }
+
+.quantity-meal {
+	width: 15%;
+	margin: -18px 10px 20px 10px;
+}

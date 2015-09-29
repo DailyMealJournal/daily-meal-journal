@@ -279,18 +279,19 @@ public class ProjectDao {
                 Filter meal_id =  new FilterPredicate(m.meal_id.toString() ,FilterOperator.EQUAL, journalMeal.getMeal_id());
                 temp = Datastore.query(JournalMeal.KIND_NAME).filter(CompositeFilterOperator.and(journal_id, meal_id)).asSingleEntity();
                 int calories = Integer.parseInt(meal.getProperty("calories").toString());
+                int quantity =journalMeal.getQuantity();
                 if(temp == null) {
                     Key journalKey = Datastore.allocateId(JournalMeal.KIND_NAME);
                     
                     journalMeal.setKey(journalKey);
                     journalMeal.setId(journalKey.getId());
-                    journalMeal.setQuantity(1);
+                    journalMeal.setQuantity(quantity);
                     journalMeal.setTotal_calories(calories);
                     result = journalMeal;
                     Datastore.put(journalMeal);
                 } else {
                    
-                    int i_quantity = Integer.parseInt(temp.getProperty("quantity").toString()) + 1;
+                    int i_quantity = Integer.parseInt(temp.getProperty("quantity").toString()) + quantity;
                     temp.setProperty("quantity", i_quantity);
                     temp.setProperty("total_calories", calories * i_quantity);
                     journalMeal.setId(Long.parseLong(temp.getProperty("id").toString()));
@@ -338,6 +339,15 @@ public class ProjectDao {
         return (total_calories < 2000) ? total_calories: -1;
     }
     
+    public boolean checkJournalMealLimit(Long journalId, int addedQuantity) {
+        List<Entity> list = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id", FilterOperator.EQUAL, journalId).asList();
+        int total_quantity = addedQuantity;
+        for(Entity e: list) {
+            total_quantity += Integer.parseInt(e.getProperties().get("quantity").toString());
+         }
+        
+        return (total_quantity > 0 && total_quantity <= 10);
+    }
     public boolean deleteJournalMeal(JournalMeal journalMeal) {
         boolean result = true;
         try{

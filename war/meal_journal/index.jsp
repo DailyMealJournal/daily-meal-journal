@@ -17,6 +17,11 @@
 			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1" ng-click="scopeDay(1)"><i class="material-icons">arrow_forward</i></a>
 		</div>
 	</div>
+	<div class="errors row">
+		<div class="col s12 offset-s2 red-text" ng-repeat="error in errors">
+			<p> {{ error }}</p>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col s10 m7 offset-m2" id="list_meals">
 			<div class="section"
@@ -57,7 +62,11 @@
 			<div class="section" ng-repeat="meal in meals | filter: global.search">
 				<div class="row">
 					<h3 class="title">{{ meal.name }}</h3>
-					<a class="waves-effect waves-light btn btn-floating red right" ng-click="addMealToJournal(meal.id)"><i class="material-icons left">add</i></a>
+					<button class="waves-effect waves-light btn btn-floating red right" ng-disabled="meal_quantity == '' || meal_quantity > 10 || meal_quantity < 1" ng-click="addMealToJournal(meal.id, meal_quantity)"><i class="material-icons left">add</i></button>
+					<div class="quantity-meal right"> 
+						<label for="quantity_{{meal.id}}">Enter Quantity</label>
+						<input id="quantity_{{meal.id}}" type="text" ng-model="meal_quantity">
+					</div>
 					<div class="col s12 m6 l4">
 						<img class="responsive-img materialboxed z-depth-2 list-meal"
 							ng-src="{{ meal.picture || '/assets/img/food/pic2.jpg'  }}">

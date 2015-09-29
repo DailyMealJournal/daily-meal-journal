@@ -1,6 +1,8 @@
 package project.controller.meal_journal;
 
 
+import java.util.Map;
+
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
@@ -14,7 +16,7 @@ public class CreateController extends Controller {
 	private ProjectService service = new ProjectService();
     @Override
     public Navigation run() throws Exception {
-        JournalDto journalDto = new JournalDto();   
+        JournalDto journalDto = new JournalDto();
         JSONObject json = new JSONObject();
         Validators v = new Validators(this.request);
         v.add("journal_date", v.required("Journal Date required"));
@@ -39,8 +41,6 @@ public class CreateController extends Controller {
         if(journalDto.getErrorList().size() > 0) {
         	json.put("errors", journalDto.getErrorList());
         }
-        
-        System.out.print(json);
         response.setContentType("application/json");
         response.getWriter().write(json.toString());
         return null;

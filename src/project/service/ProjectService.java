@@ -26,6 +26,7 @@ public class ProjectService {
     public UserDto user(UserDto input, String action){
         User user = new User();
         if(action.equals("create")){
+//          user.setId(input.getId());
             user.setUsername(input.getUsername());
             user.setPassword(input.getPassword());
             user.setFirstName(input.getFirstname());
@@ -34,11 +35,27 @@ public class ProjectService {
             if(!this.dao.createUser(user)){
                 input.setErrorList(new ArrayList<String>());
                 input.getErrorList().add("Username has already been taken.");
+            } 
+        } else if(action.equals("update_user")){            
+            user.setId(input.getId());
+            user.setUsername(input.getUsername());
+            user.setPassword(input.getPassword());
+            user.setFirstName(input.getFirstname());
+            user.setLastName(input.getLastname());
+            
+            System.out.println("\n\nProjectService, updateUser " + user.getId());
+            
+            if(!this.dao.updateUser(user)){
+                input.setErrorList(new ArrayList<String>());
+                input.getErrorList().add("An occurred while updating the meal in Datastore");
             }
-        } 
-        
+            
+        }        
         return input;
     }
+    public Entity readEntity(UserDto input) {
+        return this.dao.readUser(input);
+    } 
     
     public Entity getEntity(UserDto input) {
         return this.dao.getUser(input);
@@ -162,10 +179,12 @@ public class ProjectService {
 	   public JournalMealDto journalMeal(JournalMealDto input, String action) {
 	        JournalMeal journalMeal = new JournalMeal();
 	        int checkResult = this.dao.checkJournalTotalCalories(input.getJournal_id());
+	        boolean checkQuantity = this.dao.checkJournalMealLimit(input.getJournal_id(), input.getQuantity());
 	        if(action.equals("create_journal_meal")) {
 	            journalMeal.setJournal_id(input.getJournal_id());
 	            journalMeal.setMeal_id(input.getMeal_id());
-	            if(checkResult >= 0) {
+	            journalMeal.setQuantity(input.getQuantity());
+	            if(checkResult >= 0 && checkQuantity) {
     	            JournalMeal createJournalMeal = this.dao.createJournalMeal(journalMeal); 
     	            if(createJournalMeal == null){
     	                input.setErrorList(new ArrayList<String>());
@@ -175,7 +194,15 @@ public class ProjectService {
     	            }
 	            } else {
 	              ArrayList<String> errorList = new ArrayList<String>();
-	              errorList.add("If you add this meal. You have reached the daily limit of 2000 calories per day.");
+	              if(checkResult <= 0)
+	              {
+	                  errorList.add("If you add this meal. You have reached the daily limit of 2000 calories per day.");
+	              }
+	              
+	              if(!checkQuantity)
+	              {
+	                  errorList.add("Daily Meal Limit has been reached. You cannot add anymore meals for today.");
+	              }
 	              input.setErrorList(errorList);
 	            }
 	        } else if(action.equals("delete_journal_meal")){
@@ -185,7 +212,10 @@ public class ProjectService {
 	                input.setErrorList(new ArrayList<String>());
 	                input.getErrorList().add("Journal Meal cannot be deleted");
 	            }
-	        }
+           } else if(action.equals("update_journal_meal")){
+                journalMeal.setId(input.getId());
+                
+            }
 	        
 	        return input;
 	        
