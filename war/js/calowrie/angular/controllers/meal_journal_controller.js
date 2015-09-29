@@ -310,7 +310,15 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
   		return $.isNumeric(n);
 	}
 
-	
+	$scope.isQuantityValid = function() {
+		var journal_meals = $scope.journal.meals;
+		var quantity = 0;
+		for(var i in journal_meals ) {
+			quantity += Number(journal_meals[i].main.quantity);
+		}
+
+		return (quantity > 0 && quantity <= 10);
+	}
 
 }]);
 

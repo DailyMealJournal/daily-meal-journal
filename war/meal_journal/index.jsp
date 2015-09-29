@@ -29,7 +29,7 @@
 				<div class="row">
 					<h3 class="title">{{ journal_meal.meals.name }}</h3>
 					<a class="waves-effect waves-light btn btn-floating red right" ng-click="deleteJournalMeal(journal_meal.main.id)"><i class="material-icons left">delete</i></a>
-					<button class="waves-effect waves-light btn btn-floating green right" ng-click="enableEdit(journal_meal.main.id)"><i class="material-icons">edit</i></button>
+					<button class="waves-effect waves-light btn btn-floating green right" ng-click="enableEdit(journal_meal.main.id)" ng-show="isNumeric(journal_meal.main.quantity) && isQuantityValid()"><i class="material-icons">edit</i></button>
 					<div class="col s12 m6 l4">
 						<img class="responsive-img materialboxed z-depth-2 list-meal"
 							ng-src="{{ journal_meal.meals.picture }}">
@@ -44,7 +44,7 @@
 						</p>
 						<p ng-show="mode[journal_meal.main.id] == 'edit' ">
 							Quantity:<br> <input class="edit-input" type="text" ng-model="journal_meal.main.quantity"> 
-							<button class="waves-effect waves-light btn  green right" ng-disabled="!isNumeric(journal_meal.main.quantity) || journal_meal.main.quantity == '' || journal_meal.main.quantity > 10 || journal_meal.main.quantity < 1" ng-click="updateJournalMeal(journal_meal.main.id, journal_meal.main.journal_id, journal_meal.main.quantity)"><i class="material-icons">edit</i></button>
+							<button class="waves-effect waves-light btn  green right" ng-disabled="!isNumeric(journal_meal.main.quantity) || !isQuantityValid()" ng-click="updateJournalMeal(journal_meal.main.id, journal_meal.main.journal_id, journal_meal.main.quantity)"><i class="material-icons">edit</i></button>
 						</p>
 						<div class="description">
 							Description: 
