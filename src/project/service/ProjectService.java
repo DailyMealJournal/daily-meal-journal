@@ -215,10 +215,6 @@ public class ProjectService {
            } else if(action.equals("update_journal_meal")){
                 journalMeal.setId(input.getId());
                 
-                if(!this.dao.updateJournalMeal(journalMeal)){
-                    input.setErrorList(new ArrayList<String>());
-                    input.getErrorList().add("Journal Meal cannot be update");
-                }
             }
 	        
 	        return input;
