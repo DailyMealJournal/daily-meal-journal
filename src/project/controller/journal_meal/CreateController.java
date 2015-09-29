@@ -23,6 +23,7 @@ public class CreateController extends Controller {
         Validators v = new Validators(this.request);
         v.add("meal_id", v.required("Please choose a meal"));
         v.add("journal_id", v.required("An Entry is required"));
+        v.add("quantity", v.required("Quantity is required"), v.maxlength(10), v.minlength(1));
         
         
         if (v.validate()) {
@@ -32,7 +33,7 @@ public class CreateController extends Controller {
             
             journalMeal.setMeal_id(json.getLong("meal_id"));
             journalMeal.setJournal_id(json.getLong("journal_id"));
-            
+            journalMeal.setQuantity(json.getInt("quantity"));
             journalMeal = service.journalMeal(journalMeal, "create_journal_meal");
             
             if(journalMeal.getErrorList().isEmpty())

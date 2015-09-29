@@ -1,6 +1,6 @@
 var meal_journal = angular.module("myJournal", []);
 
-meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', '$httpParamSerializer', function($scope, $http, $filter, $httpParamSerializer) {
+meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', '$httpParamSerializer', '$parse', function($scope, $http, $filter, $httpParamSerializer,$parse) {
 
 
 
@@ -43,16 +43,17 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 						calorie_limit: 2000
 				    };
 	**/
-	$scope.journal = {meals: []};
-	$scope.date = new Date();
-
-
 
 	$scope.init = function() {
+		this.date = new Date();
+		this.journal = {meals: []};
 		this.getAllMeals();
 		this.getJournalEntry();
 		this.journal.meals = '';
 		this.total_calories = '-';
+		this.meal_quantity = '';
+		this.show_text = [];
+
 	}
 
 
@@ -78,6 +79,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 
 	$scope.getJournalEntry = function()
 	{
+		$scope.errors = '';
 		var jsonData = {
 					journal_date: $filter('date')(this.date ,'yyyy-MM-dd'),
 					user_id: session_data['id']
@@ -88,6 +90,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 	$scope.scopeDay = function(value)
 	{
 		$scope.date.setDate($scope.date.getDate() + value);
+		$scope.errors = '';
 		var jsonData = {
 					journal_date: $filter('date')($scope.date ,'yyyy-MM-dd'),
 					user_id: session_data['id']
@@ -97,6 +100,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 
 	$scope.newEntry = function() {
 
+		$scope.errors = '';
 		var jsonData = {
 			journal_date: $filter('date')(this.date ,'yyyy-MM-dd'),
 			user_id: session_data['id']
@@ -126,6 +130,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 
 	$scope.deleteEntry = function() {
 
+		$scope.errors = '';
 		var jsonData = {
 			journal_id: $scope.journalId
 		};	
@@ -154,11 +159,14 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 
 	}
 
-	$scope.addMealToJournal = function ( meal_id ) {
+	$scope.addMealToJournal = function ( meal_id, meal_quantity ) {
 
+		$scope.errors = '';
 		var jsonData = {
 			meal_id: meal_id,
-			journal_id: $scope.journalId
+			journal_id: $scope.journalId,
+			quantity: meal_quantity,
+			total_calories: $scope.total_calories
 		}
 
 		addJournalMeal = $http.post(base_url + 'journal_meal/create', $httpParamSerializer(jsonData),
@@ -171,12 +179,15 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 		addJournalMeal .success(function(data, status, headers, config) {
 			if(typeof data.success != 'undefined') {
 				$scope.getJournalMeals();
+			} else if(typeof data.errors != 'undefined') {
+				$scope.errors = data.errors;
 			}
 
 		});
 	}
 
 	$scope.getJournalMeals = function () {
+		$scope.errors = '';
 		var jsonData = {
 			journal_id: $scope.journalId
 		}
@@ -215,6 +226,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 	}
 
 	$scope.deleteJournalMeal = function( journal_meal_id ) {
+		$scope.errors = '';
 		var jsonData = {
 			id: journal_meal_id
 		}
@@ -230,6 +242,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 			$scope.getJournalMeals();
 		});
 	}
+
 
 	function getJournal(jsonData) {
 		journalMealEntry = $http.get(base_url + 'meal_journal/read', { params: jsonData });

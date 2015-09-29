@@ -162,10 +162,12 @@ public class ProjectService {
 	   public JournalMealDto journalMeal(JournalMealDto input, String action) {
 	        JournalMeal journalMeal = new JournalMeal();
 	        int checkResult = this.dao.checkJournalTotalCalories(input.getJournal_id());
+	        boolean checkQuantity = this.dao.checkJournalMealLimit(input.getJournal_id(), input.getQuantity());
 	        if(action.equals("create_journal_meal")) {
 	            journalMeal.setJournal_id(input.getJournal_id());
 	            journalMeal.setMeal_id(input.getMeal_id());
-	            if(checkResult >= 0) {
+	            journalMeal.setQuantity(input.getQuantity());
+	            if(checkResult >= 0 && checkQuantity) {
     	            JournalMeal createJournalMeal = this.dao.createJournalMeal(journalMeal); 
     	            if(createJournalMeal == null){
     	                input.setErrorList(new ArrayList<String>());
@@ -175,7 +177,15 @@ public class ProjectService {
     	            }
 	            } else {
 	              ArrayList<String> errorList = new ArrayList<String>();
-	              errorList.add("If you add this meal. You have reached the daily limit of 2000 calories per day.");
+	              if(checkResult <= 0)
+	              {
+	                  errorList.add("If you add this meal. You have reached the daily limit of 2000 calories per day.");
+	              }
+	              
+	              if(!checkQuantity)
+	              {
+	                  errorList.add("Daily Meal Limit has been reached. You cannot add anymore meals for today.");
+	              }
 	              input.setErrorList(errorList);
 	            }
 	        } else if(action.equals("delete_journal_meal")){
@@ -185,7 +195,14 @@ public class ProjectService {
 	                input.setErrorList(new ArrayList<String>());
 	                input.getErrorList().add("Journal Meal cannot be deleted");
 	            }
-	        }
+           } else if(action.equals("update_journal_meal")){
+                journalMeal.setId(input.getId());
+                
+                if(!this.dao.updateJournalMeal(journalMeal)){
+                    input.setErrorList(new ArrayList<String>());
+                    input.getErrorList().add("Journal Meal cannot be update");
+                }
+            }
 	        
 	        return input;
 	        
