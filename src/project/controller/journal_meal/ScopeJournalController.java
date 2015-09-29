@@ -33,7 +33,7 @@ public class ScopeJournalController extends APIController {
             }
             else
             {
-                json.put("errors", "No record   s found.");
+                json.put("errors", "No records found.");
             }
         } catch(Exception e){
             e.printStackTrace();

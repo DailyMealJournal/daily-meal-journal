@@ -7,18 +7,18 @@
 <styleurl url="calowrie/meal_journal/index.css"></styleurl>
 <div ng-module="myJournal" ng-controller="MealJournalController" data-ng-init="init()">
 	<div class="row">
-		<div class="offset-s3 col s1 arrow-left">
+		<div class="col s2 m1 offset-s4 offset-m1 arrow-left">
 			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1" ng-click="scopeDay(-1)"><i class="material-icons">arrow_back</i></a>
 		</div>
 		<div class="col s4">
 			<h5 class="center-align" id="date">{{ date | date:'longDate'}}</h5>
 		</div>
-		<div class="col s1 arrow-right">
+		<div class="col s2 m1 offset-s1 offset-m1 arrow-right">
 			<a class="waves-effect waves-red accent-1 btn-flat-large red-text text-accent-1" ng-click="scopeDay(1)"><i class="material-icons">arrow_forward</i></a>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col s7 offset-s2" id="list_meals">
+		<div class="col s10 m7 offset-m2" id="list_meals">
 			<div class="section"
 				ng-repeat="journal_meal in journal.meals | filter: global.search">
 				<div class="row">
@@ -30,13 +30,14 @@
 					</div>
 					<div class="col s8">
 						<p>
-							Calorie Power: <br> {{ journal_meal.meals.name}} <span
+							Calorie Power: <br> {{ journal_meal.meals.calories}} per <span
 								class="unit">{{ journal_meal.meals.unit  }}</span>
 						</p>
 						<p>
 							Quantity: <br> {{ journal_meal.main.quantity }}
 						</p>
 						<div class="description">
+							Description: 
 							<p>{{ journal_meal.meals.description }}</p>
 						</div>
 					</div>
@@ -52,7 +53,7 @@
 			</div>
 		</div>
 
-		<div class="col s7 offset-s2 hidden" id="meal_option">
+		<div class="col s10 m7 offset-m2 hidden" id="meal_option">
 			<div class="section" ng-repeat="meal in meals | filter: global.search">
 				<div class="row">
 					<h3 class="title">{{ meal.name }}</h3>
@@ -66,6 +67,7 @@
 							Calorie Power: <br> {{ meal.calories }} <span class="unit"> per {{ meal.unit }}</span>
 						</p>
 						<div class="description">
+							Description: 
 							<p>{{ meal.description }}</p>
 						</div>
 					</div>
@@ -78,6 +80,7 @@
 		</div>
 
 		<div class="fixed col s3">
+			<input type="hidden" ng-model="journalId">
 			<div class="input-field fixed-pos search-side">
 				<i class="material-icons prefix">search</i> <input id="search"
 					type="text" class="validate" ng-model="global.search"
@@ -87,10 +90,10 @@
 				<p class="total-cal-info">TOTAL CALORIES</p>
 				<p class="center-align total-cal-info-sub">for the day</p>
 				<p class="teal-text text-darken-4 calorie-consumed center-align">
-					<b>{{ journal.calories_consumed }}</b>
+					<b>{{ total_calories }}</b>
 				</p>
 				<p class="cal-sub-text center-align"> Calories <br>
-					<h7>Out of {{ journal.calorie_limit }} </h7>
+					<h7>Out of  2000</h7>
 				</p>
 				<div class="divider"></div>
 				<div class="row">
@@ -102,7 +105,8 @@
 					<div class="col s12">
 						<div></div>
 						<center>
-							<a class="waves-effect waves-light btn" id="add_meal">Add a Meal</a>
+
+							<a class="waves-effect waves-light btn" id="add_meal" ng-show="journalId != '' && (total_calories != '-' && total_calories < 2000 )">Add a Meal</a>
 						</center>
 						<div></div>
 						<center>
@@ -113,8 +117,7 @@
 				<div class="row">
 					<div class="col s12">
 						<center>
-							<input type="hidden" ng-model="journalId">
-							<button class="waves-effect waves-light btn red" id="delete_journal" ng-click="deleteEntry()" ng-disabled="journalId == ''">Delete Entry</button>
+							<button class="waves-effect waves-light btn red" id="delete_journal" ng-click="deleteEntry()" ng-disabled="journalId == '' || journal.meals != ''">Delete Entry</button>
 						</center>
 					</div>
 				</div>

@@ -51,6 +51,8 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 	$scope.init = function() {
 		this.getAllMeals();
 		this.getJournalEntry();
+		this.journal.meals = '';
+		this.total_calories = '-';
 	}
 
 
@@ -110,6 +112,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 			if(typeof data.success != 'undefined') {
 				$scope.hasEntry = 'hidden';
 				$scope.journalId = data.journal_id;
+				$scope.total_calories = 0;
 			} else {
 				$scope.hasEntry = '';
 			}
@@ -138,6 +141,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 			if(typeof data.success != 'undefined') {
 				$scope.hasEntry = '';
 				$scope.journalId = '';
+				$scope.total_calories = '-';
 			} else {
 				$scope.hasEntry = 'hidden';
 			}
@@ -180,6 +184,7 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 
 		getJournalMeal.success(function(data,status, headers, config) {	
 			var mealsScope = [];
+			var total_calories = 0;
 			if(typeof data.success != 'undefined') {
 				var ndx = 0;
 				var index = 0;
@@ -195,13 +200,17 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 							mealsScope[index].meals =  journalMealList[i][j];
 						} else  if( ndx == 1){
 							mealsScope[index].main = journalMealList[i][j];
-						}
+							if(typeof(journalMealList[i][j].total_calories) != 'undefined') {
+								total_calories += journalMealList[i][j].total_calories;
+							}
+						}	
 						ndx++;
 					}
 					index++;
 				}
 			}
 			$scope.journal.meals = mealsScope;
+			$scope.total_calories = total_calories;
 		});
 	}
 
@@ -235,6 +244,8 @@ meal_journal.controller('MealJournalController', ['$scope', '$http', '$filter', 
 				$scope.hasEntry = '';
 				$scope.journalId = '';
 				$scope.isDelJournalDisabled = 'disabled';
+				$scope.journal.meals = '';
+				$scope.total_calories = '-';
 			}
 		});
 	}

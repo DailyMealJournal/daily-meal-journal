@@ -304,28 +304,37 @@ public class ProjectDao {
    
     public List<Object> scopeJournalMeal(JournalMeal journalMeal) {
         List<Object> journalMealList = new ArrayList<Object>();
-        List<Object> joinedTable = new ArrayList<Object>();
+        List<Object> joinedTable;
         Map<String, Object> MealResult;
         List<Entity> list = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id", FilterOperator.EQUAL, journalMeal.getJournal_id()).asList();
         int meal_id;
         for(Entity e : list){
+            joinedTable = new ArrayList<Object>();
             meal_id = Integer.parseInt(e.getProperties().get("meal_id").toString());
-
+            
             MealResult = Datastore.query(Meal.KIND_NAME).filter("id", FilterOperator.EQUAL, meal_id).asSingleEntity().getProperties();
             joinedTable.add(MealResult);
             joinedTable.add(e.getProperties());
+
             journalMealList.add(joinedTable);
         } 
         
         return journalMealList;
     }
     
+    public int checkJournalTotalCalories(Long journalId) {
+        List<Entity> list = Datastore.query(JournalMeal.KIND_NAME).filter("journal_id", FilterOperator.EQUAL, journalId).asList();
+        int total_calories = 0;
+        for(Entity e: list) {
+           total_calories += Integer.parseInt(e.getProperties().get("total_calories").toString());
+        }
+        return (total_calories < 2000) ? total_calories: -1;
+    }
+    
     public boolean deleteJournalMeal(JournalMeal journalMeal) {
         boolean result = true;
-        System.out.print(journalMeal);
         try{
             Transaction tx = Datastore.beginTransaction();
-            System.out.print(journalMeal);
             Datastore.delete(Datastore.query(JournalMeal.KIND_NAME).filter("id", FilterOperator.EQUAL, journalMeal.getId()).asSingleEntity().getKey());
                         
             tx.commit();

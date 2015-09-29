@@ -161,16 +161,22 @@ public class ProjectService {
 
 	   public JournalMealDto journalMeal(JournalMealDto input, String action) {
 	        JournalMeal journalMeal = new JournalMeal();
-	        
+	        int checkResult = this.dao.checkJournalTotalCalories(input.getJournal_id());
 	        if(action.equals("create_journal_meal")) {
 	            journalMeal.setJournal_id(input.getJournal_id());
 	            journalMeal.setMeal_id(input.getMeal_id());
-	            JournalMeal createJournalMeal = this.dao.createJournalMeal(journalMeal); 
-	            if(createJournalMeal == null){
-	                input.setErrorList(new ArrayList<String>());
-	                input.getErrorList().add("An error occurred while adding a new meal to journal.");
+	            if(checkResult >= 0) {
+    	            JournalMeal createJournalMeal = this.dao.createJournalMeal(journalMeal); 
+    	            if(createJournalMeal == null){
+    	                input.setErrorList(new ArrayList<String>());
+    	                input.getErrorList().add("An error occurred while adding a new meal to journal.");
+    	            } else {
+    	                input.setId((long) createJournalMeal.getId());
+    	            }
 	            } else {
-	                input.setId((long) createJournalMeal.getId());
+	              ArrayList<String> errorList = new ArrayList<String>();
+	              errorList.add("If you add this meal. You have reached the daily limit of 2000 calories per day.");
+	              input.setErrorList(errorList);
 	            }
 	        } else if(action.equals("delete_journal_meal")){
 	            journalMeal.setId(input.getId());
